@@ -1,12 +1,23 @@
 package sample.people;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public abstract class Person {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Role role;
-    private String name;
+    private String fullName;
 
     public Person(Role role) {
         this.role = role;
+    }
+
+    public Person() {
+
     }
 
     public Role getRole() {
