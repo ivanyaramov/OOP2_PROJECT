@@ -13,9 +13,15 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     private ReservationType type;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     private ReservationEndType endType;
+    @Column(nullable = false)
     private Date dateOfArrival;
+    @Column(nullable = false)
     private Date dateOfDeparture;
     @ManyToOne
     private Room room;

@@ -1,12 +1,16 @@
 package sample.people;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.List;
 @Entity
 public class Client extends Person{
     private double rating;
+    @Column(nullable = false)
     private String telephone;
+    @Column(nullable = false)
     private Gender gender;
+    @Column(nullable = false)
     private int age;
     public Client() {
         super(Role.CLIENT);

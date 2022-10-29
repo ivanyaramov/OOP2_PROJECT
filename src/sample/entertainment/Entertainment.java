@@ -1,16 +1,16 @@
 package sample.entertainment;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Entertainment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(30)")
     private EntertainmentType type;
+    @Column(nullable = false)
     private double price;
 
     public EntertainmentType getType() {

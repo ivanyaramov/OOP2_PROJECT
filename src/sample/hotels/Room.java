@@ -7,9 +7,12 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "VARCHAR(30)")
     private RoomCategory roomCategory;
     @ManyToOne
     private Hotel hotel;
+    @Column(nullable = false)
     private double pricePerNight;
     private double rating;
     private boolean isTaken;
