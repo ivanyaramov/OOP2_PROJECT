@@ -5,6 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import sample.entertainment.Entertainment;
+import sample.entertainment.EntertainmentType;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,16 +24,31 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/OOP4";
-        String user = "postgres";
-        String pass = "admin";
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure() // configures settings from hibernate.cfg.xml
+                .build();
         try {
-            Connection myConn = DriverManager.getConnection(jdbcUrl, user, pass);
-            System.out.println("success");
-        }catch (Exception e){
-            System.out.println("maika ti");
-        }
+            SessionFactory factory = new MetadataSources(registry)
+                    .buildMetadata().buildSessionFactory();
+            Session session = factory.openSession();
+            Transaction transaction = session.beginTransaction();
 
+            Entertainment entertainment = new Entertainment();
+            entertainment.setPrice(5);
+            entertainment.setType(EntertainmentType.BEACH_FOOTBALL);
+
+            session.save(entertainment);
+
+            transaction.commit();
+
+            session.close();
+            factory.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
         primaryStage.show();
     }
 
