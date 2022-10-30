@@ -3,27 +3,22 @@ package sample.models.DTOs;
 import sample.models.people.Gender;
 import sample.models.people.Role;
 
-import javax.persistence.Column;
-
 public class RegisterDTO {
     private Role role;
-    @Column(nullable = false)
     private String fullName;
-    @Column(nullable = false)
     private Gender gender;
-    @Column(nullable = false)
     private String username;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    private String passwordRepeat;
     private String telephone;
 
-    public RegisterDTO(Role role, String fullName, Gender gender, String username, String password, String telephone) {
+    public RegisterDTO(Role role, String fullName, Gender gender, String username, String password, String passwordRepeat, String telephone) {
         this.role = role;
         this.fullName = fullName;
         this.gender = gender;
         this.username = username;
         this.password = password;
+        this.passwordRepeat = passwordRepeat;
         this.telephone = telephone;
     }
 
@@ -73,5 +68,13 @@ public class RegisterDTO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getPasswordRepeat() {
+        return passwordRepeat;
+    }
+
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
     }
 }

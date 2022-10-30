@@ -108,33 +108,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
-        try {
-            SessionFactory factory = new MetadataSources(registry)
-                    .buildMetadata().buildSessionFactory();
-            Session session = factory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            Entertainment entertainment = new Entertainment();
-            entertainment.setPrice(5);
-            entertainment.setType(EntertainmentType.BEACH_FOOTBALL);
-
-            session.save(entertainment);
-
-            transaction.commit();
-
-            session.close();
-            factory.close();
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-        primaryStage.show();
     }
 
 

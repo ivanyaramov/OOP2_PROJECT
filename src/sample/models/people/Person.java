@@ -7,10 +7,13 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, columnDefinition = "VARCHAR(30)")
+    @Enumerated(EnumType.STRING)
     private Role role;
     @Column(nullable = false)
     private String fullName;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(30)")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @Column(nullable = false)
     private String username;
