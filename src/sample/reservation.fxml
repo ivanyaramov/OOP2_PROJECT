@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.FXCollections?>
+<VBox fx:controller="sample.sceneControllers.ReservationController"
+      xmlns:fx="http://javafx.com/fxml" alignment="center" spacing="7">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Label text="Choose your room type"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <ComboBox value="One">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Three"/>
+                <String fx:value="Two"/>
+                <String fx:value="One"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="Choose start date"
+           GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
+    <DatePicker fx:id="datepicker" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+
+    <Label text="Choose nights"
+           GridPane.columnIndex="0" GridPane.rowIndex="7" alignment="center"/>
+    <TextField
+            GridPane.columnIndex="0" GridPane.rowIndex="8" alignment="center" maxWidth="300"/>
+    <HBox spacing="10" alignment="center"
+          GridPane.columnIndex="0" GridPane.rowIndex="9">
+        <Button text="Reserve"
+                onAction="#reserve"/>
+    </HBox>
+
+    <Text fx:id="actiontarget"
+          GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+
+</VBox>
