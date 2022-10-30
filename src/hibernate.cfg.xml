@@ -9,13 +9,13 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-        <mapping class="sample.entertainment.Entertainment"/>
-        <mapping class="sample.hotels.Room"/>
-        <mapping class="sample.hotels.Hotel"/>
-        <mapping class="sample.reservations.Reservation"/>
-        <mapping class="sample.people.Person"/>
-        <mapping class="sample.ratings.ClientRating"/>
-        <mapping class="sample.ratings.RoomRating"/>
+        <mapping class="sample.models.entertainment.Entertainment"/>
+        <mapping class="sample.models.hotels.Room"/>
+        <mapping class="sample.models.hotels.Hotel"/>
+        <mapping class="sample.models.reservations.Reservation"/>
+        <mapping class="sample.models.people.Person"/>
+        <mapping class="sample.models.ratings.ClientRating"/>
+        <mapping class="sample.models.ratings.RoomRating"/>
 
 
     </session-factory>

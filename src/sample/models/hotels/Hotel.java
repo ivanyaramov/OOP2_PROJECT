@@ -1,7 +1,7 @@
-package sample.hotels;
+package sample.models.hotels;
 
-import sample.people.Person;
-import sample.reservations.Reservation;
+import sample.models.people.Person;
+import sample.models.reservations.Reservation;
 
 import javax.persistence.*;
 import java.util.List;

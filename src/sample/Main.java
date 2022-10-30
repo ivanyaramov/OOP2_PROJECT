@@ -11,14 +11,14 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import sample.entertainment.Entertainment;
-import sample.entertainment.EntertainmentType;
+import sample.models.entertainment.Entertainment;
+import sample.models.entertainment.EntertainmentType;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Scenes/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/register.fxml"));
 //        primaryStage.setTitle("Login");
 //        Label usernameLabel = new Label("Username");
 //        usernameLabel.setTranslateX(0);
@@ -104,7 +104,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 590, 600);
 
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Register");
         primaryStage.setScene(scene);
         primaryStage.show();
 

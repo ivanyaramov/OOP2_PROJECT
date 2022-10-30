@@ -1,12 +1,11 @@
-package sample.people;
+package sample.models.DTOs;
 
-import javax.persistence.*;
+import sample.models.people.Gender;
+import sample.models.people.Role;
 
-@Entity
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+import javax.persistence.Column;
+
+public class RegisterDTO {
     private Role role;
     @Column(nullable = false)
     private String fullName;
@@ -19,13 +18,15 @@ public class Person {
     @Column(nullable = false)
     private String telephone;
 
-    public Person(Role role) {
+    public RegisterDTO(Role role, String fullName, Gender gender, String username, String password, String telephone) {
         this.role = role;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.username = username;
+        this.password = password;
+        this.telephone = telephone;
     }
 
-    public Person() {
-
-    }
     public Role getRole() {
         return role;
     }

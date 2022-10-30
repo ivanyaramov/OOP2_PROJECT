@@ -1,7 +1,7 @@
-package sample.ratings;
+package sample.models.ratings;
 
-import sample.hotels.Room;
-import sample.people.Person;
+import sample.models.hotels.Room;
+import sample.models.people.Person;
 
 import javax.persistence.*;
 

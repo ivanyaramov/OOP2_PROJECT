@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox fx:controller="sample.sceneControllers.RegisterController"
+      xmlns:fx="http://javafx.com/fxml" alignment="center" spacing="7">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Label text="Username"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <TextField fx:id="usernameFXML"
+               GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300" />
+
+    <Label text="Password"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <PasswordField fx:id="passwordFXML"
+                   GridPane.columnIndex="0" GridPane.rowIndex="7" maxWidth="300"/>
+
+    <Label text="Repeat password"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <PasswordField fx:id="passwordRepeatFXML"
+                   GridPane.columnIndex="0" GridPane.rowIndex="7" maxWidth="300"/>
+
+    <Label text="Fullname"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <TextField fx:id="fullNameFXML"
+            GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300"/>
+
+    <Label text="Gender"
+           GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
+
+    <ComboBox value="Gender" fx:id="genderFXML">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Male"/>
+                <String fx:value="Female"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="Telephone"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
+    <TextField fx:id="telephoneFXML"
+            GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300"/>
+
+    <HBox spacing="10" alignment="center"
+          GridPane.columnIndex="0" GridPane.rowIndex="9">
+        <Button text="Register"
+                alignment="CENTER_RIGHT" onAction="#register"/>
+    </HBox>
+
+</VBox>

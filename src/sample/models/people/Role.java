@@ -1,4 +1,4 @@
-package sample.people;
+package sample.models.people;
 
 public enum Role {
     ADMIN,

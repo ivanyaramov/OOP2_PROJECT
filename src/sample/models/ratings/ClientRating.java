@@ -1,6 +1,6 @@
-package sample.ratings;
+package sample.models.ratings;
 
-import sample.people.Person;
+import sample.models.people.Person;
 
 import javax.persistence.*;
 

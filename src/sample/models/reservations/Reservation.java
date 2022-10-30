@@ -1,9 +1,9 @@
-package sample.reservations;
+package sample.models.reservations;
 
-import sample.hotels.Hotel;
-import sample.hotels.Room;
-import sample.hotels.RoomCategory;
-import sample.people.Person;
+import sample.models.hotels.Hotel;
+import sample.models.hotels.Room;
+import sample.models.hotels.RoomCategory;
+import sample.models.people.Person;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package sample.reservations;
+package sample.models.reservations;
 
 public enum ReservationEndType {
     KICK_OUT,

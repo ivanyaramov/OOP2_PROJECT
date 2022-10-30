@@ -24,13 +24,13 @@
 
     <PasswordField fx:id="passwordField"
                    GridPane.columnIndex="0" GridPane.rowIndex="7" maxWidth="300"/>
+
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
-        <Button text="Sign In"
-                onAction="#login"/>
+        <Button text="Login"
+               alignment="CENTER_LEFT" onAction="#login"/>
+        <Button text="Register"
+                alignment="CENTER_RIGHT" onAction="#register"/>
     </HBox>
-
-    <Text fx:id="actiontarget"
-          GridPane.columnIndex="0" GridPane.rowIndex="11"/>
 
 </VBox>

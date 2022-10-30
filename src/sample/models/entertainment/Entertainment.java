@@ -1,4 +1,4 @@
-package sample.entertainment;
+package sample.models.entertainment;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
-package sample.hotels;
+package sample.models.hotels;
 
 import javax.persistence.*;
-import java.util.List;
+
 @Entity
 public class Room {
     @Id

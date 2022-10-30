@@ -1,4 +1,4 @@
-package sample.hotels;
+package sample.models.hotels;
 
 public enum RoomCategory {
     PRESIDENT,

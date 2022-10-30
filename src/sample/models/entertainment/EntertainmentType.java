@@ -1,4 +1,4 @@
-package sample.entertainment;
+package sample.models.entertainment;
 
 public enum EntertainmentType {
     BEER_PONG,
