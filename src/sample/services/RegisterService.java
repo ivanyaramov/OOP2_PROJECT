@@ -1,5 +1,7 @@
 package sample.services;
 
+import sample.models.DTOs.RegisterDTO;
+
 public interface RegisterService {
-    public void registerAndLogin();
+    public void registerAndLogin(RegisterDTO registerDTO);
 }
