@@ -1,11 +1,9 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,13 +14,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import sample.entertainment.Entertainment;
 import sample.entertainment.EntertainmentType;
 
-import java.time.LocalDate;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 //        primaryStage.setTitle("Login");
 //        Label usernameLabel = new Label("Username");
 //        usernameLabel.setTranslateX(0);
@@ -60,50 +56,56 @@ public class Main extends Application {
 //        Scene sc = new Scene(r, 595, 600);
 //        primaryStage.setScene(sc);
 //        primaryStage.show();
-        primaryStage.setTitle("Reservation");
+//        primaryStage.setTitle("Reservation");
+//
+//        Label reservationTypeLabel = new Label("Choose your room type");
+//        reservationTypeLabel.setTranslateX(0);
+//        reservationTypeLabel.setTranslateY(-250);
+//        ObservableList<String> options =
+//                FXCollections.observableArrayList(
+//                        "Dvoina",
+//                        "Prezidentska",
+//                        "Studio"
+//                );
+//        final ComboBox comboBox = new ComboBox(options);
+//        comboBox.setTranslateX(0);
+//        comboBox.setTranslateY(-215);
+//        Label startDateLabel = new Label("Choose start date");
+//        startDateLabel.setTranslateX(0);
+//        startDateLabel.setTranslateY(-150);
+//        DatePicker startDatePicker = new DatePicker();
+//        startDatePicker.setValue(LocalDate.now());
+//        startDatePicker.setTranslateX(0);
+//        startDatePicker.setTranslateY(-120);
+//        Label daysCountLabel = new Label("Choose nights");
+//        daysCountLabel.setTranslateX(0);
+//        daysCountLabel.setTranslateY(-75);
+//        TextField daysCountTextField = new TextField();
+//        daysCountTextField.setPromptText("Count");
+//        daysCountTextField.getText();
+//        daysCountTextField.setMaxWidth(80);
+//        daysCountTextField.setTranslateX(0);
+//        daysCountTextField.setTranslateY(-45);
+//        Button reservationButton = new Button();
+//        reservationButton.setText("Reserve");
+//        reservationButton.setTranslateX(0);
+//        reservationButton.setTranslateY(10);
+//        StackPane r = new StackPane();
+//        r.getChildren().add(reservationTypeLabel);
+//        r.getChildren().add(comboBox);
+//        r.getChildren().add(startDateLabel);
+//        r.getChildren().add(startDatePicker);
+//        r.getChildren().add(daysCountLabel);
+//        r.getChildren().add(daysCountTextField);
+//        r.getChildren().add(reservationButton);
+//        Scene sc = new Scene(root, 595, 600);
+//        primaryStage.setScene(sc);
+//        primaryStage.show();
 
-        Label reservationTypeLabel = new Label("Choose your room type");
-        reservationTypeLabel.setTranslateX(0);
-        reservationTypeLabel.setTranslateY(-250);
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "Dvoina",
-                        "Prezidentska",
-                        "Studio"
-                );
-        final ComboBox comboBox = new ComboBox(options);
-        comboBox.setTranslateX(0);
-        comboBox.setTranslateY(-215);
-        Label startDateLabel = new Label("Choose start date");
-        startDateLabel.setTranslateX(0);
-        startDateLabel.setTranslateY(-150);
-        DatePicker startDatePicker = new DatePicker();
-        startDatePicker.setValue(LocalDate.now());
-        startDatePicker.setTranslateX(0);
-        startDatePicker.setTranslateY(-120);
-        Label daysCountLabel = new Label("Choose nights");
-        daysCountLabel.setTranslateX(0);
-        daysCountLabel.setTranslateY(-75);
-        TextField daysCountTextField = new TextField();
-        daysCountTextField.setPromptText("Count");
-        daysCountTextField.getText();
-        daysCountTextField.setMaxWidth(80);
-        daysCountTextField.setTranslateX(0);
-        daysCountTextField.setTranslateY(-45);
-        Button reservationButton = new Button();
-        reservationButton.setText("Reserve");
-        reservationButton.setTranslateX(0);
-        reservationButton.setTranslateY(10);
-        StackPane r = new StackPane();
-        r.getChildren().add(reservationTypeLabel);
-        r.getChildren().add(comboBox);
-        r.getChildren().add(startDateLabel);
-        r.getChildren().add(startDatePicker);
-        r.getChildren().add(daysCountLabel);
-        r.getChildren().add(daysCountTextField);
-        r.getChildren().add(reservationButton);
-        Scene sc = new Scene(r, 595, 600);
-        primaryStage.setScene(sc);
+        Scene scene = new Scene(root, 590, 600);
+
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(scene);
         primaryStage.show();
 
 
