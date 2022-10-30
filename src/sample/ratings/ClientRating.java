@@ -1,6 +1,6 @@
 package sample.ratings;
 
-import sample.people.Manager;
+import sample.people.Person;
 
 import javax.persistence.*;
 
@@ -10,18 +10,18 @@ public class ClientRating {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    private Manager manager;
+    private Person manager;
     private double rating;
 
     public Long getId() {
         return id;
     }
 
-    public Manager getManager() {
+    public Person getManager() {
         return manager;
     }
 
-    public void setManager(Manager manager) {
+    public void setManager(Person manager) {
         this.manager = manager;
     }
 

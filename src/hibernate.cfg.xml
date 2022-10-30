@@ -12,12 +12,8 @@
         <mapping class="sample.entertainment.Entertainment"/>
         <mapping class="sample.hotels.Room"/>
         <mapping class="sample.hotels.Hotel"/>
-        <mapping class="sample.people.Client"/>
-        <mapping class="sample.people.Manager"/>
-        <mapping class="sample.people.Administrator"/>
-        <mapping class="sample.people.Owner"/>
-        <mapping class="sample.people.Receptionist"/>
         <mapping class="sample.reservations.Reservation"/>
+        <mapping class="sample.people.Person"/>
         <mapping class="sample.ratings.ClientRating"/>
         <mapping class="sample.ratings.RoomRating"/>
 

@@ -1,7 +1,7 @@
 package sample.ratings;
 
 import sample.hotels.Room;
-import sample.people.Client;
+import sample.people.Person;
 
 import javax.persistence.*;
 
@@ -11,7 +11,7 @@ public class RoomRating {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    private Client client;
+    private Person client;
     @ManyToOne
     private Room room;
     private int rating;
@@ -24,11 +24,11 @@ public class RoomRating {
         this.id = id;
     }
 
-    public Client getClient() {
+    public Person getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Person client) {
         this.client = client;
     }
 

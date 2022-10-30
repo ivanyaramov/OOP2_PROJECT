@@ -1,7 +1,6 @@
 package sample.hotels;
 
-import sample.people.Manager;
-import sample.people.Owner;
+import sample.people.Person;
 import sample.reservations.Reservation;
 
 import javax.persistence.*;
@@ -11,28 +10,28 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne(mappedBy = "hotel")
-    private Manager manager;
+    @OneToOne
+    private Person manager;
     @ManyToOne
-    private Owner owner;
+    private Person owner;
     @OneToMany(mappedBy = "hotel")
     private List<Reservation> reservations;
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
-    public Manager getManager() {
+    public Person getManager() {
         return manager;
     }
 
-    public void setManager(Manager manager) {
+    public void setManager(Person manager) {
         this.manager = manager;
     }
 
-    public Owner getOwner() {
+    public Person getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
     }
 }

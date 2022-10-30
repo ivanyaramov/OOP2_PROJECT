@@ -3,8 +3,7 @@ package sample.reservations;
 import sample.hotels.Hotel;
 import sample.hotels.Room;
 import sample.hotels.RoomCategory;
-import sample.people.Client;
-import sample.people.Receptionist;
+import sample.people.Person;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,9 +27,9 @@ public class Reservation {
     @ManyToOne
     private Hotel hotel;
     @ManyToOne
-    private Client client;
+    private Person client;
     @ManyToOne
-    private Receptionist receptionist;
+    private Person receptionist;
 
     public Hotel getHotel() {
         return hotel;
@@ -92,19 +91,19 @@ public class Reservation {
         this.room = room;
     }
 
-    public Client getClient() {
+    public Person getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Person client) {
         this.client = client;
     }
 
-    public Receptionist getReceptionist() {
+    public Person getReceptionist() {
         return receptionist;
     }
 
-    public void setReceptionist(Receptionist receptionist) {
+    public void setReceptionist(Person receptionist) {
         this.receptionist = receptionist;
     }
 }
