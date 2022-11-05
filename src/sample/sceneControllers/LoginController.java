@@ -11,8 +11,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController extends Application{
-    public void login()
-    {
+    public void login(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../scenes/main.fxml"));
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 590, 600);
+        window.setTitle("main");
+        window.setScene(scene);
+        window.show();
     }
     public void register(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../scenes/register.fxml"));
