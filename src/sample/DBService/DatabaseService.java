@@ -46,25 +46,32 @@ public class DatabaseService {
         .build();
     }
 
-    public static Object getObjectByQuery(String hql){
-        Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml");// populates the data of the
-        // configuration file
-
-        // creating seession factory object
-        SessionFactory factory = cfg.buildSessionFactory();
-
-        // creating session object
+    public Object getObjectByQuery(String hql){
+        SessionFactory factory = buildFactory();
         Session session = factory.openSession();
-
-        // creating transaction object
         Transaction t = session.beginTransaction();
-
         Query query = session.createQuery(hql);
         Object obj = query.getSingleResult();
         t.commit();
         session.close();
         return obj;
+    }
+
+    public Object getListOfObjectsByQuery(String hql){
+        SessionFactory factory = buildFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Query query = session.createQuery(hql);
+        Object obj = query.list();
+        t.commit();
+        session.close();
+        return obj;
+    }
+
+    private SessionFactory buildFactory(){
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");// populates the data of the
+        return cfg.buildSessionFactory();
     }
 
 }

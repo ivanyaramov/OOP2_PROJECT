@@ -7,10 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import sample.models.people.Gender;
+import sample.DBService.DatabaseService;
+import sample.models.people.Person;
 import sample.models.viemModels.AdministratorViewModel;
+import sample.services.UserService;
+import sample.services.impl.UserServiceImpl;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -22,6 +26,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdministratorController implements Initializable {
+    UserService userService = new UserServiceImpl();
+    DatabaseService databaseService = new DatabaseService();
 
     @FXML
     private TableView<AdministratorViewModel> tbData;
@@ -47,38 +53,31 @@ public class AdministratorController implements Initializable {
 
     private ObservableList<AdministratorViewModel> loadProperties(){
         List<AdministratorViewModel> administratorViewModels = new ArrayList<>();
-        Connection c = null;
-        Statement stmt = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/OOP4",
-                            "postgres", "postgres");
-
-            stmt = c.createStatement();
-            String sql = "SELECT person.username, person.role FROM person";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                Object user = rs.getString("username");
-                SimpleStringProperty username = new SimpleStringProperty((String) user);
-                Object rol = rs.getString("role");
-                SimpleStringProperty role = new SimpleStringProperty((String) rol);
-                AdministratorViewModel avm = new AdministratorViewModel(username,role);
-                administratorViewModels.add(avm);
-            }
-            stmt.close();
-            c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
+//        try {
+            List<Person> list = userService.getAllPeopleWithRoles();
+//            while (rs.next()) {
+//                Object user = rs.getString("username");
+//                SimpleStringProperty username = new SimpleStringProperty((String) user);
+//                Object rol = rs.getString("role");
+//                SimpleStringProperty role = new SimpleStringProperty((String) rol);
+//                AdministratorViewModel avm = new AdministratorViewModel(username,role);
+//                administratorViewModels.add(avm);
+//            }
+//            stmt.close();
+//            c.close();
+//        } catch ( Exception e ) {
+//            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+//            System.exit(0);
+//        }
         ObservableList<AdministratorViewModel> oAdministratorViewModels = FXCollections.observableArrayList(administratorViewModels);
         return oAdministratorViewModels;
     }
 
     public void changeRole() {
-        AdministratorViewModel avm = (AdministratorViewModel) tbData.getSelectionModel().getSelectedCells();
-        avm.getUsername();
+        ObservableList<TablePosition> selectedCells = tbData.getSelectionModel().getSelectedCells();
+        TablePosition tablePosition = selectedCells.get(0);
+        int row = tablePosition.getRow();
         String newRole = (String) roleFXML.getValue();
+        userService.changePersonRole((String)tablePosition.getTableColumn().getCellData(row), newRole);
     }
 }

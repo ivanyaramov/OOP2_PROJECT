@@ -28,9 +28,9 @@ public class LoginController extends Application{
         window.setTitle("main");
         window.setScene(scene);
         window.show();
-        LoginService loginService = new LoginServiceImpl();
-        LoginDTO loginDTO = new LoginDTO(usernameFXML.getText(), passwordFXML.getText());
-        loginService.login(loginDTO);
+//        LoginService loginService = new LoginServiceImpl();
+//        LoginDTO loginDTO = new LoginDTO(usernameFXML.getText(), passwordFXML.getText());
+//        loginService.login(loginDTO);
     }
     public void register(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../scenes/register.fxml"));
