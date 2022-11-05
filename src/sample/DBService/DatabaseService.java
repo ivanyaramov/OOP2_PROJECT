@@ -16,10 +16,13 @@ import java.util.List;
 
 public class DatabaseService {
 
-    public static void saveObject(Object object){
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
+    StandardServiceRegistry registry;
+
+    public DatabaseService() {
+        initializeRegistry();
+    }
+
+    public void saveObject(Object object){
         try {
             SessionFactory factory = new MetadataSources(registry)
                     .buildMetadata().buildSessionFactory();
@@ -34,7 +37,13 @@ public class DatabaseService {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
             StandardServiceRegistryBuilder.destroy(registry);
+            initializeRegistry();
         }
+    }
+    private void initializeRegistry(){
+        registry = new StandardServiceRegistryBuilder()
+        .configure()
+        .build();
     }
 
     public static Object getObjectByQuery(String hql){

@@ -58,4 +58,7 @@
                 alignment="CENTER_RIGHT" onAction="#register"/>
     </HBox>
 
+    <Label text="" fx:id="passwordRepeatLabelFXML"
+           GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
+
 </VBox>

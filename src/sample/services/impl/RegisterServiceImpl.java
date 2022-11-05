@@ -11,11 +11,12 @@ import sample.services.RegisterService;
 public class RegisterServiceImpl implements RegisterService {
     ModelMapper modelMapper = new ModelMapper();
     LoginService loginService = new LoginServiceImpl();
+    DatabaseService dbService = new DatabaseService();
     @Override
     public void registerAndLogin(RegisterDTO registerDTO) {
         if(checkIfPasswordMatches(registerDTO)) {
             Person person = modelMapper.map(registerDTO, Person.class);
-            DatabaseService.saveObject(person);
+            dbService.saveObject(person);
             loginService.login(modelMapper.map(registerDTO, LoginDTO.class));
         }
 

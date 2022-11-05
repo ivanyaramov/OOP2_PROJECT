@@ -2,6 +2,7 @@ package sample.sceneControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.models.DTOs.RegisterDTO;
@@ -10,10 +11,10 @@ import sample.models.people.Role;
 import sample.services.RegisterService;
 import sample.services.impl.RegisterServiceImpl;
 
-import javax.persistence.Column;
-
 public class RegisterController {
     RegisterService registerService = new RegisterServiceImpl();
+    @FXML
+    private Label passwordRepeatLabelFXML;
     @FXML
     private TextField usernameFXML;
     @FXML
@@ -29,6 +30,16 @@ public class RegisterController {
 
     @FXML
     public void register() {
+        if(passwordFXML.getText().trim().length()<6)
+        {
+            passwordRepeatLabelFXML.setText("Password is less than 6 symbols, please change it");
+            return;
+        }
+        if(passwordFXML.getText().equals(passwordRepeatFXML.getText()))
+        {
+            passwordRepeatLabelFXML.setText("Passwords don't match \r\nPlease correct the password to match");
+            return;
+        }
         Gender gender;
         if (genderFXML.getValue().equals("Male")) {
             gender = Gender.MALE;
@@ -39,6 +50,4 @@ public class RegisterController {
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
         registerService.registerAndLogin(registerDTO);
     }
-
-
 }
