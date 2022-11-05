@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.modelmapper.ModelMapper;
 import sample.DBService.DatabaseService;
 import sample.models.people.Person;
 import sample.models.viemModels.AdministratorViewModel;
@@ -52,23 +53,14 @@ public class AdministratorController implements Initializable {
     }
 
     private ObservableList<AdministratorViewModel> loadProperties(){
-        List<AdministratorViewModel> administratorViewModels = new ArrayList<>();
-//        try {
-            List<Person> list = userService.getAllPeopleWithRoles();
-//            while (rs.next()) {
-//                Object user = rs.getString("username");
-//                SimpleStringProperty username = new SimpleStringProperty((String) user);
-//                Object rol = rs.getString("role");
-//                SimpleStringProperty role = new SimpleStringProperty((String) rol);
-//                AdministratorViewModel avm = new AdministratorViewModel(username,role);
-//                administratorViewModels.add(avm);
-//            }
-//            stmt.close();
-//            c.close();
-//        } catch ( Exception e ) {
-//            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-//            System.exit(0);
-//        }
+        List<AdministratorViewModel> administratorViewModels = null;
+        try{
+            administratorViewModels = userService.getAllPeopleWithRoles();
+        }
+        catch ( Exception e) {
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+            System.exit(0);
+        }
         ObservableList<AdministratorViewModel> oAdministratorViewModels = FXCollections.observableArrayList(administratorViewModels);
         return oAdministratorViewModels;
     }
