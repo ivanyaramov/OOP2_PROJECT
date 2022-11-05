@@ -2,6 +2,7 @@ package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
 import sample.DBService.DatabaseService;
+import sample.models.DTOs.LoginDTO;
 import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Person;
 import sample.services.LoginService;
@@ -15,7 +16,7 @@ public class RegisterServiceImpl implements RegisterService {
         if(checkIfPasswordMatches(registerDTO)) {
             Person person = modelMapper.map(registerDTO, Person.class);
             DatabaseService.saveObject(person);
-            loginService.login(person);
+            loginService.login(modelMapper.map(registerDTO, LoginDTO.class));
         }
 
 

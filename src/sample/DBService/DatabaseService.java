@@ -6,8 +6,13 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import sample.models.entertainment.Entertainment;
 import sample.models.entertainment.EntertainmentType;
+import sample.models.people.Person;
+
+import java.util.List;
 
 public class DatabaseService {
 
@@ -31,4 +36,26 @@ public class DatabaseService {
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }
+
+    public static Object getObjectByQuery(String hql){
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");// populates the data of the
+        // configuration file
+
+        // creating seession factory object
+        SessionFactory factory = cfg.buildSessionFactory();
+
+        // creating session object
+        Session session = factory.openSession();
+
+        // creating transaction object
+        Transaction t = session.beginTransaction();
+
+        Query query = session.createQuery(hql);
+        Object obj = query.getSingleResult();
+        t.commit();
+        session.close();
+        return obj;
+    }
+
 }
