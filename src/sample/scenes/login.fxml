@@ -33,4 +33,6 @@
                 alignment="CENTER_RIGHT" onAction="#register"/>
     </HBox>
 
+    <Label fx:id="errorFXML"
+        GridPane.columnIndex="0" GridPane.rowIndex="11" alignment="center" maxWidth="300"/>
 </VBox>
