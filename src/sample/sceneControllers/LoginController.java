@@ -29,6 +29,11 @@ public class LoginController extends Application{
 
     public void login(ActionEvent event) throws IOException {
         LoginDTO loginDTO = new LoginDTO(usernameFXML.getText(), passwordFXML.getText());
+        boolean successLogin = loginService.login(loginDTO);
+        if(!successLogin){
+            errorFXML.setText("Invalid credentials");
+            return;
+        }
         loginService.login(loginDTO);
         Parent root = FXMLLoader.load(getClass().getResource("../scenes/main.fxml"));
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

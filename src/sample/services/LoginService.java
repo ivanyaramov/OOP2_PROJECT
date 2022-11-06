@@ -4,5 +4,5 @@ import sample.models.DTOs.LoginDTO;
 import sample.models.people.Person;
 
 public interface LoginService {
-    void login(LoginDTO dto);
+    boolean login(LoginDTO dto);
 }

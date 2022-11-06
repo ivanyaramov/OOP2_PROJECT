@@ -27,6 +27,8 @@ public class RegisterController {
     private ComboBox genderFXML;
     @FXML
     private TextField telephoneFXML;
+    @FXML
+    private Label errorFXML;
 
     @FXML
     public void register() {
