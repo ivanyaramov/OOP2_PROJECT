@@ -35,7 +35,7 @@ public class RegisterController {
             passwordRepeatLabelFXML.setText("Password is less than 6 symbols, please change it");
             return;
         }
-        if(passwordFXML.getText().equals(passwordRepeatFXML.getText()))
+        if(!passwordFXML.getText().equals(passwordRepeatFXML.getText()))
         {
             passwordRepeatLabelFXML.setText("Passwords don't match \r\nPlease correct the password to match");
             return;
