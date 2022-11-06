@@ -1,6 +1,5 @@
 package sample.sceneControllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,25 +9,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.modelmapper.ModelMapper;
-import sample.DBService.DatabaseService;
-import sample.models.people.Person;
 import sample.models.viemModels.AdministratorViewModel;
 import sample.services.UserService;
 import sample.services.impl.UserServiceImpl;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdministratorController implements Initializable {
     UserService userService = new UserServiceImpl();
-    DatabaseService databaseService = new DatabaseService();
 
     @FXML
     private TableView<AdministratorViewModel> tbData;
@@ -61,8 +51,7 @@ public class AdministratorController implements Initializable {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-        ObservableList<AdministratorViewModel> oAdministratorViewModels = FXCollections.observableArrayList(administratorViewModels);
-        return oAdministratorViewModels;
+        return FXCollections.observableArrayList(administratorViewModels);
     }
 
     public void changeRole() {
