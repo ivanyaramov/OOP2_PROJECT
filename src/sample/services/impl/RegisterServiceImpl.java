@@ -20,17 +20,12 @@ public class RegisterServiceImpl implements RegisterService {
     public boolean registerAndLogin(RegisterDTO registerDTO) {
         if(checkIfPasswordMatches(registerDTO)) {
             Person person = modelMapper.map(registerDTO, Person.class);
-            boolean exists = true;
-            try {
-               userService.getPersonByUsername(person.getUsername());
-            }catch (NoResultException e){
-                exists = false;
-            }
-            if(!exists) {
+            if(!userService.personExistsByUsername(registerDTO.getUsername())) {
                 dbService.saveObject(person);
                 loginService.login(modelMapper.map(registerDTO, LoginDTO.class));
+                return true;
             }
-            return !exists;
+            return false;
         }
     return true;
 
