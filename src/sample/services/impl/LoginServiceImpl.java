@@ -10,10 +10,17 @@ import sample.services.UserService;
 public class LoginServiceImpl implements LoginService {
     private UserService userService = new UserServiceImpl();
     @Override
-    public void login(LoginDTO dto) {
-        Person existingPerson = userService.getPersonByUsername(dto.getUseranme());
+    public boolean login(LoginDTO dto) {
+        Person existingPerson;
+        try {
+            existingPerson = userService.getPersonByUsername(dto.getUseranme());
+        }catch (Exception e){
+            return false;
+        }
         if(dto.getPassword().equals(existingPerson.getPassword())) {
             CurrentLoggedUser.login(existingPerson);
+            return true;
         }
+        return false;
     }
 }

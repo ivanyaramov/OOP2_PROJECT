@@ -17,20 +17,14 @@ import sample.services.impl.LoginServiceImpl;
 import java.io.IOException;
 
 public class LoginController extends Application{
+    LoginService loginService = new LoginServiceImpl();
     @FXML
     private TextField usernameFXML;
     @FXML
     private PasswordField passwordFXML;
     public void login(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../scenes/main.fxml"));
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 590, 600);
-        window.setTitle("main");
-        window.setScene(scene);
-        window.show();
-//        LoginService loginService = new LoginServiceImpl();
-//        LoginDTO loginDTO = new LoginDTO(usernameFXML.getText(), passwordFXML.getText());
-//        loginService.login(loginDTO);
+        LoginDTO loginDTO = new LoginDTO(usernameFXML.getText(), passwordFXML.getText());
+        boolean successLogin = loginService.login(loginDTO);
     }
     public void register(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../scenes/register.fxml"));
