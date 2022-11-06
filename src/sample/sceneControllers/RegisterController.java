@@ -1,15 +1,24 @@
 package sample.sceneControllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import sample.Utilities.RedirectScenes;
 import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Gender;
 import sample.models.people.Role;
 import sample.services.RegisterService;
 import sample.services.impl.RegisterServiceImpl;
+
+import java.io.IOException;
 
 public class RegisterController {
     RegisterService registerService = new RegisterServiceImpl();
@@ -31,7 +40,7 @@ public class RegisterController {
     private Label errorFXML;
 
     @FXML
-    public void register() {
+    public void register(ActionEvent event) throws IOException {
         if(passwordFXML.getText().trim().length()<6)
         {
             passwordRepeatLabelFXML.setText("Password is less than 6 symbols, please change it");
@@ -50,6 +59,10 @@ public class RegisterController {
         }
         RegisterDTO registerDTO = new RegisterDTO(Role.CLIENT, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
-        registerService.registerAndLogin(registerDTO);
+        if(!registerService.registerAndLogin(registerDTO)) {
+            errorFXML.setText("Username is already taken.");
+            return;
+        }
+        RedirectScenes.redirect(event,"main");
     }
 }

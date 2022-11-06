@@ -1,20 +1,22 @@
 package sample.models.DTOs;
 
 public class LoginDTO {
-    private String useranme;
+    private String usernanme;
     private String password;
 
-    public LoginDTO(String useranme, String password) {
-        this.useranme = useranme;
+    public LoginDTO(String usernanme, String password) {
+        this.usernanme = usernanme;
         this.password = password;
     }
 
-    public String getUseranme() {
-        return useranme;
+    public LoginDTO(){};
+
+    public String getUsernanme() {
+        return usernanme;
     }
 
-    public void setUseranme(String useranme) {
-        this.useranme = useranme;
+    public void setUsernanme(String usernanme) {
+        this.usernanme = usernanme;
     }
 
     public String getPassword() {

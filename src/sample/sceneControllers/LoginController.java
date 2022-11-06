@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Utilities.RedirectScenes;
 import sample.models.DTOs.LoginDTO;
 import sample.services.LoginService;
 import sample.services.impl.LoginServiceImpl;
@@ -35,20 +36,10 @@ public class LoginController extends Application{
             return;
         }
         loginService.login(loginDTO);
-        Parent root = FXMLLoader.load(getClass().getResource("../scenes/main.fxml"));
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 590, 600);
-        window.setTitle("main");
-        window.setScene(scene);
-        window.show();
+        RedirectScenes.redirect(event,"main");
     }
     public void register(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../scenes/register.fxml"));
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 590, 600);
-        window.setTitle("Register");
-        window.setScene(scene);
-        window.show();
+        RedirectScenes.redirect(event,"register");
     }
 
     @Override

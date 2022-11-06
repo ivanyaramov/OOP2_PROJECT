@@ -1,6 +1,5 @@
 package sample.services.impl;
 
-import sample.DBService.DatabaseService;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.LoginDTO;
 import sample.models.people.Person;
@@ -13,7 +12,7 @@ public class LoginServiceImpl implements LoginService {
     public boolean login(LoginDTO dto) {
         Person existingPerson;
         try {
-            existingPerson = userService.getPersonByUsername(dto.getUseranme());
+            existingPerson = userService.getPersonByUsername(dto.getUsernanme());
         }catch (Exception e){
             return false;
         }
