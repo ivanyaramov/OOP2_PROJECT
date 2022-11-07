@@ -12,6 +12,6 @@ import java.io.IOException;
 
 public class MainController {
     public void administratorPage(ActionEvent event) throws IOException {
-        RedirectScenes.redirect(event,"createNewReceptionist");
+        RedirectScenes.redirect(event,"main");
     }
 }
