@@ -17,6 +17,7 @@ import sample.models.people.Gender;
 import sample.models.people.Role;
 import sample.services.RegisterService;
 import sample.services.impl.RegisterServiceImpl;
+import sample.validation.ValidationUtil;
 
 import java.io.IOException;
 
@@ -41,14 +42,9 @@ public class RegisterController {
 
     @FXML
     public void register(ActionEvent event) throws IOException {
-        if(passwordFXML.getText().trim().length()<6)
-        {
-            passwordRepeatLabelFXML.setText("Password is less than 6 symbols, please change it");
-            return;
-        }
-        if(!passwordFXML.getText().equals(passwordRepeatFXML.getText()))
-        {
-            passwordRepeatLabelFXML.setText("Passwords don't match \r\nPlease correct the password to match");
+        boolean success = ValidationUtil.validatePassword(passwordFXML, passwordRepeatFXML, passwordRepeatLabelFXML);
+        boolean userNameNotTaken = ValidationUtil.validateUserNameNotTaken(usernameFXML.getText(), errorFXML);
+        if(!success || !userNameNotTaken){
             return;
         }
         Gender gender;
@@ -59,10 +55,9 @@ public class RegisterController {
         }
         RegisterDTO registerDTO = new RegisterDTO(Role.CLIENT, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
-        if(!registerService.registerAndLogin(registerDTO)) {
-            errorFXML.setText("Username is already taken.");
-            return;
+       success = registerService.registerAndLogin(registerDTO);
+        if(success) {
+            RedirectScenes.redirect(event, "main");
         }
-        RedirectScenes.redirect(event,"main");
     }
 }

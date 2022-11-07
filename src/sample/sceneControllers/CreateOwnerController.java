@@ -16,12 +16,15 @@ import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Gender;
 import sample.models.people.Role;
 import sample.services.RegisterService;
+import sample.services.UserService;
 import sample.services.impl.RegisterServiceImpl;
+import sample.services.impl.UserServiceImpl;
+import sample.validation.ValidationUtil;
 
 import java.io.IOException;
 
 public class CreateOwnerController {
-    RegisterService registerService = new RegisterServiceImpl();
+    UserService userService = new UserServiceImpl();
     @FXML
     private Label passwordRepeatLabelFXML;
     @FXML
@@ -41,16 +44,12 @@ public class CreateOwnerController {
 
     @FXML
     public void register(ActionEvent event) throws IOException {
-        if(passwordFXML.getText().trim().length()<6)
-        {
-            passwordRepeatLabelFXML.setText("Password is less than 6 symbols, please change it");
-            return;
-        }
-        if(!passwordFXML.getText().equals(passwordRepeatFXML.getText()))
-        {
-            passwordRepeatLabelFXML.setText("Passwords don't match \r\nPlease correct the password to match");
-            return;
-        }
+
+       boolean success = ValidationUtil.validatePassword(passwordFXML, passwordRepeatFXML, passwordRepeatLabelFXML);
+        boolean userNameNotTaken = ValidationUtil.validateUserNameNotTaken(usernameFXML.getText(), errorFXML);
+       if(!success || !userNameNotTaken){
+           return;
+       }
         Gender gender;
         if (genderFXML.getValue().equals("Male")) {
             gender = Gender.MALE;
@@ -59,10 +58,7 @@ public class CreateOwnerController {
         }
         RegisterDTO registerDTO = new RegisterDTO(Role.OWNER, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
-        if(!registerService.registerAndLogin(registerDTO)) {
-            errorFXML.setText("Username is already taken.");
-            return;
-        }
-        RedirectScenes.redirect(event,"admin");
+        userService.createPerson(registerDTO);
+        RedirectScenes.redirect(event,"administrator");
     }
 }

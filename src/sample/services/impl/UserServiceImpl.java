@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import org.modelmapper.ModelMapper;
 import sample.DBService.DatabaseService;
 import sample.models.DTOs.PersonPasswordDTO;
+import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Person;
 import sample.models.people.Role;
 import sample.models.viemModels.AdministratorViewModel;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    DatabaseService databaseService = new DatabaseService();
+    DatabaseService dbService = new DatabaseService();
     ModelMapper modelMapper = new ModelMapper();
 
     public boolean personExistsByUsername(String username){
@@ -27,9 +28,15 @@ public class UserServiceImpl implements UserService {
         return person != null;
     }
 
+    @Override
+    public void createPerson(RegisterDTO registerDTO) {
+        Person person = modelMapper.map(registerDTO, Person.class);
+        dbService.saveObject(person);
+    }
+
     public Person getPersonByUsername(String username){
         String hql = "FROM Person p WHERE p.username = '" + username + "'";
-        return (Person) databaseService.getObjectByQuery(hql);
+        return (Person) dbService.getObjectByQuery(hql);
     }
 
     public PersonPasswordDTO getPersonPasswordDTO(String username){
@@ -40,13 +47,13 @@ public class UserServiceImpl implements UserService {
     public void changePersonRole(String username, String role) {
         Person person = getPersonByUsername(username);
         person.setRole(Role.valueOf(role));
-        databaseService.updateObject(person);
+        dbService.updateObject(person);
     }
 
     public List<AdministratorViewModel> getAllPeopleWithRoles(){
         String hql = "FROM Person p WHERE p.role != 'CLIENT'";
         List<AdministratorViewModel> administratorViewModels = new ArrayList<>();
-        List<Person> listOfObjectsByQuery = (List<Person>) databaseService.getListOfObjectsByQuery(hql);
+        List<Person> listOfObjectsByQuery = (List<Person>) dbService.getListOfObjectsByQuery(hql);
         for(Person p : listOfObjectsByQuery) {
             Object user = p.getUsername();
             SimpleStringProperty username = new SimpleStringProperty((String) user);
