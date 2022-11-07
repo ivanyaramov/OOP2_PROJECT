@@ -35,6 +35,26 @@ public class DatabaseService {
             initializeRegistry();
         }
     }
+
+    public void updateObject(Object object){
+        try {
+            SessionFactory factory = new MetadataSources(registry)
+                    .buildMetadata().buildSessionFactory();
+            Session session = factory.openSession();
+            Transaction transaction = session.beginTransaction();
+            session.update(object);
+            transaction.commit();
+            session.close();
+            factory.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            StandardServiceRegistryBuilder.destroy(registry);
+            initializeRegistry();
+        }
+    }
+
     private void initializeRegistry(){
         registry = new StandardServiceRegistryBuilder()
         .configure()

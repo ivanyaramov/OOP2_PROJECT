@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public void changePersonRole(String username, String role) {
         Person person = getPersonByUsername(username);
         person.setRole(Role.valueOf(role));
-        databaseService.saveObject(person);
+        databaseService.updateObject(person);
     }
 
     public List<AdministratorViewModel> getAllPeopleWithRoles(){
