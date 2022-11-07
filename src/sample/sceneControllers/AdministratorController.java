@@ -2,6 +2,7 @@ package sample.sceneControllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -9,10 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.Utilities.RedirectScenes;
 import sample.models.viemModels.AdministratorViewModel;
 import sample.services.UserService;
 import sample.services.impl.UserServiceImpl;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -58,5 +61,9 @@ public class AdministratorController implements Initializable {
         AdministratorViewModel avm = tbData.getSelectionModel().getSelectedItem();
         String newRole = (String) roleFXML.getValue();
         userService.changePersonRole(avm.getUsername(), newRole);
+    }
+
+    public void createNewOwner(ActionEvent event) throws IOException {
+        RedirectScenes.redirect(event,"createNewOwner");
     }
 }

@@ -29,5 +29,6 @@
           <TableColumn fx:id="role" prefWidth="100.0" text="Current role" />
         </columns>
       </TableView>
+       <Button layoutX="511.0" layoutY="450.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Owner" onAction="#createNewOwner" />
    </children>
 </AnchorPane>
