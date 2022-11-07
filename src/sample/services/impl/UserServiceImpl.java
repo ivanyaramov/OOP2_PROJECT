@@ -5,9 +5,11 @@ import org.modelmapper.ModelMapper;
 import sample.DBService.DatabaseService;
 import sample.models.DTOs.PersonPasswordDTO;
 import sample.models.DTOs.RegisterDTO;
+import sample.models.viemModels.PersonForChoosingView;
 import sample.models.people.Person;
 import sample.models.people.Role;
 import sample.models.viemModels.AdministratorViewModel;
+import sample.models.viemModels.PersonWithRoleViewModel;
 import sample.services.UserService;
 
 import javax.persistence.NoResultException;
@@ -44,24 +46,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<PersonForChoosingView> getPersonViewByRole(Role role) {
+        String hql = "FROM Person p WHERE p.role = '" + role + "'";
+        List<Person> listOfObjectsByQuery = (List<Person>) dbService.getListOfObjectsByQuery(hql);
+        List<PersonForChoosingView> listOfDTOs = new ArrayList<>();
+        for(Person p : listOfObjectsByQuery) {
+            PersonForChoosingView viewPersonForChoosingDTO = modelMapper.map(p, PersonForChoosingView.class);
+            listOfDTOs.add(viewPersonForChoosingDTO);
+        }
+        return listOfDTOs;
+    }
+
+    @Override
     public void changePersonRole(String username, String role) {
         Person person = getPersonByUsername(username);
         person.setRole(Role.valueOf(role));
         dbService.updateObject(person);
     }
 
-    public List<AdministratorViewModel> getAllPeopleWithRoles(){
+    public List<PersonWithRoleViewModel> getAllPeopleWithRoles(){
         String hql = "FROM Person p WHERE p.role != 'CLIENT'";
-        List<AdministratorViewModel> administratorViewModels = new ArrayList<>();
+        List<PersonWithRoleViewModel> peoplewithRoles = new ArrayList<>();
         List<Person> listOfObjectsByQuery = (List<Person>) dbService.getListOfObjectsByQuery(hql);
         for(Person p : listOfObjectsByQuery) {
-            Object user = p.getUsername();
-            SimpleStringProperty username = new SimpleStringProperty((String) user);
-            Object rol = p.getRole().toString();
-            SimpleStringProperty role = new SimpleStringProperty((String) rol);
-            AdministratorViewModel avm = new AdministratorViewModel(username,role);
-            administratorViewModels.add(avm);
+            PersonWithRoleViewModel personWithRoleViewModel = modelMapper.map(p, PersonWithRoleViewModel.class);
+            peoplewithRoles.add(personWithRoleViewModel);
         }
-        return administratorViewModels;
+        return peoplewithRoles;
     }
 }

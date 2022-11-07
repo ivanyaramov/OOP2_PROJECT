@@ -10,8 +10,8 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany
-    private List<Person> manager;
+    @OneToOne
+    private Person manager;
     @ManyToOne
     private Person owner;
     @OneToMany
@@ -21,11 +21,11 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
-    public List<Person> getManager() {
+    public Person getManager() {
         return manager;
     }
 
-    public void setManager(List<Person> manager) {
+    public void setManager(Person manager) {
         this.manager = manager;
     }
 
