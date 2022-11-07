@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sample.Utilities.RedirectScenes;
+import sample.utilities.RedirectScenes;
 import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Gender;
 import sample.models.people.Role;
