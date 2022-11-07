@@ -10,6 +10,9 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
+    private String city;
+    private int stars;
     @OneToOne
     private Person manager;
     @ManyToOne
@@ -43,5 +46,29 @@ public class Hotel {
 
     public void setReceptionists(List<Person> receptionists) {
         this.receptionists = receptionists;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
     }
 }
