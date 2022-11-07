@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.utilities.RedirectScenes;
 import sample.models.people.Role;
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CreateHotelController implements Initializable {
+public class CreateNewHotelController implements Initializable {
 
     UserService userService = new UserServiceImpl();
 
@@ -44,6 +42,15 @@ public class CreateHotelController implements Initializable {
 
     @FXML
     public TableColumn<CreateHotelViewModel,String> receptionistFullname;
+
+    @FXML
+    public TextField nameOfHotel;
+
+    @FXML
+    public TextField addressOfHotel;
+
+    @FXML
+    public ComboBox stars;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,6 +89,10 @@ public class CreateHotelController implements Initializable {
     public void createNewHotel(){
         CreateHotelViewModel chvmM = tbDataManagers.getSelectionModel().getSelectedItem();
         List<CreateHotelViewModel> chvmR = tbDataReceptionists.getSelectionModel().getSelectedItems();
+        String nameOfHotelData = nameOfHotel.getText();
+        String nameOfAddressData = addressOfHotel.getText();
+        String startData = stars.getValue().toString();
+
         //TODO: Create createHotel method which takes first parameter one CreateHotelViewModel the manager and List if CreateHotelViewModel the receptionists
         //userService.createHotel(chvmM,chvmR);
     }

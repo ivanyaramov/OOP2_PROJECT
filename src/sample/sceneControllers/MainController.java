@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public class MainController {
     public void administratorPage(ActionEvent event) throws IOException {
-        RedirectScenes.redirect(event,"main");
+        RedirectScenes.redirect(event,"createNewHotel");
     }
 }
