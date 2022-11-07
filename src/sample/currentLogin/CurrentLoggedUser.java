@@ -18,4 +18,8 @@ public class CurrentLoggedUser {
             loggedUser = person;
         }
     }
+
+    public static Person getLoggedUser(){
+        return loggedUser;
+    }
 }

@@ -8,9 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.models.DTOs.HotelDTO;
+import sample.services.HotelService;
+import sample.services.impl.HotelServiceImpl;
 import sample.utilities.RedirectScenes;
 import sample.models.people.Role;
-import sample.models.viemModels.CreateHotelViewModel;
+import sample.models.viemModels.PersonForCreateHotelViewModel;
 import sample.models.viemModels.PersonForChoosingView;
 import sample.services.UserService;
 import sample.services.impl.UserServiceImpl;
@@ -24,24 +27,25 @@ import java.util.ResourceBundle;
 public class CreateNewHotelController implements Initializable {
 
     UserService userService = new UserServiceImpl();
+    HotelService hotelService = new HotelServiceImpl();
 
     @FXML
-    private TableView<CreateHotelViewModel> tbDataManagers;
+    private TableView<PersonForCreateHotelViewModel> tbDataManagers;
 
     @FXML
-    private TableView<CreateHotelViewModel> tbDataReceptionists;
+    private TableView<PersonForCreateHotelViewModel> tbDataReceptionists;
 
     @FXML
-    public TableColumn<CreateHotelViewModel,String> managerUsername;
+    public TableColumn<PersonForCreateHotelViewModel,String> managerUsername;
 
     @FXML
-    public TableColumn<CreateHotelViewModel,String> managerFullname;
+    public TableColumn<PersonForCreateHotelViewModel,String> managerFullname;
 
     @FXML
-    public TableColumn<CreateHotelViewModel,String> receptionistUsername;
+    public TableColumn<PersonForCreateHotelViewModel,String> receptionistUsername;
 
     @FXML
-    public TableColumn<CreateHotelViewModel,String> receptionistFullname;
+    public TableColumn<PersonForCreateHotelViewModel,String> receptionistFullname;
 
     @FXML
     public TextField nameOfHotel;
@@ -55,8 +59,8 @@ public class CreateNewHotelController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ObservableList<CreateHotelViewModel> managers = loadProperties(Role.MANAGER);
-        ObservableList<CreateHotelViewModel> receptionists = loadProperties(Role.RECEPTIONIST);
+        ObservableList<PersonForCreateHotelViewModel> managers = loadProperties(Role.MANAGER);
+        ObservableList<PersonForCreateHotelViewModel> receptionists = loadProperties(Role.RECEPTIONIST);
         managerUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         managerFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         receptionistUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -67,15 +71,15 @@ public class CreateNewHotelController implements Initializable {
         tbDataReceptionists.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    private ObservableList<CreateHotelViewModel> loadProperties(Role role){
+    private ObservableList<PersonForCreateHotelViewModel> loadProperties(Role role){
         List<PersonForChoosingView> peopleWithRoles = null;
-        List<CreateHotelViewModel> properties = new ArrayList<>();
+        List<PersonForCreateHotelViewModel> properties = new ArrayList<>();
         try{
             peopleWithRoles = userService.getPersonViewByRole(role);
             for(PersonForChoosingView p : peopleWithRoles) {
                 SimpleStringProperty username = new SimpleStringProperty(p.getUsername());
                 SimpleStringProperty fullname = new SimpleStringProperty(p.getFullName());
-                CreateHotelViewModel chvm = new CreateHotelViewModel(username,fullname);
+                PersonForCreateHotelViewModel chvm = new PersonForCreateHotelViewModel(username,fullname);
                 properties.add(chvm);
             }
         }
@@ -87,14 +91,15 @@ public class CreateNewHotelController implements Initializable {
     }
 
     public void createNewHotel(){
-        CreateHotelViewModel chvmM = tbDataManagers.getSelectionModel().getSelectedItem();
-        List<CreateHotelViewModel> chvmR = tbDataReceptionists.getSelectionModel().getSelectedItems();
+        PersonForCreateHotelViewModel chvmM = tbDataManagers.getSelectionModel().getSelectedItem();
+        List<PersonForCreateHotelViewModel> chvmR = tbDataReceptionists.getSelectionModel().getSelectedItems();
         String nameOfHotelData = nameOfHotel.getText();
         String nameOfAddressData = addressOfHotel.getText();
-        String startData = stars.getValue().toString();
+        String starsCount = stars.getValue().toString();
 
         //TODO: Create createHotel method which takes first parameter one CreateHotelViewModel the manager and List if CreateHotelViewModel the receptionists
-        //userService.createHotel(chvmM,chvmR);
+        HotelDTO hotelDTO = new HotelDTO(nameOfHotelData, nameOfAddressData, Integer.parseInt(starsCount), chvmM, chvmR);
+        hotelService.createHotel(hotelDTO);
     }
 
     public void createNewManager(ActionEvent event) throws IOException {

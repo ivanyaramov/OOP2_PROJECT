@@ -18,4 +18,5 @@ public interface UserService {
     void createPerson(RegisterDTO registerDTO);
     PersonPasswordDTO getPersonPasswordDTO(String username);
     List<PersonForChoosingView> getPersonViewByRole(Role role);
+    List<Person> getPeopleByListOfUsernames(List<String> usernames);
 }

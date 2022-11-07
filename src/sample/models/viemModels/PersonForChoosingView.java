@@ -7,6 +7,11 @@ public class PersonForChoosingView {
     public PersonForChoosingView() {
     }
 
+    public PersonForChoosingView(String fullName, String username) {
+        this.fullName = fullName;
+        this.username = username;
+    }
+
     public String getFullName() {
         return fullName;
     }

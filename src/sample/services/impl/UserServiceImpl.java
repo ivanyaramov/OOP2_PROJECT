@@ -41,6 +41,15 @@ public class UserServiceImpl implements UserService {
         return (Person) dbService.getObjectByQuery(hql);
     }
 
+    public List<Person> getPeopleByListOfUsernames(List<String> usernames){
+        List<Person> list = new ArrayList<>();
+        for(String username: usernames){
+            Person p = getPersonByUsername(username);
+            list.add(p);
+        }
+        return list;
+    }
+
     public PersonPasswordDTO getPersonPasswordDTO(String username){
         return modelMapper.map(getPersonByUsername(username), PersonPasswordDTO.class);
     }

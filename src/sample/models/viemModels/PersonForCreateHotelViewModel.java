@@ -2,11 +2,11 @@ package sample.models.viemModels;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class CreateHotelViewModel {
+public class PersonForCreateHotelViewModel {
     private SimpleStringProperty username;
     private SimpleStringProperty fullname;
 
-    public CreateHotelViewModel(SimpleStringProperty username, SimpleStringProperty fullname) {
+    public PersonForCreateHotelViewModel(SimpleStringProperty username, SimpleStringProperty fullname) {
         this.username = username;
         this.fullname = fullname;
     }
