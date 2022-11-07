@@ -6,11 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Utilities.RedirectScenes;
 import sample.models.people.Role;
+import sample.models.viemModels.AdministratorViewModel;
 import sample.models.viemModels.CreateHotelViewModel;
 import sample.models.viemModels.PersonForChoosingView;
 import sample.services.UserService;
@@ -46,6 +48,7 @@ public class CreateHotelController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         ObservableList<CreateHotelViewModel> managers = loadProperties(Role.MANAGER);
         ObservableList<CreateHotelViewModel> receptionists = loadProperties(Role.RECEPTIONIST);
         managerUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -55,7 +58,7 @@ public class CreateHotelController implements Initializable {
 
         tbDataManagers.setItems(managers);
         tbDataReceptionists.setItems(receptionists);
-
+        tbDataReceptionists.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private ObservableList<CreateHotelViewModel> loadProperties(Role role){
@@ -66,8 +69,8 @@ public class CreateHotelController implements Initializable {
             for(PersonForChoosingView p : peopleWithRoles) {
                 SimpleStringProperty username = new SimpleStringProperty(p.getUsername());
                 SimpleStringProperty fullname = new SimpleStringProperty(p.getFullName());
-                CreateHotelViewModel pfcv = new CreateHotelViewModel(username,fullname);
-                properties.add(pfcv);
+                CreateHotelViewModel chvm = new CreateHotelViewModel(username,fullname);
+                properties.add(chvm);
             }
         }
         catch ( Exception e) {
@@ -78,7 +81,10 @@ public class CreateHotelController implements Initializable {
     }
 
     public void createNewHotel(){
-
+        CreateHotelViewModel chvmM = tbDataManagers.getSelectionModel().getSelectedItem();
+        List<CreateHotelViewModel> chvmR = tbDataReceptionists.getSelectionModel().getSelectedItems();
+        //TODO: Create createHotel method which takes first parameter one CreateHotelViewModel the manager and List if CreateHotelViewModel the receptionists
+        //userService.createHotel(chvmM,chvmR);
     }
 
     public void createNewManager(ActionEvent event) throws IOException {
