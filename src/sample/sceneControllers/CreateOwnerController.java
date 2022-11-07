@@ -2,22 +2,15 @@ package sample.sceneControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import sample.Utilities.RedirectScenes;
 import sample.models.DTOs.RegisterDTO;
 import sample.models.people.Gender;
 import sample.models.people.Role;
-import sample.services.RegisterService;
 import sample.services.UserService;
-import sample.services.impl.RegisterServiceImpl;
 import sample.services.impl.UserServiceImpl;
 import sample.validation.ValidationUtil;
 
@@ -43,7 +36,7 @@ public class CreateOwnerController {
     private Label errorFXML;
 
     @FXML
-    public void register(ActionEvent event) throws IOException {
+    public void createNewOwner(ActionEvent event) throws IOException {
 
        boolean success = ValidationUtil.validatePassword(passwordFXML, passwordRepeatFXML, passwordRepeatLabelFXML);
         boolean userNameNotTaken = ValidationUtil.validateUserNameNotTaken(usernameFXML.getText(), errorFXML);

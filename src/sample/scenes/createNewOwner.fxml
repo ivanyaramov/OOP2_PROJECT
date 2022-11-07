@@ -55,7 +55,7 @@
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
         <Button text="Register"
-                alignment="CENTER_RIGHT" onAction="#register"/>
+                alignment="CENTER_RIGHT" onAction="#createNewOwner"/>
     </HBox>
 
     <Label text="" fx:id="passwordRepeatLabelFXML"
