@@ -1,5 +1,6 @@
 package sample.sceneControllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,11 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Utilities.RedirectScenes;
 import sample.models.viemModels.AdministratorViewModel;
+import sample.models.viemModels.PersonWithRoleViewModel;
 import sample.services.UserService;
 import sample.services.impl.UserServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,15 +49,23 @@ public class AdministratorController implements Initializable {
     }
 
     private ObservableList<AdministratorViewModel> loadProperties(){
-        List<AdministratorViewModel> administratorViewModels = null;
+        List<PersonWithRoleViewModel> peopleWithRoles = null;
+        List<AdministratorViewModel> administratorViewModelList = new ArrayList<>();
         try{
-            administratorViewModels = userService.getAllPeopleWithRoles();
+            peopleWithRoles = userService.getAllPeopleWithRoles();
+            for(PersonWithRoleViewModel p : peopleWithRoles) {
+            SimpleStringProperty username = new SimpleStringProperty(p.getUsername());
+            String rol = p.getRole().toString();
+            SimpleStringProperty role = new SimpleStringProperty(rol);
+            AdministratorViewModel avm = new AdministratorViewModel(username,role);
+            administratorViewModelList.add(avm);
+            }
         }
         catch ( Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-        return FXCollections.observableArrayList(administratorViewModels);
+        return FXCollections.observableArrayList(administratorViewModelList);
     }
 
     public void changeRole() {
