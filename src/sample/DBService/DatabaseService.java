@@ -24,15 +24,10 @@ public class DatabaseService {
             Session session = factory.openSession();
             Transaction transaction = session.beginTransaction();
             session.save(object);
-            transaction.commit();
-            session.close();
-            factory.close();
+            commitAndClose(transaction, session, factory);
 
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            StandardServiceRegistryBuilder.destroy(registry);
-            initializeRegistry();
+       onFailiure(ex);
         }
     }
 
@@ -43,16 +38,17 @@ public class DatabaseService {
             Session session = factory.openSession();
             Transaction transaction = session.beginTransaction();
             session.update(object);
-            transaction.commit();
-            session.close();
-            factory.close();
+           commitAndClose(transaction, session, factory);
 
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-            StandardServiceRegistryBuilder.destroy(registry);
-            initializeRegistry();
+         onFailiure(ex);
         }
+    }
+
+    private void commitAndClose(Transaction transaction, Session session, SessionFactory factory){
+        transaction.commit();
+        session.close();
+        factory.close();
     }
 
     private void initializeRegistry(){
@@ -61,25 +57,30 @@ public class DatabaseService {
         .build();
     }
 
+    private void onFailiure(Exception ex){
+        System.out.println(ex.getMessage());
+        ex.printStackTrace();
+        StandardServiceRegistryBuilder.destroy(registry);
+        initializeRegistry();
+    }
+
     public Object getObjectByQuery(String hql){
         SessionFactory factory = buildFactory();
         Session session = factory.openSession();
-        Transaction t = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(hql);
         Object obj = query.getSingleResult();
-        t.commit();
-        session.close();
+        commitAndClose(transaction, session, factory);
         return obj;
     }
 
     public Object getListOfObjectsByQuery(String hql){
         SessionFactory factory = buildFactory();
         Session session = factory.openSession();
-        Transaction t = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         Query query = session.createQuery(hql);
         Object obj = query.list();
-        t.commit();
-        session.close();
+        commitAndClose(transaction, session, factory);
         return obj;
     }
 
