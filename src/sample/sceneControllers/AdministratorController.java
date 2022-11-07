@@ -55,10 +55,8 @@ public class AdministratorController implements Initializable {
     }
 
     public void changeRole() {
-        ObservableList<TablePosition> selectedCells = tbData.getSelectionModel().getSelectedCells();
-        TablePosition tablePosition = selectedCells.get(0);
-        int row = tablePosition.getRow();
+        AdministratorViewModel avm = tbData.getSelectionModel().getSelectedItem();
         String newRole = (String) roleFXML.getValue();
-        userService.changePersonRole((String)tablePosition.getTableColumn().getCellData(row), newRole);
+        userService.changePersonRole(avm.getUsername(), newRole);
     }
 }
