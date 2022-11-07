@@ -23,7 +23,7 @@ import sample.validation.ValidationUtil;
 
 import java.io.IOException;
 
-public class CreateNewManager {
+public class CreateNewReceptionistController {
     UserService userService = new UserServiceImpl();
     @FXML
     private Label passwordRepeatLabelFXML;
@@ -43,7 +43,7 @@ public class CreateNewManager {
     private Label errorFXML;
 
     @FXML
-    public void createNewManager(ActionEvent event) throws IOException {
+    public void createNewReceptionist(ActionEvent event) throws IOException {
         boolean success = ValidationUtil.validatePassword(passwordFXML, passwordRepeatFXML, passwordRepeatLabelFXML);
         boolean userNameNotTaken = ValidationUtil.validateUserNameNotTaken(usernameFXML.getText(), errorFXML);
         if(!success || !userNameNotTaken){
@@ -55,9 +55,9 @@ public class CreateNewManager {
         } else {
             gender = Gender.FEMALE;
         }
-        RegisterDTO registerDTO = new RegisterDTO(Role.MANAGER, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
+        RegisterDTO registerDTO = new RegisterDTO(Role.RECEPTIONIST, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
         userService.createPerson(registerDTO);
-            RedirectScenes.redirect(event, "createNewHotel");
+        RedirectScenes.redirect(event, "main");
     }
 }
