@@ -102,6 +102,10 @@ public class CreateNewHotelController implements Initializable {
         hotelService.createHotel(hotelDTO);
     }
 
+    public void createNewRoom(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"createNewRoom");
+    }
+
     public void createNewManager(ActionEvent event) throws IOException {
         RedirectScenes.redirect(event,"createNewManager");
     }
