@@ -28,4 +28,10 @@ public class HotelServiceImpl implements HotelService {
     hotel.setReceptionists(receptionists);
     dbService.saveObject(hotel);
     }
+
+    @Override
+    public Hotel getHotelById(Long id) {
+        String hql = "FROM Hotel h WHERE h.id = " + id;
+        return (Hotel) dbService.getObjectByQuery(hql);
+    }
 }
