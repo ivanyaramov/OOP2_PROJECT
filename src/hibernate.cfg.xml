@@ -3,9 +3,9 @@
     <session-factory>
         <property name="connection.url">jdbc:postgresql://localhost:5432/OOP4</property>
         <property name="connection.username">postgres</property>
-        <property name="connection.password">postgres</property>
+        <property name="connection.password">admin</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 

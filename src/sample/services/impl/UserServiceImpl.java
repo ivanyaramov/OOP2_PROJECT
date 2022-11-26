@@ -21,13 +21,8 @@ public class UserServiceImpl implements UserService {
     ModelMapper modelMapper = new ModelMapper();
 
     public boolean personExistsByUsername(String username){
-        Person person = null;
-        try {
-            person = getPersonByUsername(username);
-        }catch (NoResultException e){
-            return false;
-        }
-        return person != null;
+        String hql = "FROM Person p WHERE p.username = '" + username + "'";
+        return dbService.objectExistsByQuery(hql);
     }
 
     @Override

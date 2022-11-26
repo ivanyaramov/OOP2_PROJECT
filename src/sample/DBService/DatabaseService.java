@@ -8,6 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import sample.models.people.Person;
+
+import javax.persistence.NoResultException;
 
 public class DatabaseService {
 
@@ -72,6 +75,16 @@ public class DatabaseService {
         Object obj = query.getSingleResult();
         commitAndClose(transaction, session, factory);
         return obj;
+    }
+
+    public boolean objectExistsByQuery(String hql){
+        Object obj = null;
+        try {
+            obj = getObjectByQuery(hql);
+        }catch (NoResultException e){
+            return false;
+        }
+        return obj != null;
     }
 
     public Object getListOfObjectsByQuery(String hql){
