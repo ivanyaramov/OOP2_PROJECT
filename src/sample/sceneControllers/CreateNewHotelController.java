@@ -1,5 +1,6 @@
 package sample.sceneControllers;
 
+import com.sun.javafx.collections.ImmutableObservableList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +10,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.models.DTOs.HotelDTO;
+import sample.models.DTOs.RoomDTO;
+import sample.models.hotels.RoomCategory;
 import sample.services.HotelService;
+import sample.services.RoomService;
 import sample.services.impl.HotelServiceImpl;
+import sample.services.impl.RoomServiceImpl;
 import sample.utilities.RedirectScenes;
 import sample.models.people.Role;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
@@ -36,6 +41,9 @@ public class CreateNewHotelController implements Initializable {
     private TableView<PersonForCreateHotelViewModel> tbDataReceptionists;
 
     @FXML
+    private TableView<RoomDTO> tbDataRooms;
+
+    @FXML
     public TableColumn<PersonForCreateHotelViewModel,String> managerUsername;
 
     @FXML
@@ -48,6 +56,15 @@ public class CreateNewHotelController implements Initializable {
     public TableColumn<PersonForCreateHotelViewModel,String> receptionistFullname;
 
     @FXML
+    public TableColumn<String,String> roomNumber;
+
+    @FXML
+    public TableColumn<String,String> roomType;
+
+    @FXML
+    public TableColumn<String,String> roomPrice;
+
+    @FXML
     public TextField nameOfHotel;
 
     @FXML
@@ -56,18 +73,40 @@ public class CreateNewHotelController implements Initializable {
     @FXML
     public ComboBox stars;
 
+    @FXML
+    private Label roomNumberTakenLabelFXML;
+    @FXML
+    private TextField roomNumberFXML;
+    @FXML
+    private ComboBox typeOfRoomFXML;
+    @FXML
+    private TextField priceOfRoomFXML;
+
+
+    public List<RoomDTO> rooms = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         ObservableList<PersonForCreateHotelViewModel> managers = loadProperties(Role.MANAGER);
         ObservableList<PersonForCreateHotelViewModel> receptionists = loadProperties(Role.RECEPTIONIST);
+
         managerUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         managerFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         receptionistUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         receptionistFullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
-
+        roomNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
+        roomType.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
+        roomPrice.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
+        RoomDTO roomDTO = new RoomDTO();
+        roomDTO.setNumber(1);
+        roomDTO.setRoomCategory(RoomCategory.APARTMENT);
+        roomDTO.setPricePerNight(1);
+        rooms.add(roomDTO);
+        ObservableList<RoomDTO> roomsList = FXCollections.observableArrayList(rooms);
         tbDataManagers.setItems(managers);
         tbDataReceptionists.setItems(receptionists);
+        tbDataRooms.setItems(roomsList);
         tbDataReceptionists.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -102,8 +141,23 @@ public class CreateNewHotelController implements Initializable {
         hotelService.createHotel(hotelDTO);
     }
 
-    public void createNewRoom(ActionEvent event) throws IOException{
-        RedirectScenes.redirect(event,"createNewRoom");
+    public void createNewRoom(){
+        for(RoomDTO room : rooms)
+        {
+            if(room.getNumber() == Integer.parseInt(roomNumberFXML.getText()))
+            {
+                roomNumberTakenLabelFXML.setText("Room number is already taken");
+                return;
+            }
+        }
+        RoomDTO roomDTO = new RoomDTO();
+        roomDTO.setNumber(Integer.parseInt(roomNumberFXML.getText()));
+        roomDTO.setRoomCategory(RoomCategory.valueOf((String) typeOfRoomFXML.getValue()));
+        roomDTO.setPricePerNight(Double.parseDouble(priceOfRoomFXML.getText()));
+        rooms.add(roomDTO);
+        ObservableList<RoomDTO> roomsList = FXCollections.observableArrayList(rooms);
+        tbDataRooms.setItems(roomsList);
+        return;
     }
 
     public void createNewManager(ActionEvent event) throws IOException {
