@@ -10,10 +10,13 @@ import sample.models.DTOs.ReservationDTO;
 import sample.models.DTOs.RoomDTO;
 import sample.models.viemModels.HotelView;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
+import sample.models.viemModels.RoomView;
 import sample.services.HotelService;
 import sample.services.ReservationService;
+import sample.services.RoomService;
 import sample.services.impl.HotelServiceImpl;
 import sample.services.impl.ReservationServiceImpl;
+import sample.services.impl.RoomServiceImpl;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +26,8 @@ import java.util.ResourceBundle;
 public class ReservationController implements Initializable {
 
     HotelService hotelService = new HotelServiceImpl();
+
+    RoomService roomService = new RoomServiceImpl();
 
     @FXML
     private TableView<HotelView> tbDataHotels;
@@ -37,7 +42,7 @@ public class ReservationController implements Initializable {
     public TableColumn<String,String> hotelStars;
 
     @FXML
-    private TableView<HotelView> tbDataRooms;
+    private TableView<RoomView> tbDataRooms;
 
     @FXML
     public TableColumn<String,String> roomNumber;
@@ -60,7 +65,7 @@ public class ReservationController implements Initializable {
     @FXML
     public TextField nightCountFXML;
 
-    public List<RoomViewModel> rooms = new ArrayList<>();
+    public List<RoomView> rooms = new ArrayList<>();
 
     ReservationService reservationService = new ReservationServiceImpl();
 
@@ -76,18 +81,20 @@ public class ReservationController implements Initializable {
         hotelName.setCellValueFactory(new PropertyValueFactory<>("name"));
         hotelCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         hotelStars.setCellValueFactory(new PropertyValueFactory<>("stars"));
-        roomNumber.setCellValueFactory(new PropertyValueFactory<>("name"));
-        roomCategory.setCellValueFactory(new PropertyValueFactory<>("city"));
-        roomPricePerNight.setCellValueFactory(new PropertyValueFactory<>("stars"));
-        roomRating.setCellValueFactory(new PropertyValueFactory<>("stars"));
-        ObservableList<RoomViewModel> roomsList = FXCollections.observableArrayList(rooms);
+        roomNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
+        roomCategory.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
+        roomPricePerNight.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
+        roomRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        ObservableList<RoomView> roomsList = FXCollections.observableArrayList(rooms);
         tbDataRooms.setItems(roomsList);
         ObservableList<HotelView> hotelList = hotelsProperties();
         tbDataHotels.setItems(hotelList);
 
         tbDataHotels.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                tbDataRooms =
+                List<RoomView> availableRooms = roomService.getAvailableRoomsByHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
+                ObservableList<RoomView> availableRoomsObservable = FXCollections.observableArrayList(availableRooms);
+                tbDataRooms.setItems(availableRoomsObservable);
             }
         });
     }
