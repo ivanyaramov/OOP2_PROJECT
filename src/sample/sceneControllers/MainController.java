@@ -25,7 +25,7 @@ public class MainController implements Initializable {
             return;
         }
         if(actionFXML.getText().equals("create hotel")){
-            RedirectScenes.redirect(event,"reservation");
+            RedirectScenes.redirect(event,"createNewHotel");
             return;
         }
         if(actionFXML.getText().equals("create receptionists")){

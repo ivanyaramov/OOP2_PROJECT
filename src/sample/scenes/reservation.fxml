@@ -14,24 +14,25 @@
     <Label text="Choose your room type"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
-    <ComboBox value="One">
+    <ComboBox value="ALL_INCLUSIVE" fx:id="reservationTypeFXML">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Three"/>
-                <String fx:value="Two"/>
-                <String fx:value="One"/>
+                <String fx:value="ALL_INCLUSIVE"/>
+                <String fx:value="BREAKFAST_DINNER"/>
+                <String fx:value="BREAKFAST"/>
+                <String fx:value="NONE"/>
             </FXCollections>
         </items>
     </ComboBox>
 
     <Label text="Choose start date"
            GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
-    <DatePicker fx:id="datepicker" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+    <DatePicker fx:id="datePickerFXML" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
 
     <Label text="Choose nights"
            GridPane.columnIndex="0" GridPane.rowIndex="7" alignment="center"/>
     <TextField
-            GridPane.columnIndex="0" GridPane.rowIndex="8" alignment="center" maxWidth="300"/>
+            GridPane.columnIndex="0" GridPane.rowIndex="8" alignment="center" maxWidth="300" fx:id="nightCountFXML"/>
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
         <Button text="Reserve"

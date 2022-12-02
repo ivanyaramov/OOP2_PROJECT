@@ -98,11 +98,6 @@ public class CreateNewHotelController implements Initializable {
         roomNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         roomType.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
         roomPrice.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
-        RoomDTO roomDTO = new RoomDTO();
-        roomDTO.setNumber(1);
-        roomDTO.setRoomCategory(RoomCategory.APARTMENT);
-        roomDTO.setPricePerNight(1);
-        rooms.add(roomDTO);
         ObservableList<RoomDTO> roomsList = FXCollections.observableArrayList(rooms);
         tbDataManagers.setItems(managers);
         tbDataReceptionists.setItems(receptionists);
