@@ -36,4 +36,9 @@ public class HotelServiceImpl implements HotelService {
     public Hotel getHotelById(Long id) {
         return hotelRepository.getById(id);
     }
+
+    @Override
+    public List<Hotel> getAllHotels() {
+        return hotelRepository.getAllHotels();
+    }
 }
