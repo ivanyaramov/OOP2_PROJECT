@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import sample.DBService.DatabaseService;
 import sample.models.DTOs.PersonPasswordDTO;
 import sample.models.DTOs.RegisterDTO;
+import sample.models.ratings.ClientRating;
 import sample.models.viemModels.PersonForChoosingView;
 import sample.models.people.Person;
 import sample.models.people.Role;
@@ -43,6 +44,17 @@ public class UserServiceImpl implements UserService {
             list.add(p);
         }
         return list;
+    }
+
+    @Override
+    public void updatePersonRating(Person person, List<ClientRating> ratings) {
+        double avg = 0;
+    for(ClientRating rating : ratings){
+        avg += rating.getRating();
+    }
+    avg = avg / ratings.size();
+    person.setRating(avg);
+    userRepository.updatePerson(person);
     }
 
     public PersonPasswordDTO getPersonPasswordDTO(String username){

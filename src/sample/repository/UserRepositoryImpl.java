@@ -3,9 +3,7 @@ package sample.repository;
 import sample.DBService.DatabaseService;
 import sample.models.people.Person;
 import sample.models.people.Role;
-import sample.models.viemModels.PersonWithRoleViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepositoryImpl extends RepositoryImpl implements UserRepository{
