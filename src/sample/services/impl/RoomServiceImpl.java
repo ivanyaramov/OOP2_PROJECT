@@ -6,6 +6,7 @@ import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
 import sample.models.people.Person;
+import sample.models.viemModels.RoomView;
 import sample.repository.RoomRepository;
 import sample.repository.RoomRepositoryImpl;
 import sample.services.HotelService;
@@ -13,6 +14,7 @@ import sample.services.RoomService;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoomServiceImpl implements RoomService {
     private ModelMapper modelMapper = new ModelMapper();
@@ -40,5 +42,10 @@ public class RoomServiceImpl implements RoomService {
             roomDTO.setHotel(hotel);
             createRoom(roomDTO);
         }
+    }
+
+    @Override
+    public List<RoomView> getAvailableRoomsByHotelId(Long id) {
+        return roomRepository.getAvailableRoomsByHotelId(id).stream().map(r->modelMapper.map(r, RoomView.class)).collect(Collectors.toList());
     }
 }
