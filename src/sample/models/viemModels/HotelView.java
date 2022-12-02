@@ -1,6 +1,7 @@
 package sample.models.viemModels;
 
 public class HotelView {
+    private Long id;
     private String name;
     private String city;
     private int stars;
@@ -30,5 +31,13 @@ public class HotelView {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
