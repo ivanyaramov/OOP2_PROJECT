@@ -50,7 +50,7 @@ public class RegisterController {
         }
         RegisterDTO registerDTO = new RegisterDTO(Role.CLIENT, fullNameFXML.getText(), gender, usernameFXML.getText(), passwordFXML.getText(),
                 passwordRepeatFXML.getText(), telephoneFXML.getText());
-       success = registerService.registerAndLogin(registerDTO);
+        success = registerService.registerAndLogin(registerDTO);
         if(success) {
             RedirectScenes.redirect(event, "main");
         }
