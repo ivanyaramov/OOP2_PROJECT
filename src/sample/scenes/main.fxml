@@ -7,7 +7,7 @@
             fx:controller="sample.sceneControllers.MainController"
             prefHeight="400.0" prefWidth="600.0">
     <children>
-        <Button layoutX="300.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="90.0" text="AdministratorPage" onAction="#administratorPage" />
+        <Button fx:id="actionFXML" layoutX="300.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPage" />
     </children>
 
 </AnchorPane>
