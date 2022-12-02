@@ -36,7 +36,7 @@ public class MainController implements Initializable {
             RedirectScenes.redirect(event,"viewClientState");
             return;
         }
-        RedirectScenes.redirect(event,"createNewReservation");
+        RedirectScenes.redirect(event,"reservation");
     }
 
     @Override
