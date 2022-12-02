@@ -51,7 +51,7 @@ public class AdministratorController implements Initializable {
         List<PersonWithRoleViewModel> peopleWithRoles = null;
         List<AdministratorViewModel> administratorViewModelList = new ArrayList<>();
         try{
-            peopleWithRoles = userService.getAllPeopleWithRoles();
+            peopleWithRoles = userService.getAllPeopleNonClients();
             for(PersonWithRoleViewModel p : peopleWithRoles) {
             SimpleStringProperty username = new SimpleStringProperty(p.getUsername());
             String rol = p.getRole().toString();

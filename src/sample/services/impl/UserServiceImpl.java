@@ -10,6 +10,8 @@ import sample.models.people.Person;
 import sample.models.people.Role;
 import sample.models.viemModels.AdministratorViewModel;
 import sample.models.viemModels.PersonWithRoleViewModel;
+import sample.repository.UserRepository;
+import sample.repository.UserRepositoryImpl;
 import sample.services.UserService;
 
 import javax.persistence.NoResultException;
@@ -17,23 +19,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    DatabaseService dbService = new DatabaseService();
-    ModelMapper modelMapper = new ModelMapper();
+    private ModelMapper modelMapper = new ModelMapper();
+    private UserRepository userRepository = new UserRepositoryImpl();
 
     public boolean personExistsByUsername(String username){
-        String hql = "FROM Person p WHERE p.username = '" + username + "'";
-        return dbService.objectExistsByQuery(hql);
+    return userRepository.personExistsByUsername(username);
     }
 
     @Override
     public void createPerson(RegisterDTO registerDTO) {
         Person person = modelMapper.map(registerDTO, Person.class);
-        dbService.saveObject(person);
+        userRepository.save(person);
     }
 
     public Person getPersonByUsername(String username){
-        String hql = "FROM Person p WHERE p.username = '" + username + "'";
-        return (Person) dbService.getObjectByQuery(hql);
+        return userRepository.getPersonByUsername(username);
     }
 
     public List<Person> getPeopleByListOfUsernames(List<String> usernames){
@@ -51,8 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<PersonForChoosingView> getPersonViewByRole(Role role) {
-        String hql = "FROM Person p WHERE p.role = '" + role + "'";
-        List<Person> listOfObjectsByQuery = (List<Person>) dbService.getListOfObjectsByQuery(hql);
+        List<Person> listOfObjectsByQuery = userRepository.getPeopleByRole(role);
         List<PersonForChoosingView> listOfDTOs = new ArrayList<>();
         for(Person p : listOfObjectsByQuery) {
             PersonForChoosingView viewPersonForChoosingDTO = modelMapper.map(p, PersonForChoosingView.class);
@@ -65,13 +64,12 @@ public class UserServiceImpl implements UserService {
     public void changePersonRole(String username, String role) {
         Person person = getPersonByUsername(username);
         person.setRole(Role.valueOf(role));
-        dbService.updateObject(person);
+        userRepository.updatePerson(person);
     }
 
-    public List<PersonWithRoleViewModel> getAllPeopleWithRoles(){
-        String hql = "FROM Person p WHERE p.role != 'CLIENT'";
+    public List<PersonWithRoleViewModel> getAllPeopleNonClients(){
         List<PersonWithRoleViewModel> peoplewithRoles = new ArrayList<>();
-        List<Person> listOfObjectsByQuery = (List<Person>) dbService.getListOfObjectsByQuery(hql);
+        List<Person> listOfObjectsByQuery = userRepository.getAllPeopleNonClients();
         for(Person p : listOfObjectsByQuery) {
             PersonWithRoleViewModel personWithRoleViewModel = modelMapper.map(p, PersonWithRoleViewModel.class);
             peoplewithRoles.add(personWithRoleViewModel);

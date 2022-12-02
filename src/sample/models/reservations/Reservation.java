@@ -28,8 +28,7 @@ public class Reservation {
     private Hotel hotel;
     @ManyToOne
     private Person client;
-    @ManyToOne
-    private Person receptionist;
+
 
     public Hotel getHotel() {
         return hotel;
@@ -99,11 +98,4 @@ public class Reservation {
         this.client = client;
     }
 
-    public Person getReceptionist() {
-        return receptionist;
-    }
-
-    public void setReceptionist(Person receptionist) {
-        this.receptionist = receptionist;
-    }
 }

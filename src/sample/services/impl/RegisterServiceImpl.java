@@ -12,10 +12,9 @@ import sample.services.UserService;
 import javax.persistence.NoResultException;
 
 public class RegisterServiceImpl implements RegisterService {
-    ModelMapper modelMapper = new ModelMapper();
-    LoginService loginService = new LoginServiceImpl();
-    DatabaseService dbService = new DatabaseService();
-    UserService userService = new UserServiceImpl();
+    private ModelMapper modelMapper = new ModelMapper();
+    private LoginService loginService = new LoginServiceImpl();
+    private DatabaseService dbService = new DatabaseService();
     @Override
     public boolean registerAndLogin(RegisterDTO registerDTO) {
         if(checkIfPasswordMatches(registerDTO)) {

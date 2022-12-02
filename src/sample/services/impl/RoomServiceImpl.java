@@ -6,6 +6,8 @@ import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
 import sample.models.people.Person;
+import sample.repository.RoomRepository;
+import sample.repository.RoomRepositoryImpl;
 import sample.services.HotelService;
 import sample.services.RoomService;
 
@@ -13,20 +15,19 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class RoomServiceImpl implements RoomService {
-    DatabaseService dbService = new DatabaseService();
-    ModelMapper modelMapper = new ModelMapper();
-    HotelService hotelService = new HotelServiceImpl();
+    private ModelMapper modelMapper = new ModelMapper();
+    private HotelService hotelService = new HotelServiceImpl();
+    private RoomRepository roomRepository = new RoomRepositoryImpl();
     @Override
     public boolean roomNumberExists(int number) {
-        String hql = "FROM Room r WHERE r.number = " + number;
-        return dbService.objectExistsByQuery(hql);
+        return roomRepository.roomNumberExists(number);
     }
 
     @Override
     public boolean createRoom(RoomDTO roomDTO) {
         if(!roomNumberExists(roomDTO.getNumber())){
             Room room = modelMapper.map(roomDTO, Room.class);
-            dbService.saveObject(room);
+            roomRepository.save(room);
             return true;
         }
         return false;

@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserService {
     Person getPersonByUsername(String username);
     void changePersonRole(String username, String role);
-    List<PersonWithRoleViewModel> getAllPeopleWithRoles();
+    List<PersonWithRoleViewModel> getAllPeopleNonClients();
     boolean personExistsByUsername(String username);
     void createPerson(RegisterDTO registerDTO);
     PersonPasswordDTO getPersonPasswordDTO(String username);
