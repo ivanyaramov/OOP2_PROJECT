@@ -1,9 +1,8 @@
 package sample.repository;
 
 import sample.DBService.DatabaseService;
-import sample.models.hotels.Room;
 
-public class RoomRepositoryImpl extends RepositoryImpl  implements RoomRepository {
+public class RoomRepositoryImpl extends RepositoryImpl implements RoomRepository {
     private DatabaseService databaseService = new DatabaseService();
 
     @Override

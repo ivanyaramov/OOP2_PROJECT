@@ -2,6 +2,7 @@ package sample.services;
 
 import sample.models.DTOs.PersonPasswordDTO;
 import sample.models.DTOs.RegisterDTO;
+import sample.models.ratings.ClientRating;
 import sample.models.viemModels.PersonForChoosingView;
 import sample.models.people.Person;
 import sample.models.people.Role;
@@ -19,4 +20,5 @@ public interface UserService {
     PersonPasswordDTO getPersonPasswordDTO(String username);
     List<PersonForChoosingView> getPersonViewByRole(Role role);
     List<Person> getPeopleByListOfUsernames(List<String> usernames);
+    void updatePersonRating(Person person, List<ClientRating> ratings);
 }

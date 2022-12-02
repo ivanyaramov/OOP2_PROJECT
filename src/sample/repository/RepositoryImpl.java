@@ -2,10 +2,9 @@ package sample.repository;
 
 import sample.DBService.DatabaseService;
 
-public class RepositoryImpl implements Repository{
-    private DatabaseService databaseService = new DatabaseService();
-    @Override
-    public void save(Object object) {
+public abstract class RepositoryImpl implements Repository{
+    DatabaseService databaseService = new DatabaseService();
+    public void save(Object object){
         databaseService.saveObject(object);
     }
 }

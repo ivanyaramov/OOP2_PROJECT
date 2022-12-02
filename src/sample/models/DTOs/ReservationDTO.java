@@ -12,7 +12,7 @@ import java.util.Date;
 public class ReservationDTO {
     private ReservationType type;
     private Date dateOfArrival;
-    private Date dateOfDeparture;
+    private int days;
     private Room room;
     private Hotel hotel;
 
@@ -32,12 +32,12 @@ public class ReservationDTO {
         this.dateOfArrival = dateOfArrival;
     }
 
-    public Date getDateOfDeparture() {
-        return dateOfDeparture;
+    public int getDays() {
+        return days;
     }
 
-    public void setDateOfDeparture(Date dateOfDeparture) {
-        this.dateOfDeparture = dateOfDeparture;
+    public void setDays(int days) {
+        this.days = days;
     }
 
     public Room getRoom() {

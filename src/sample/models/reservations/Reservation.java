@@ -21,7 +21,7 @@ public class Reservation {
     @Column(nullable = false)
     private Date dateOfArrival;
     @Column(nullable = false)
-    private Date dateOfDeparture;
+    private int days;
     @ManyToOne
     private Room room;
     @ManyToOne
@@ -74,12 +74,12 @@ public class Reservation {
         this.dateOfArrival = dateOfArrival;
     }
 
-    public Date getDateOfDeparture() {
-        return dateOfDeparture;
+    public int getDays() {
+        return days;
     }
 
-    public void setDateOfDeparture(Date dateOfDeparture) {
-        this.dateOfDeparture = dateOfDeparture;
+    public void setDays(int days) {
+        this.days = days;
     }
 
     public Room getRoom() {

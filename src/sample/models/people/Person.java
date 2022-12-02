@@ -18,6 +18,8 @@ public class Person {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
+    private double rating;
+    @Column(nullable = false)
     private String password;
     @Column(nullable = false)
     private String telephone;
@@ -75,5 +77,17 @@ public class Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
