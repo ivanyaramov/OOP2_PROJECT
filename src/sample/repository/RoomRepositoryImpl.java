@@ -16,7 +16,7 @@ public class RoomRepositoryImpl extends RepositoryImpl implements RoomRepository
 
     @Override
     public List<Room> getAvailableRoomsByHotelId(Long hotelId) {
-        String hql = "FROM Room r WHERE r.hotel_id = " + hotelId + " AND istaken = false";
+        String hql = "FROM Room r JOIN Hotel AS h WHERE h.id = " + hotelId + " AND istaken = false";
         return (List<Room>) databaseService.getListOfObjectsByQuery(hql);
     }
 }
