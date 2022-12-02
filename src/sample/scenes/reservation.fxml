@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.lang.String?>
 <VBox fx:controller="sample.sceneControllers.ReservationController"
-      xmlns:fx="http://javafx.com/fxml" alignment="center" spacing="7">
+      xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" spacing="13">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
@@ -33,8 +33,31 @@
            GridPane.columnIndex="0" GridPane.rowIndex="7" alignment="center"/>
     <TextField
             GridPane.columnIndex="0" GridPane.rowIndex="8" alignment="center" maxWidth="300" fx:id="nightCountFXML"/>
+
+
+    <Label text="Choose Hotel"
+           GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
+    <TableView fx:id="tbDataHotels" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
+        <columns>
+            <TableColumn fx:id="hotelName" prefWidth="100.0" text="hotel name" />
+            <TableColumn fx:id="hotelCity" prefWidth="100.0" text="hotel city" />
+            <TableColumn fx:id="hotelStars" prefWidth="100.0" text="hotel stars" />
+        </columns>
+    </TableView>
+
+    <Label text="Choose Room"
+           GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
+    <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
+        <columns>
+            <TableColumn fx:id="roomNumber" prefWidth="100.0" text="room number" />
+            <TableColumn fx:id="roomCategory" prefWidth="100.0" text="room category" />
+            <TableColumn fx:id="roomPricePerNight" prefWidth="100.0" text="price per night" />
+            <TableColumn fx:id="roomRating" prefWidth="100.0" text="room rating" />
+        </columns>
+    </TableView>
+
     <HBox spacing="10" alignment="center"
-          GridPane.columnIndex="0" GridPane.rowIndex="9">
+          GridPane.columnIndex="0" GridPane.rowIndex="10">
         <Button text="Reserve"
                 onAction="#reserve"/>
     </HBox>
