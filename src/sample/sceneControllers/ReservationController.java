@@ -5,16 +5,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import sample.models.DTOs.ReservationDTO;
+import sample.models.hotels.Hotel;
 import sample.models.people.Role;
 import sample.models.viemModels.HotelViewModel;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
+import sample.services.HotelService;
 import sample.services.ReservationService;
+import sample.services.impl.HotelServiceImpl;
 import sample.services.impl.ReservationServiceImpl;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReservationController implements Initializable {
+
+    HotelService hotelService = new HotelServiceImpl();
 
     @FXML
     private TableView<PersonForCreateHotelViewModel> tbDataHotels;
@@ -53,6 +59,6 @@ public class ReservationController implements Initializable {
 
     private ObservableList<HotelViewModel> hotelsProperties()
     {
-
+        List<Hotel> hotels = hotelService.getAllHotels();
     }
 }
