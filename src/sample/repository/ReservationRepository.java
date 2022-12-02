@@ -1,4 +1,4 @@
 package sample.repository;
 
-public interface ReservationRepository{
+public interface ReservationRepository extends Repository{
 }
