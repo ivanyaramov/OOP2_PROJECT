@@ -72,6 +72,7 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.update(room);
     }
 
+    @Override
     public List<RoomViewModel> getReservationsForUser() {
         Person currentUser = CurrentLoggedUser.getLoggedUser();
         List<Room> rooms;
