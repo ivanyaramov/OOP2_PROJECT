@@ -1,12 +1,11 @@
 package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
-import sample.DBService.DatabaseService;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.HotelDTO;
 import sample.models.hotels.Hotel;
 import sample.models.people.Person;
-import sample.models.viemModels.HotelView;
+import sample.models.viemModels.HotelViewModel;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
 import sample.repository.HotelRepository;
 import sample.repository.HotelRepositoryImpl;
@@ -39,7 +38,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<HotelView> getAllHotels() {
-        return hotelRepository.getAllHotels().stream().map(h -> modelMapper.map(h, HotelView.class)).collect(Collectors.toList());
+    public List<HotelViewModel> getAllHotels() {
+        return hotelRepository.getAllHotels().stream().map(h -> modelMapper.map(h, HotelViewModel.class)).collect(Collectors.toList());
     }
 }

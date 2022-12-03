@@ -1,12 +1,12 @@
 package sample.models.viemModels;
 
-public class HotelView {
+public class HotelViewModel {
     private Long id;
     private String name;
     private String city;
     private int stars;
 
-    public HotelView() {
+    public HotelViewModel() {
     }
 
     public String getName() {

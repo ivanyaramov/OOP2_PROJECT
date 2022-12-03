@@ -1,13 +1,13 @@
 package sample.models.viemModels;
 
-public class PersonForChoosingView {
+public class PersonForChoosingViewModel {
     private String fullName;
     private String username;
 
-    public PersonForChoosingView() {
+    public PersonForChoosingViewModel() {
     }
 
-    public PersonForChoosingView(String fullName, String username) {
+    public PersonForChoosingViewModel(String fullName, String username) {
         this.fullName = fullName;
         this.username = username;
     }

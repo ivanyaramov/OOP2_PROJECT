@@ -4,6 +4,7 @@ import sample.DBService.DatabaseService;
 import sample.models.hotels.Hotel;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HotelRepositoryImpl extends RepositoryImpl implements HotelRepository{
 private DatabaseService databaseService = new DatabaseService();
@@ -18,5 +19,26 @@ private DatabaseService databaseService = new DatabaseService();
     public List<Hotel> getAllHotels() {
         String hql = "FROM Hotel h";
         return (List<Hotel>) databaseService.getListOfObjectsByQuery(hql);
+    }
+
+    @Override
+    public List<Long> getIdsOfHotelsForOwner(Long id) {
+        String hql = "FROM Hotel WHERE owner_id = " + id;
+        List<Hotel> hotels = (List<Hotel>) databaseService.getListOfObjectsByQuery(hql);
+        return hotels.stream().map(h->h.getId()).collect(Collectors.toList());
+    }
+
+    @Override
+    public Long getIdOfHotelsForManager(Long id) {
+        String hql = "FROM Hotel WHERE manager_id = " + id;
+        Hotel hotel = (Hotel) databaseService.getObjectByQuery(hql);
+        return hotel.getId();
+    }
+
+    @Override
+    public Long getIdOfHotelsForReceptionist(Long id) {
+        String hql = "SELECT h FROM Hotel h JOIN h.receptionists WHERE receptionists_id = " + id;
+        Hotel hotel = (Hotel) databaseService.getObjectByQuery(hql);
+        return hotel.getId();
     }
 }

@@ -1,6 +1,5 @@
 package sample.sceneControllers;
 
-import com.sun.javafx.collections.ImmutableObservableList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,13 +12,11 @@ import sample.models.DTOs.HotelDTO;
 import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.RoomCategory;
 import sample.services.HotelService;
-import sample.services.RoomService;
 import sample.services.impl.HotelServiceImpl;
-import sample.services.impl.RoomServiceImpl;
 import sample.utilities.RedirectScenes;
 import sample.models.people.Role;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
-import sample.models.viemModels.PersonForChoosingView;
+import sample.models.viemModels.PersonForChoosingViewModel;
 import sample.services.UserService;
 import sample.services.impl.UserServiceImpl;
 
@@ -106,11 +103,11 @@ public class CreateNewHotelController implements Initializable {
     }
 
     private ObservableList<PersonForCreateHotelViewModel> loadProperties(Role role){
-        List<PersonForChoosingView> peopleWithRoles = null;
+        List<PersonForChoosingViewModel> peopleWithRoles = null;
         List<PersonForCreateHotelViewModel> properties = new ArrayList<>();
         try{
             peopleWithRoles = userService.getPersonViewByRole(role);
-            for(PersonForChoosingView p : peopleWithRoles) {
+            for(PersonForChoosingViewModel p : peopleWithRoles) {
                 SimpleStringProperty username = new SimpleStringProperty(p.getUsername());
                 SimpleStringProperty fullname = new SimpleStringProperty(p.getFullName());
                 PersonForCreateHotelViewModel chvm = new PersonForCreateHotelViewModel(username,fullname);

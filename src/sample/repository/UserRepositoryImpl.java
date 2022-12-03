@@ -28,14 +28,16 @@ public class UserRepositoryImpl extends RepositoryImpl implements UserRepository
        return (List<Person>) databaseService.getListOfObjectsByQuery(hql);
     }
 
-    @Override
-    public void updatePerson(Person person) {
-        databaseService.updateObject(person);
-    }
 
     @Override
     public List<Person> getAllPeopleNonClients() {
         String hql = "FROM Person p WHERE p.role != 'CLIENT'";
+        return (List<Person>) databaseService.getListOfObjectsByQuery(hql);
+    }
+
+    @Override
+    public List<Person> getAllPeopleByRole(Role role) {
+        String hql = "FROM Person p WHERE p.role = '" + role.name() + "'";
         return (List<Person>) databaseService.getListOfObjectsByQuery(hql);
     }
 }

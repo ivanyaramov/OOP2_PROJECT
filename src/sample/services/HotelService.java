@@ -2,12 +2,12 @@ package sample.services;
 
 import sample.models.DTOs.HotelDTO;
 import sample.models.hotels.Hotel;
-import sample.models.viemModels.HotelView;
+import sample.models.viemModels.HotelViewModel;
 
 import java.util.List;
 
 public interface HotelService {
     void createHotel(HotelDTO hotelDTO);
     Hotel getHotelById(Long id);
-    List<HotelView> getAllHotels();
+    List<HotelViewModel> getAllHotels();
 }

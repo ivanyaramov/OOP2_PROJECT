@@ -23,6 +23,10 @@ public class Room {
         return roomCategory;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setRoomCategory(RoomCategory roomCategory) {
         this.roomCategory = roomCategory;
     }

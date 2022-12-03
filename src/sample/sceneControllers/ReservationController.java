@@ -7,10 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.models.DTOs.ReservationDTO;
-import sample.models.DTOs.RoomDTO;
-import sample.models.viemModels.HotelView;
-import sample.models.viemModels.PersonForCreateHotelViewModel;
-import sample.models.viemModels.RoomView;
+import sample.models.viemModels.HotelViewModel;
+import sample.models.viemModels.RoomViewModel;
 import sample.services.HotelService;
 import sample.services.ReservationService;
 import sample.services.RoomService;
@@ -30,7 +28,7 @@ public class ReservationController implements Initializable {
     RoomService roomService = new RoomServiceImpl();
 
     @FXML
-    private TableView<HotelView> tbDataHotels;
+    private TableView<HotelViewModel> tbDataHotels;
 
     @FXML
     public TableColumn<String,String> hotelName;
@@ -42,7 +40,7 @@ public class ReservationController implements Initializable {
     public TableColumn<String,String> hotelStars;
 
     @FXML
-    private TableView<RoomView> tbDataRooms;
+    private TableView<RoomViewModel> tbDataRooms;
 
     @FXML
     public TableColumn<String,String> roomNumber;
@@ -65,7 +63,7 @@ public class ReservationController implements Initializable {
     @FXML
     public TextField nightCountFXML;
 
-    public List<RoomView> rooms = new ArrayList<>();
+    public List<RoomViewModel> rooms = new ArrayList<>();
 
     ReservationService reservationService = new ReservationServiceImpl();
 
@@ -85,15 +83,15 @@ public class ReservationController implements Initializable {
         roomCategory.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
         roomPricePerNight.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
         roomRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        ObservableList<RoomView> roomsList = FXCollections.observableArrayList(rooms);
+        ObservableList<RoomViewModel> roomsList = FXCollections.observableArrayList(rooms);
         tbDataRooms.setItems(roomsList);
-        ObservableList<HotelView> hotelList = hotelsProperties();
+        ObservableList<HotelViewModel> hotelList = hotelsProperties();
         tbDataHotels.setItems(hotelList);
 
         tbDataHotels.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                List<RoomView> availableRooms = roomService.getAvailableRoomsByHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
-                ObservableList<RoomView> availableRoomsObservable = FXCollections.observableArrayList(availableRooms);
+                List<RoomViewModel> availableRooms = roomService.getAvailableRoomsByHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
+                ObservableList<RoomViewModel> availableRoomsObservable = FXCollections.observableArrayList(availableRooms);
                 tbDataRooms.setItems(availableRoomsObservable);
             }
         });
@@ -101,7 +99,7 @@ public class ReservationController implements Initializable {
 
 
 
-    private ObservableList<HotelView> hotelsProperties()
+    private ObservableList<HotelViewModel> hotelsProperties()
     {
         return FXCollections.observableArrayList(hotelService.getAllHotels());
     }

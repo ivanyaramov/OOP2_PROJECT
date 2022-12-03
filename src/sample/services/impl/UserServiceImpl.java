@@ -1,23 +1,21 @@
 package sample.services.impl;
 
-import javafx.beans.property.SimpleStringProperty;
 import org.modelmapper.ModelMapper;
-import sample.DBService.DatabaseService;
 import sample.models.DTOs.PersonPasswordDTO;
 import sample.models.DTOs.RegisterDTO;
 import sample.models.ratings.ClientRating;
-import sample.models.viemModels.PersonForChoosingView;
+import sample.models.viemModels.PersonForChoosingViewModel;
 import sample.models.people.Person;
 import sample.models.people.Role;
-import sample.models.viemModels.AdministratorViewModel;
+import sample.models.viemModels.PersonInfoViewModel;
 import sample.models.viemModels.PersonWithRoleViewModel;
 import sample.repository.UserRepository;
 import sample.repository.UserRepositoryImpl;
 import sample.services.UserService;
 
-import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper = new ModelMapper();
@@ -54,7 +52,12 @@ public class UserServiceImpl implements UserService {
     }
     avg = avg / ratings.size();
     person.setRating(avg);
-    userRepository.updatePerson(person);
+    userRepository.update(person);
+    }
+
+    @Override
+    public List<PersonInfoViewModel> getPeopleByRole(Role role) {
+        return userRepository.getPeopleByRole(role).stream().map(p->modelMapper.map(p, PersonInfoViewModel.class)).collect(Collectors.toList());
     }
 
     public PersonPasswordDTO getPersonPasswordDTO(String username){
@@ -62,11 +65,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<PersonForChoosingView> getPersonViewByRole(Role role) {
+    public List<PersonForChoosingViewModel> getPersonViewByRole(Role role) {
         List<Person> listOfObjectsByQuery = userRepository.getPeopleByRole(role);
-        List<PersonForChoosingView> listOfDTOs = new ArrayList<>();
+        List<PersonForChoosingViewModel> listOfDTOs = new ArrayList<>();
         for(Person p : listOfObjectsByQuery) {
-            PersonForChoosingView viewPersonForChoosingDTO = modelMapper.map(p, PersonForChoosingView.class);
+            PersonForChoosingViewModel viewPersonForChoosingDTO = modelMapper.map(p, PersonForChoosingViewModel.class);
             listOfDTOs.add(viewPersonForChoosingDTO);
         }
         return listOfDTOs;
@@ -76,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public void changePersonRole(String username, String role) {
         Person person = getPersonByUsername(username);
         person.setRole(Role.valueOf(role));
-        userRepository.updatePerson(person);
+        userRepository.update(person);
     }
 
     public List<PersonWithRoleViewModel> getAllPeopleNonClients(){

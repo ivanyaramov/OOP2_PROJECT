@@ -14,7 +14,16 @@ public class RoomRating {
     private Person client;
     @ManyToOne
     private Room room;
-    private int rating;
+    private double rating;
+
+    public RoomRating(Person client, Room room, double rating) {
+        this.client = client;
+        this.room = room;
+        this.rating = rating;
+    }
+
+    public RoomRating() {
+    }
 
     public Long getId() {
         return id;
@@ -40,11 +49,11 @@ public class RoomRating {
         this.room = room;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 }

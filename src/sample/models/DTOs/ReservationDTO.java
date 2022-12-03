@@ -3,7 +3,6 @@ package sample.models.DTOs;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
 import sample.models.people.Person;
-import sample.models.reservations.ReservationEndType;
 import sample.models.reservations.ReservationType;
 
 import javax.persistence.*;

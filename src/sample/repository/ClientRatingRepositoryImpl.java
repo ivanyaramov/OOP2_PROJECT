@@ -9,7 +9,7 @@ public class ClientRatingRepositoryImpl extends RepositoryImpl implements Client
     private DatabaseService databaseService = new DatabaseService();
     @Override
     public List<ClientRating> getRatingsByPersonUsername(Long id) {
-        String hql = "FROM clientrating c WHERE c.client_id = " + id;
+        String hql = "FROM clientrating WHERE client_id = " + id;
         return (List<ClientRating>) databaseService.getListOfObjectsByQuery(hql);
     }
 }

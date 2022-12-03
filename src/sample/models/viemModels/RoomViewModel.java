@@ -5,14 +5,14 @@ import sample.models.hotels.RoomCategory;
 
 import javax.persistence.*;
 
-public class RoomView {
+public class RoomViewModel {
     private Long id;
     private int number;
     private RoomCategory roomCategory;
     private double pricePerNight;
     private double rating;
 
-    public RoomView() {
+    public RoomViewModel() {
     }
 
     public Long getId() {

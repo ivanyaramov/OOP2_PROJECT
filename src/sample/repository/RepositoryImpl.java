@@ -7,4 +7,9 @@ public abstract class RepositoryImpl implements Repository{
     public void save(Object object){
         databaseService.saveObject(object);
     }
+
+    @Override
+    public void update(Object object) {
+        databaseService.updateObject(object);
+    }
 }

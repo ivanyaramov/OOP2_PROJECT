@@ -15,13 +15,12 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     private ReservationType type;
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(30)", nullable = false)
-    private ReservationEndType endType;
     @Column(nullable = false)
     private Date dateOfArrival;
     @Column(nullable = false)
     private int days;
+    @Column
+    private boolean ended;
     @ManyToOne
     private Room room;
     @ManyToOne
@@ -52,14 +51,6 @@ public class Reservation {
 
     public void setType(ReservationType type) {
         this.type = type;
-    }
-
-    public ReservationEndType getEndType() {
-        return endType;
-    }
-
-    public void setEndType(ReservationEndType endType) {
-        this.endType = endType;
     }
 
     public RoomCategory getRoomCategory() {
@@ -98,4 +89,11 @@ public class Reservation {
         this.client = client;
     }
 
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
 }

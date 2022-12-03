@@ -9,6 +9,6 @@ public interface UserRepository extends Repository {
     Person getPersonByUsername(String username);
     boolean personExistsByUsername(String username);
     List<Person> getPeopleByRole(Role role);
-    void updatePerson(Person person);
     List<Person> getAllPeopleNonClients();
+    List<Person> getAllPeopleByRole(Role role);
 }
