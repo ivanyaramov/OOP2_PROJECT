@@ -3,13 +3,16 @@ package sample.services.impl;
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.HotelDTO;
+import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.Hotel;
+import sample.models.hotels.Room;
 import sample.models.people.Person;
 import sample.models.viemModels.HotelViewModel;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
 import sample.repository.HotelRepository;
 import sample.repository.HotelRepositoryImpl;
 import sample.services.HotelService;
+import sample.services.RoomService;
 import sample.services.UserService;
 
 import java.util.List;
@@ -19,9 +22,10 @@ public class HotelServiceImpl implements HotelService {
     private HotelRepository hotelRepository = new HotelRepositoryImpl();
     private ModelMapper modelMapper = new ModelMapper();
     private UserService userService = new UserServiceImpl();
+    private RoomService roomService = new RoomServiceImpl();
 
     @Override
-    public void createHotel(HotelDTO hotelDTO) {
+    public void createHotel(HotelDTO hotelDTO, List<RoomDTO> rooms) {
         Hotel hotel = modelMapper.map(hotelDTO, Hotel.class);
         Person manager = userService.getPersonByUsername(hotelDTO.getManager().getUsername());
         Person owner = CurrentLoggedUser.getLoggedUser();
@@ -30,6 +34,8 @@ public class HotelServiceImpl implements HotelService {
         hotel.setOwner(owner);
         hotel.setReceptionists(receptionists);
         hotelRepository.save(hotel);
+        Hotel savedHotel = hotelRepository.getHotelByName(hotel.getName());
+        roomService.createRooms(rooms, savedHotel.getId());
     }
 
     @Override

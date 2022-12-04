@@ -12,4 +12,5 @@ public interface HotelRepository extends Repository{
     Long getIdOfHotelsForReceptionist(Long id);
     boolean managerHasHotels(Long id);
     boolean recptionistHasHotels(Long id);
+    Hotel getHotelByName(String name);
 }
