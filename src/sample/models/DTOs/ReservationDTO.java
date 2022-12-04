@@ -1,18 +1,14 @@
 package sample.models.DTOs;
 
-import sample.models.hotels.Hotel;
-import sample.models.hotels.Room;
-import sample.models.people.Person;
 import sample.models.reservations.ReservationType;
 
-import javax.persistence.*;
 import java.util.Date;
 
 public class ReservationDTO {
     private ReservationType type;
     private Date dateOfArrival;
     private int days;
-    private Room room;
+    private Long roomId;
     private Long hotelId;
 
     public ReservationType getType() {
@@ -39,12 +35,12 @@ public class ReservationDTO {
         this.days = days;
     }
 
-    public Room getRoom() {
-        return room;
+    public Long getRoomId() {
+        return roomId;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 
     public Long getHotelId() {

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.ReservationDTO;
 import sample.models.hotels.Hotel;
+import sample.models.hotels.Room;
 import sample.models.people.Person;
 import sample.models.reservations.Reservation;
 import sample.models.viemModels.ReservationViewModel;
@@ -12,6 +13,7 @@ import sample.repository.HotelRepositoryImpl;
 import sample.repository.ReservationRepository;
 import sample.repository.ReservationRepositoryImpl;
 import sample.services.ReservationService;
+import sample.services.RoomService;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -23,12 +25,15 @@ public class ReservationServiceImpl implements ReservationService {
     private ModelMapper modelMapper = new ModelMapper();
     private ReservationRepository reservationRepository = new ReservationRepositoryImpl();
     private HotelRepository hotelRepository = new HotelRepositoryImpl();
+    private RoomService roomService = new RoomServiceImpl();
 
     @Override
     public void createReservation(ReservationDTO reservationDTO) {
         Reservation reservation = modelMapper.map(reservationDTO, Reservation.class);
         reservation.setClient(CurrentLoggedUser.getLoggedUser());
         Hotel hotel = hotelRepository.getById(reservationDTO.getHotelId());
+        Room room = roomService.getRoomByRoomId(reservationDTO.getRoomId());
+        reservation.setRoom(room);
         reservation.setHotel(hotel);
         reservationRepository.save(reservation);
     }
