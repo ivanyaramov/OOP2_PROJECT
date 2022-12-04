@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.sceneControllers.ReservationListController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="tbDataReservations" layoutX="25.0" layoutY="30.0" prefHeight="800.0" prefWidth="700.0">
+        <columns>
+            <TableColumn fx:id="reservationType" prefWidth="60.0" text="type" />
+            <TableColumn fx:id="reservationDateOfArrival" prefWidth="60.0" text="dateOfArrival" />
+            <TableColumn fx:id="reservationDays" prefWidth="60.0" text="days" />
+            <TableColumn fx:id="reservationRoomId" prefWidth="60.0" text="roomId" />
+            <TableColumn fx:id="reservationRoomCategory" prefWidth="60.0" text="roomCategory" />
+            <TableColumn fx:id="reservationHotelName" prefWidth="60.0" text="hotelName" />
+            <TableColumn fx:id="reservationEnded" prefWidth="60.0" text="ended" />
+            <TableColumn fx:id="reservationNearlyEnded" prefWidth="60.0" text="nearlyEnded" />
+            <TableColumn fx:id="reservationRisky" prefWidth="60.0" text="risky" />
+            <TableColumn fx:id="reservationPrice" prefWidth="60.0" text="price" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

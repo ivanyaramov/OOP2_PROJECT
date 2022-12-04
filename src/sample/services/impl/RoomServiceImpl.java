@@ -102,6 +102,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void updateRoomIsTaken(Room room, boolean taken) {
         room.setTaken(taken);
-        roomRepository.update(taken);
+        roomRepository.update(room);
     }
 }

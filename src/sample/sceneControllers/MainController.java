@@ -19,6 +19,9 @@ public class MainController implements Initializable {
     @FXML
     private Button actionFXML;
 
+    @FXML
+    private Button actionSpecificFXML;
+
     public void redirectPage(ActionEvent event) throws IOException {
         if(actionFXML.getText().equals("admin panel")){
             RedirectScenes.redirect(event,"administrator");
@@ -29,22 +32,28 @@ public class MainController implements Initializable {
             return;
         }
         if(actionFXML.getText().equals("create receptionists")){
-            RedirectScenes.redirect(event,"createNewReceptionist");
+            RedirectScenes.redirect(event,"createNewHotel");
             return;
         }
-        if(actionFXML.getText().equals("view client state")){
-            RedirectScenes.redirect(event,"viewClientState");
+        if(actionFXML.getText().equals("view room busyness")){
+            RedirectScenes.redirect(event,"roomList");
             return;
         }
         RedirectScenes.redirect(event,"reservation");
+    }
+
+    public void redirectPageSpecific(ActionEvent event) throws IOException {
+        RedirectScenes.redirect(event,"reservationList");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Person loggedUser = CurrentLoggedUser.getLoggedUser();
         Role role = loggedUser.getRole();
+        actionSpecificFXML.setText("view reservations");
         if(role == Role.ADMIN) {
             actionFXML.setText("admin panel");
+            actionSpecificFXML.setVisible(false);
         }
         else if(role == Role.OWNER){
             actionFXML.setText("create hotel");
@@ -53,10 +62,11 @@ public class MainController implements Initializable {
             actionFXML.setText("create receptionists");
         }
         else if(role == Role.RECEPTIONIST){
-            actionFXML.setText("view client state");
+            actionFXML.setText("view room busyness");
         }
         else {
             actionFXML.setText("make reservation");
+            actionSpecificFXML.setVisible(false);
         }
     }
 }

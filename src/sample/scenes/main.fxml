@@ -8,6 +8,7 @@
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <Button fx:id="actionFXML" layoutX="300.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPage" />
+        <Button fx:id="actionSpecificFXML" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPageSpecific" />
     </children>
 
 </AnchorPane>
