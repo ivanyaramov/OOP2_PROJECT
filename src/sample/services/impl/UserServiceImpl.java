@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createPerson(RegisterDTO registerDTO) {
         Person person = modelMapper.map(registerDTO, Person.class);
+        person.setRating(10);
         userRepository.save(person);
     }
 
@@ -66,7 +67,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<PersonForChoosingViewModel> getPersonViewByRole(Role role) {
-        List<Person> listOfObjectsByQuery = userRepository.getPeopleByRole(role);
+        List<Person> listOfObjectsByQuery = new ArrayList<>();
+              if(role == Role.MANAGER){
+                  listOfObjectsByQuery = userRepository.getAvailableManagers();
+              } else if (role == Role.RECEPTIONIST){
+                  listOfObjectsByQuery = userRepository.getAvailableReceptionists();
+              } else{
+                  listOfObjectsByQuery = userRepository.getPeopleByRole(role);
+              }
         List<PersonForChoosingViewModel> listOfDTOs = new ArrayList<>();
         for(Person p : listOfObjectsByQuery) {
             PersonForChoosingViewModel viewPersonForChoosingDTO = modelMapper.map(p, PersonForChoosingViewModel.class);

@@ -11,4 +11,6 @@ public interface UserRepository extends Repository {
     List<Person> getPeopleByRole(Role role);
     List<Person> getAllPeopleNonClients();
     List<Person> getAllPeopleByRole(Role role);
+    List<Person> getAvailableManagers();
+    List<Person> getAvailableReceptionists();
 }

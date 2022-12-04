@@ -3,6 +3,7 @@ package sample.repository;
 import sample.DBService.DatabaseService;
 import sample.models.hotels.Hotel;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,5 +41,31 @@ private DatabaseService databaseService = new DatabaseService();
         String hql = "SELECT h FROM Hotel h JOIN h.receptionists WHERE receptionists_id = " + id;
         Hotel hotel = (Hotel) databaseService.getObjectByQuery(hql);
         return hotel.getId();
+    }
+
+    @Override
+    public boolean managerHasHotels(Long id) {
+        String hql = "FROM Hotel WHERE manager_id = " + id;
+        Hotel hotel = null;
+        try {
+            hotel = (Hotel) databaseService.getObjectByQuery(hql);
+        }
+        catch(NoResultException ex){
+            return false;
+        }
+        return hotel != null;
+    }
+
+    @Override
+    public boolean recptionistHasHotels(Long id) {
+        String hql = "SELECT h FROM Hotel h JOIN h.receptionists WHERE receptionists_id = " + id;
+        Hotel hotel = null;
+        try {
+            hotel = (Hotel) databaseService.getObjectByQuery(hql);
+        }
+        catch(NoResultException ex){
+            return false;
+        }
+        return hotel != null;
     }
 }

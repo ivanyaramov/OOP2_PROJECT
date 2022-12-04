@@ -10,4 +10,6 @@ public interface HotelRepository extends Repository{
     List<Long> getIdsOfHotelsForOwner(Long id);
     Long getIdOfHotelsForManager(Long id);
     Long getIdOfHotelsForReceptionist(Long id);
+    boolean managerHasHotels(Long id);
+    boolean recptionistHasHotels(Long id);
 }
