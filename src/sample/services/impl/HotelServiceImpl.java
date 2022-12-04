@@ -35,7 +35,7 @@ public class HotelServiceImpl implements HotelService {
         hotel.setReceptionists(receptionists);
         hotelRepository.save(hotel);
         Hotel savedHotel = hotelRepository.getHotelByName(hotel.getName());
-        roomService.createRooms(rooms, savedHotel.getId());
+        roomService.createRooms(rooms, savedHotel);
     }
 
     @Override

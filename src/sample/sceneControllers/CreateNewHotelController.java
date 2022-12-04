@@ -12,9 +12,7 @@ import sample.models.DTOs.HotelDTO;
 import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.RoomCategory;
 import sample.services.HotelService;
-import sample.services.RoomService;
 import sample.services.impl.HotelServiceImpl;
-import sample.services.impl.RoomServiceImpl;
 import sample.utilities.RedirectScenes;
 import sample.models.people.Role;
 import sample.models.viemModels.PersonForCreateHotelViewModel;
@@ -32,7 +30,6 @@ public class CreateNewHotelController implements Initializable {
 
     UserService userService = new UserServiceImpl();
     HotelService hotelService = new HotelServiceImpl();
-    RoomService roomService = new RoomServiceImpl();
 
     @FXML
     private TableView<PersonForCreateHotelViewModel> tbDataManagers;
@@ -87,7 +84,6 @@ public class CreateNewHotelController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rooms = new ArrayList<>();
         ObservableList<PersonForCreateHotelViewModel> managers = loadProperties(Role.MANAGER);
         ObservableList<PersonForCreateHotelViewModel> receptionists = loadProperties(Role.RECEPTIONIST);
 

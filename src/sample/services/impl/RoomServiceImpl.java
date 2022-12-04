@@ -15,7 +15,6 @@ import sample.repository.HotelRepository;
 import sample.repository.HotelRepositoryImpl;
 import sample.repository.RoomRepository;
 import sample.repository.RoomRepositoryImpl;
-import sample.services.HotelService;
 import sample.services.RoomService;
 
 import java.util.Arrays;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 
 public class RoomServiceImpl implements RoomService {
     private ModelMapper modelMapper = new ModelMapper();
-    private HotelService hotelService = new HotelServiceImpl();
     private RoomRepository roomRepository = new RoomRepositoryImpl();
     private HotelRepository hotelRepository = new HotelRepositoryImpl();
     @Override
@@ -33,10 +31,9 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public boolean createRoom(RoomDTO roomDTO) {
+    public boolean createRoom(RoomDTO roomDTO, Hotel hotel) {
         if(!roomNumberExists(roomDTO.getNumber())){
             Room room = modelMapper.map(roomDTO, Room.class);
-            Hotel hotel = hotelService.getHotelById(roomDTO.getHotelId());
             room.setHotel(hotel);
             roomRepository.save(room);
             return true;
@@ -45,9 +42,9 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void createRooms(List<RoomDTO> rooms, Long hotelId) {
+    public void createRooms(List<RoomDTO> rooms, Hotel hotel) {
         for(RoomDTO roomDTO : rooms){
-            createRoom(roomDTO);
+            createRoom(roomDTO, hotel);
         }
     }
 
