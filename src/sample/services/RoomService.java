@@ -15,4 +15,5 @@ public interface RoomService {
     Room getRoomByRoomId(Long roomId);
     void updateRoomRating(Room room, List<RoomRating> ratings);
     List<RoomViewModel> getRoomsForUserHotels();
+    void updateRoomIsTaken(Room room, boolean taken);
 }

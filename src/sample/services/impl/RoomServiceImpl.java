@@ -94,4 +94,10 @@ public class RoomServiceImpl implements RoomService {
                 .stream().map(r->modelMapper.map(r, RoomViewModel.class)).collect(Collectors.toList());
 
     }
+
+    @Override
+    public void updateRoomIsTaken(Room room, boolean taken) {
+        room.setTaken(taken);
+        roomRepository.update(taken);
+    }
 }
