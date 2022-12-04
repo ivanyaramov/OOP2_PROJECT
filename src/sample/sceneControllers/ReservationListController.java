@@ -2,6 +2,7 @@ package sample.sceneControllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -12,7 +13,9 @@ import sample.models.viemModels.ReservationViewModel;
 import sample.models.viemModels.RoomViewModel;
 import sample.services.ReservationService;
 import sample.services.impl.ReservationServiceImpl;
+import sample.utilities.RedirectScenes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -70,5 +73,9 @@ public class ReservationListController implements Initializable {
         reservationPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         tbDataReservations.setItems(reservationsViewModelObservableList);
+    }
+
+    public void redirectBack(ActionEvent event) throws IOException {
+        RedirectScenes.redirect(event,"main");
     }
 }

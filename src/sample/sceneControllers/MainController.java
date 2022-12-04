@@ -28,11 +28,11 @@ public class MainController implements Initializable {
             return;
         }
         if(actionFXML.getText().equals("create hotel")){
-            RedirectScenes.redirect(event,"reservation");
+            RedirectScenes.redirect(event,"createNewHotel");
             return;
         }
         if(actionFXML.getText().equals("create receptionists")){
-            RedirectScenes.redirect(event,"createNewHotel");
+            RedirectScenes.redirect(event,"createNewReceptionist");
             return;
         }
         if(actionFXML.getText().equals("view room busyness")){

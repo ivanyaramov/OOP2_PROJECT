@@ -112,7 +112,9 @@ public class ReservationController implements Initializable {
         });
     }
 
-
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"main");
+    }
 
     private ObservableList<HotelViewModel> hotelsProperties()
     {

@@ -55,4 +55,7 @@ public class RegisterController {
             RedirectScenes.redirect(event, "main");
         }
     }
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"login");
+    }
 }

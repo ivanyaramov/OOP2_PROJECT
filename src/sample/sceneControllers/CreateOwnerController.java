@@ -54,4 +54,8 @@ public class CreateOwnerController {
         userService.createPerson(registerDTO);
         RedirectScenes.redirect(event,"administrator");
     }
+
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"administrator");
+    }
 }

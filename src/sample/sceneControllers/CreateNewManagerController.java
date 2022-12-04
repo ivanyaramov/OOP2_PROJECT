@@ -53,4 +53,9 @@ public class CreateNewManagerController {
         userService.createPerson(registerDTO);
             RedirectScenes.redirect(event, "createNewHotel");
     }
+
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"createNewHotel");
+    }
 }
+

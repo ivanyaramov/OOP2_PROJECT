@@ -47,6 +47,10 @@ public class AdministratorController implements Initializable {
 
     }
 
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"main");
+    }
+
     private ObservableList<AdministratorViewModel> loadProperties(){
         List<PersonWithRoleViewModel> peopleWithRoles = null;
         List<AdministratorViewModel> administratorViewModelList = new ArrayList<>();

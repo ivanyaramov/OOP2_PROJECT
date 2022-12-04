@@ -11,7 +11,7 @@
             fx:controller="sample.sceneControllers.RoomListController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="30.0" prefHeight="600.0" prefWidth="500.0">
+    <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="30.0" prefHeight="500.0" prefWidth="500.0">
         <columns>
             <TableColumn fx:id="roomNumber" prefWidth="60.0" text="number" />
             <TableColumn fx:id="roomRoomCategory" prefWidth="60.0" text="roomCategory" />
@@ -20,5 +20,7 @@
             <TableColumn fx:id="roomHotelName" prefWidth="60.0" text="hotelName" />
         </columns>
     </TableView>
-
+    <Button layoutX="511.0" layoutY="600.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+    <TextField fx:id="rateFieldFXML" layoutX="310.0" layoutY="600.0" prefHeight="38.0" prefWidth="170.0"/>
+    <Button fx:id="rateButtonFXML" layoutX="310.0" layoutY="670.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Rate client" onAction="#rateClient" />
 </AnchorPane>

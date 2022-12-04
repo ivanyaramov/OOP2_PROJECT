@@ -102,6 +102,10 @@ public class CreateNewHotelController implements Initializable {
         tbDataReceptionists.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
+    public void redirectBack(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"main");
+    }
+
     private ObservableList<PersonForCreateHotelViewModel> loadProperties(Role role){
         List<PersonForChoosingViewModel> peopleWithRoles = null;
         List<PersonForCreateHotelViewModel> properties = new ArrayList<>();
