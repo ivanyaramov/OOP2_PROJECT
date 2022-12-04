@@ -71,7 +71,7 @@ private DatabaseService databaseService = new DatabaseService();
 
     @Override
     public Hotel getHotelByName(String name) {
-        String hql = "FROM Hotel h WHERE h.name = " + name;
+        String hql = "FROM Hotel h WHERE h.name = '" + name + "'";
         return (Hotel) databaseService.getObjectByQuery(hql);
     }
 }

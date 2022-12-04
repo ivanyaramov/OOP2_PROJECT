@@ -22,6 +22,7 @@ public class DatabaseService {
 
     public void saveObject(Object object){
         try {
+            initializeRegistry();
             SessionFactory factory = new MetadataSources(registry)
                     .buildMetadata().buildSessionFactory();
             Session session = factory.openSession();
@@ -36,6 +37,7 @@ public class DatabaseService {
 
     public void updateObject(Object object){
         try {
+            initializeRegistry();
             SessionFactory factory = new MetadataSources(registry)
                     .buildMetadata().buildSessionFactory();
             Session session = factory.openSession();
