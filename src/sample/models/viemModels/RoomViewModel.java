@@ -11,6 +11,7 @@ public class RoomViewModel {
     private RoomCategory roomCategory;
     private double pricePerNight;
     private double rating;
+    private String hotelName;
 
     public RoomViewModel() {
     }
@@ -53,5 +54,13 @@ public class RoomViewModel {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 }
