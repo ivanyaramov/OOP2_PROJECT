@@ -91,7 +91,11 @@ public class RoomServiceImpl implements RoomService {
                 return null;
         }
         return rooms
-                .stream().map(r->modelMapper.map(r, RoomViewModel.class)).collect(Collectors.toList());
+                .stream().map(r->{
+                   RoomViewModel roomViewModel =  modelMapper.map(r, RoomViewModel.class);
+                   roomViewModel.setHotelName(r.getHotel().getName());
+                   return roomViewModel;
+                }).collect(Collectors.toList());
 
     }
 
