@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.models.DTOs.ReservationDTO;
+import sample.models.reservations.ReservationType;
 import sample.models.viemModels.HotelViewModel;
 import sample.models.viemModels.RoomViewModel;
 import sample.services.HotelService;
@@ -17,7 +18,10 @@ import sample.services.impl.ReservationServiceImpl;
 import sample.services.impl.RoomServiceImpl;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,7 +75,13 @@ public class ReservationController implements Initializable {
     {
         ReservationDTO reservationDTO = new ReservationDTO();
 
-        //reservationService.createReservation();
+        reservationDTO.setType(ReservationType.valueOf(reservationTypeFXML.getSelectionModel().getSelectedItem().toString()));
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate localDate = datePickerFXML.getValue();
+        Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+        reservationDTO.setDateOfArrival(date);
+        reservationDTO.setDays(Integer.parseInt(nightCountFXML.getText()));
+        reservationDTO.setHotel(tbDataHotels.getSelectionModel().getSelectedItem());
     }
 
     @Override
