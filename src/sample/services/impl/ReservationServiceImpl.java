@@ -36,6 +36,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setRoom(room);
         reservation.setHotel(hotel);
         reservationRepository.save(reservation);
+        roomService.updateRoomIsTaken(room, true);
     }
 
     @Override
@@ -81,6 +82,7 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = reservationRepository.getReservationById(reservationId);
         reservation.setEnded(true);
         reservationRepository.updateReservation(reservation);
+        roomService.updateRoomIsTaken(reservation.getRoom(), false);
     }
 
     private void updateEnded(Reservation reservation){
@@ -89,7 +91,10 @@ public class ReservationServiceImpl implements ReservationService {
             c.setTime(reservation.getDateOfArrival());
             c.add(Calendar.DATE, reservation.getDays());
             reservation.setEnded(new Date().after(c.getTime()));
-            reservationRepository.updateReservation(reservation);
+            if(reservation.isEnded()) {
+                reservationRepository.updateReservation(reservation);
+                roomService.updateRoomIsTaken(reservation.getRoom(), false);
+            }
         }
     }
     private boolean isNearlyEnded(Reservation reservation){
