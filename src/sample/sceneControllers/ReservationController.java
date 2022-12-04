@@ -81,7 +81,8 @@ public class ReservationController implements Initializable {
         Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
         reservationDTO.setDateOfArrival(date);
         reservationDTO.setDays(Integer.parseInt(nightCountFXML.getText()));
-        reservationDTO.setHotel(tbDataHotels.getSelectionModel().getSelectedItem());
+        reservationDTO.setHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
+        reservationDTO.setRoomId(tbDataRooms.getSelectionModel().getSelectedItem().getId());
     }
 
     @Override
