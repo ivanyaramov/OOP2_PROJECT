@@ -3,6 +3,7 @@ package sample.services.impl;
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.ReservationDTO;
+import sample.models.hotels.Hotel;
 import sample.models.people.Person;
 import sample.models.reservations.Reservation;
 import sample.models.viemModels.ReservationViewModel;
@@ -27,6 +28,8 @@ public class ReservationServiceImpl implements ReservationService {
     public void createReservation(ReservationDTO reservationDTO) {
         Reservation reservation = modelMapper.map(reservationDTO, Reservation.class);
         reservation.setClient(CurrentLoggedUser.getLoggedUser());
+        Hotel hotel = hotelRepository.getById(reservationDTO.getHotelId());
+        reservation.setHotel(hotel);
         reservationRepository.save(reservation);
     }
 

@@ -13,7 +13,7 @@ public class ReservationDTO {
     private Date dateOfArrival;
     private int days;
     private Room room;
-    private Hotel hotel;
+    private Long hotelId;
 
     public ReservationType getType() {
         return type;
@@ -47,11 +47,11 @@ public class ReservationDTO {
         this.room = room;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public Long getHotelId() {
+        return hotelId;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotelId(Long hotelId) {
+        this.hotelId = hotelId;
     }
 }

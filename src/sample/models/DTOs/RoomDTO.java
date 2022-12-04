@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class RoomDTO {
     private int number;
     private RoomCategory roomCategory;
-    private Hotel hotel;
+    private Long hotelId;
     private double pricePerNight;
 
     public RoomDTO() {
@@ -33,12 +33,12 @@ public class RoomDTO {
         this.roomCategory = roomCategory;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public Long getHotelId() {
+        return hotelId;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotelId(Long hotelId) {
+        this.hotelId = hotelId;
     }
 
     public double getPricePerNight() {

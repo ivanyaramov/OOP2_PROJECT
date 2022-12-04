@@ -36,6 +36,8 @@ public class RoomServiceImpl implements RoomService {
     public boolean createRoom(RoomDTO roomDTO) {
         if(!roomNumberExists(roomDTO.getNumber())){
             Room room = modelMapper.map(roomDTO, Room.class);
+            Hotel hotel = hotelService.getHotelById(roomDTO.getHotelId());
+            room.setHotel(hotel);
             roomRepository.save(room);
             return true;
         }
@@ -44,9 +46,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void createRooms(List<RoomDTO> rooms, Long hotelId) {
-        Hotel hotel = hotelService.getHotelById(hotelId);
         for(RoomDTO roomDTO : rooms){
-            roomDTO.setHotel(hotel);
             createRoom(roomDTO);
         }
     }
@@ -73,7 +73,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomViewModel> getReservationsForUser() {
+    public List<RoomViewModel> getRoomsForUserHotels() {
         Person currentUser = CurrentLoggedUser.getLoggedUser();
         List<Room> rooms;
         switch (currentUser.getRole()){
