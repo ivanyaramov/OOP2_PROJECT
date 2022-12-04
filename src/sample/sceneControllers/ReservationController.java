@@ -2,6 +2,7 @@ package sample.sceneControllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,7 +17,9 @@ import sample.services.RoomService;
 import sample.services.impl.HotelServiceImpl;
 import sample.services.impl.ReservationServiceImpl;
 import sample.services.impl.RoomServiceImpl;
+import sample.utilities.RedirectScenes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -30,6 +33,8 @@ public class ReservationController implements Initializable {
     HotelService hotelService = new HotelServiceImpl();
 
     RoomService roomService = new RoomServiceImpl();
+
+    ReservationService reservationService = new ReservationServiceImpl();
 
     @FXML
     private TableView<HotelViewModel> tbDataHotels;
@@ -69,10 +74,7 @@ public class ReservationController implements Initializable {
 
     public List<RoomViewModel> rooms = new ArrayList<>();
 
-    ReservationService reservationService = new ReservationServiceImpl();
-
-    public void reserve()
-    {
+    public void reserve(ActionEvent event) throws IOException {
         ReservationDTO reservationDTO = new ReservationDTO();
 
         reservationDTO.setType(ReservationType.valueOf(reservationTypeFXML.getSelectionModel().getSelectedItem().toString()));
@@ -81,8 +83,10 @@ public class ReservationController implements Initializable {
         Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
         reservationDTO.setDateOfArrival(date);
         reservationDTO.setDays(Integer.parseInt(nightCountFXML.getText()));
-        reservationDTO.setHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
-        reservationDTO.setRoomId(tbDataRooms.getSelectionModel().getSelectedItem().getId());
+        reservationDTO.setHotel(tbDataHotels.getSelectionModel().getSelectedItem().getId());
+        reservationDTO.setRoom(tbDataRooms.getSelectionModel().getSelectedItem().getId());
+        reservationService.createReservation(reservationDTO);
+        RedirectScenes.redirect(event,"main");
     }
 
     @Override

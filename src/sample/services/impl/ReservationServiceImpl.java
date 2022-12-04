@@ -31,8 +31,8 @@ public class ReservationServiceImpl implements ReservationService {
     public void createReservation(ReservationDTO reservationDTO) {
         Reservation reservation = modelMapper.map(reservationDTO, Reservation.class);
         reservation.setClient(CurrentLoggedUser.getLoggedUser());
-        Hotel hotel = hotelRepository.getById(reservationDTO.getHotelId());
-        Room room = roomService.getRoomByRoomId(reservationDTO.getRoomId());
+        Hotel hotel = hotelRepository.getById(reservationDTO.getHotel());
+        Room room = roomService.getRoomByRoomId(reservationDTO.getRoom());
         reservation.setRoom(room);
         reservation.setHotel(hotel);
         reservationRepository.save(reservation);
