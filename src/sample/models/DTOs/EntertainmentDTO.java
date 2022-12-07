@@ -5,6 +5,7 @@ import javax.persistence.Column;
 public class EntertainmentDTO {
     private String name;
     private double price;
+    private Long hotelId;
 
     public EntertainmentDTO() {
     }
@@ -23,5 +24,13 @@ public class EntertainmentDTO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Long hotelId) {
+        this.hotelId = hotelId;
     }
 }

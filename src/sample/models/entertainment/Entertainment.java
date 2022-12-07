@@ -1,5 +1,6 @@
 package sample.models.entertainment;
 
+import sample.models.hotels.Hotel;
 import sample.models.reservations.Reservation;
 
 import javax.persistence.*;
@@ -16,6 +17,8 @@ public class Entertainment {
     private double price;
     @ManyToMany
     private List<Reservation> reservations;
+    @ManyToOne
+    private Hotel hotel;
 
     public Entertainment() {
     }
@@ -42,5 +45,13 @@ public class Entertainment {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 }

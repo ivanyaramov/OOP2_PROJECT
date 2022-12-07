@@ -14,8 +14,8 @@ public class EntertainmentRepositoryImpl extends RepositoryImpl implements Enter
     }
 
     @Override
-    public List<Entertainment> getAllEntertainments() {
-        String hql = "FROM entertainment";
+    public List<Entertainment> getAllEntertainmentsByHotelId(Long hotelId) {
+        String hql = "FROM entertainment WHERE hotel_id = " + hotelId;
         return (List<Entertainment>) databaseService.getListOfObjectsByQuery(hql);
     }
 

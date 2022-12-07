@@ -9,7 +9,7 @@ import java.util.List;
 public interface EntertainmentService {
     void createEntertainment(EntertainmentDTO entertainmentDTO);
     List<EntertainmentViewModel> getEntertainmentsByReservationId(Long reservationId);
-    List<EntertainmentViewModel> getAllEntertainments();
+    List<EntertainmentViewModel> getAllEntertainmentsByHotelId(Long hotelId);
     Entertainment getEntertainmentById(Long id);
 
 }
