@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 public class ReservationViewModel {
+    private Long id;
     private ReservationType type;
     private Date dateOfArrival;
     private int days;
@@ -102,5 +103,13 @@ public class ReservationViewModel {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

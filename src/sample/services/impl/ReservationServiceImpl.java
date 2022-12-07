@@ -3,6 +3,7 @@ package sample.services.impl;
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.DTOs.ReservationDTO;
+import sample.models.entertainment.Entertainment;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
 import sample.models.people.Person;
@@ -12,6 +13,7 @@ import sample.repository.HotelRepository;
 import sample.repository.HotelRepositoryImpl;
 import sample.repository.ReservationRepository;
 import sample.repository.ReservationRepositoryImpl;
+import sample.services.EntertainmentService;
 import sample.services.ReservationService;
 import sample.services.RoomService;
 
@@ -26,6 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationRepository reservationRepository = new ReservationRepositoryImpl();
     private HotelRepository hotelRepository = new HotelRepositoryImpl();
     private RoomService roomService = new RoomServiceImpl();
+    private EntertainmentService entertainmentService = new EntertainmentServiceImpl();
 
     @Override
     public void createReservation(ReservationDTO reservationDTO) {
@@ -35,6 +38,10 @@ public class ReservationServiceImpl implements ReservationService {
         Room room = roomService.getRoomByRoomId(reservationDTO.getRoom());
         reservation.setRoom(room);
         reservation.setHotel(hotel);
+        for(Long id: reservationDTO.getEntertainmentIds()){
+            Entertainment entertainment = entertainmentService.getEntertainmentById(id);
+            reservation.getEntertainments().add(entertainment);
+        }
         reservationRepository.save(reservation);
         roomService.updateRoomIsTaken(room, true);
     }
@@ -72,7 +79,11 @@ public class ReservationServiceImpl implements ReservationService {
         updateEnded(r);
         model.setEnded(r.isEnded());
         model.setNearlyEnded(isNearlyEnded(r));
-        model.setPrice(r.getDays() * r.getRoom().getPricePerNight());
+        double price = r.getDays() * r.getRoom().getPricePerNight();
+        for(Entertainment e : r.getEntertainments()){
+            price += e.getPrice();
+        }
+        model.setPrice(price);
         model.setRisky(r.getClient().getRating() <= 5);
         return model;
     }
@@ -83,6 +94,11 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setEnded(true);
         reservationRepository.updateReservation(reservation);
         roomService.updateRoomIsTaken(reservation.getRoom(), false);
+    }
+
+    @Override
+    public Reservation getById(Long id) {
+       return reservationRepository.getReservationById(id);
     }
 
     private void updateEnded(Reservation reservation){

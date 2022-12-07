@@ -12,4 +12,11 @@ public class ClientRatingRepositoryImpl extends RepositoryImpl implements Client
         String hql = "FROM clientrating WHERE client_id = " + id;
         return (List<ClientRating>) databaseService.getListOfObjectsByQuery(hql);
     }
+
+    @Override
+    public double getRatingByReservationId(Long id) {
+        String hql = "FROM clientrating WHERE reservation_id = " + id;
+        ClientRating clientRating = (ClientRating) databaseService.getObjectByQuery(hql);
+        return clientRating.getRating();
+    }
 }

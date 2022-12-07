@@ -10,4 +10,5 @@ public interface ReservationService {
     void createReservation(ReservationDTO reservationDTO);
     List<ReservationViewModel> getReservationsForUser();
     void endReservationPrematurely(Long reservationId);
+    Reservation getById(Long id);
 }

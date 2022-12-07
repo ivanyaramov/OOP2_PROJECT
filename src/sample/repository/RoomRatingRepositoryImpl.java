@@ -12,4 +12,11 @@ public class RoomRatingRepositoryImpl extends RepositoryImpl implements RoomRati
         String hql = "FROM roomrating WHERE room_id = " + roomId;
         return (List<RoomRating>) databaseService.getListOfObjectsByQuery(hql);
     }
+
+    @Override
+    public double getRatingByReservationId(Long id) {
+        String hql = "FROM roomrating WHERE reservation_id = " + id;
+        RoomRating roomRating = (RoomRating) databaseService.getObjectByQuery(hql);
+        return roomRating.getRating();
+    }
 }

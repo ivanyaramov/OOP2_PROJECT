@@ -1,5 +1,6 @@
 package sample.models.reservations;
 
+import sample.models.entertainment.Entertainment;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
 import sample.models.hotels.RoomCategory;
@@ -7,6 +8,8 @@ import sample.models.people.Person;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 public class Reservation {
     @Id
@@ -27,6 +30,8 @@ public class Reservation {
     private Hotel hotel;
     @ManyToOne
     private Person client;
+    @ManyToMany(mappedBy = "reservations")
+    private List<Entertainment> entertainments;
 
 
     public Hotel getHotel() {
@@ -95,5 +100,13 @@ public class Reservation {
 
     public void setEnded(boolean ended) {
         this.ended = ended;
+    }
+
+    public List<Entertainment> getEntertainments() {
+        return entertainments;
+    }
+
+    public void setEntertainments(List<Entertainment> entertainments) {
+        this.entertainments = entertainments;
     }
 }

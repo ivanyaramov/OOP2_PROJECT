@@ -3,6 +3,7 @@ package sample.models.DTOs;
 import sample.models.reservations.ReservationType;
 
 import java.util.Date;
+import java.util.List;
 
 public class ReservationDTO {
     private ReservationType type;
@@ -10,6 +11,7 @@ public class ReservationDTO {
     private int days;
     private Long room;
     private Long hotel;
+    private List<Long> entertainmentIds;
 
     public ReservationType getType() {
         return type;
@@ -49,5 +51,13 @@ public class ReservationDTO {
 
     public void setHotel(Long hotel) {
         this.hotel = hotel;
+    }
+
+    public List<Long> getEntertainmentIds() {
+        return entertainmentIds;
+    }
+
+    public void setEntertainmentIds(List<Long> entertainmentIds) {
+        this.entertainmentIds = entertainmentIds;
     }
 }
