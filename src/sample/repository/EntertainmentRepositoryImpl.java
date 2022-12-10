@@ -9,19 +9,19 @@ public class EntertainmentRepositoryImpl extends RepositoryImpl implements Enter
     private DatabaseService databaseService = new DatabaseService();
     @Override
     public List<Entertainment> getEntertainmentsByReservationId(Long reservationId) {
-        String hql = "FROM entertainment WHERE reservation_id = " + reservationId;
+        String hql = "FROM Entertainment WHERE reservation_id = " + reservationId;
         return (List<Entertainment>) databaseService.getListOfObjectsByQuery(hql);
     }
 
     @Override
     public List<Entertainment> getAllEntertainmentsByHotelId(Long hotelId) {
-        String hql = "FROM entertainment WHERE hotel_id = " + hotelId;
+        String hql = "FROM Entertainment WHERE hotel_id = " + hotelId;
         return (List<Entertainment>) databaseService.getListOfObjectsByQuery(hql);
     }
 
     @Override
     public Entertainment getById(Long id) {
-        String hql = "FROM entertainment WHERE id = " + id;
+        String hql = "FROM Entertainment WHERE id = " + id;
         return (Entertainment) databaseService.getListOfObjectsByQuery(hql);
     }
 }

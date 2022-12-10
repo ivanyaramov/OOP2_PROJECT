@@ -9,6 +9,8 @@
     <children>
         <Button fx:id="actionFXML" layoutX="300.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPage" />
         <Button fx:id="actionSpecificFXML" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPageSpecific" />
+        <Button fx:id="logoutFXML" text="LogOut" layoutX="300.0" layoutY="400.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#logOut" />
+        <Button fx:id="createEntertainmentToHotelFXML" text="Create Entertainment" layoutX="300.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#createEntertainment" />
     </children>
 
 </AnchorPane>

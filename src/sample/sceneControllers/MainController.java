@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.people.Person;
 import sample.models.people.Role;
+import sample.services.LoginService;
+import sample.services.impl.LoginServiceImpl;
 import sample.utilities.RedirectScenes;
 
 import java.io.IOException;
@@ -16,11 +18,16 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    Person loggedUser = CurrentLoggedUser.getLoggedUser();
+
     @FXML
     private Button actionFXML;
 
     @FXML
     private Button actionSpecificFXML;
+
+    @FXML
+    private Button createEntertainmentToHotelFXML;
 
     public void redirectPage(ActionEvent event) throws IOException {
         if(actionFXML.getText().equals("admin panel")){
@@ -48,25 +55,38 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Person loggedUser = CurrentLoggedUser.getLoggedUser();
         Role role = loggedUser.getRole();
         actionSpecificFXML.setText("view reservations");
         if(role == Role.ADMIN) {
             actionFXML.setText("admin panel");
             actionSpecificFXML.setVisible(false);
+            createEntertainmentToHotelFXML.setVisible(false);
         }
         else if(role == Role.OWNER){
             actionFXML.setText("create hotel");
+            createEntertainmentToHotelFXML.setVisible(true);
         }
         else if(role == Role.MANAGER){
             actionFXML.setText("create receptionists");
+            createEntertainmentToHotelFXML.setVisible(false);
         }
         else if(role == Role.RECEPTIONIST){
             actionFXML.setText("view room busyness");
+            createEntertainmentToHotelFXML.setVisible(false);
         }
         else {
             actionFXML.setText("make reservation");
             actionSpecificFXML.setVisible(false);
+            createEntertainmentToHotelFXML.setVisible(false);
         }
+    }
+
+    public void logOut(ActionEvent event) throws IOException {
+        CurrentLoggedUser.logout();
+        RedirectScenes.redirect(event,"login");
+    }
+
+    public void createEntertainment(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"createEntertainment");
     }
 }

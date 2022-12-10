@@ -56,6 +56,13 @@
         </columns>
     </TableView>
 
+    <TableView fx:id="tbDataEntertainments" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
+        <columns>
+            <TableColumn fx:id="entertainmentName" prefWidth="100.0" text="entertainment name" />
+            <TableColumn fx:id="entertainmentPrice" prefWidth="100.0" text="entertainment price" />
+        </columns>
+    </TableView>
+
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="10">
         <Button text="Reserve"

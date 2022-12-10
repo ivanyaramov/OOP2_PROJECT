@@ -7,13 +7,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.models.DTOs.EntertainmentDTO;
 import sample.models.DTOs.ReservationDTO;
 import sample.models.reservations.ReservationType;
+import sample.models.viemModels.EntertainmentViewModel;
 import sample.models.viemModels.HotelViewModel;
 import sample.models.viemModels.RoomViewModel;
+import sample.services.EntertainmentService;
 import sample.services.HotelService;
 import sample.services.ReservationService;
 import sample.services.RoomService;
+import sample.services.impl.EntertainmentServiceImpl;
 import sample.services.impl.HotelServiceImpl;
 import sample.services.impl.ReservationServiceImpl;
 import sample.services.impl.RoomServiceImpl;
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ReservationController implements Initializable {
 
@@ -35,6 +40,8 @@ public class ReservationController implements Initializable {
     RoomService roomService = new RoomServiceImpl();
 
     ReservationService reservationService = new ReservationServiceImpl();
+
+    EntertainmentService entertainmentService = new EntertainmentServiceImpl();
 
     @FXML
     private TableView<HotelViewModel> tbDataHotels;
@@ -64,6 +71,15 @@ public class ReservationController implements Initializable {
     public TableColumn<String,String> roomRating;
 
     @FXML
+    private TableView<EntertainmentViewModel> tbDataEntertainments;
+
+    @FXML
+    public TableColumn<String,String> entertainmentName;
+
+    @FXML
+    public TableColumn<String,String> entertainmentPrice;
+
+    @FXML
     public ComboBox reservationTypeFXML;
 
     @FXML
@@ -76,7 +92,8 @@ public class ReservationController implements Initializable {
 
     public void reserve(ActionEvent event) throws IOException {
         ReservationDTO reservationDTO = new ReservationDTO();
-
+        ObservableList<EntertainmentViewModel> chosenEntertainments = tbDataEntertainments.getSelectionModel().getSelectedItems();
+        List<Long> entertainmentIds = chosenEntertainments.stream().map(EntertainmentViewModel::getId).collect(Collectors.toList());
         reservationDTO.setType(ReservationType.valueOf(reservationTypeFXML.getSelectionModel().getSelectedItem().toString()));
         ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate localDate = datePickerFXML.getValue();
@@ -85,6 +102,7 @@ public class ReservationController implements Initializable {
         reservationDTO.setDays(Integer.parseInt(nightCountFXML.getText()));
         reservationDTO.setHotel(tbDataHotels.getSelectionModel().getSelectedItem().getId());
         reservationDTO.setRoom(tbDataRooms.getSelectionModel().getSelectedItem().getId());
+        reservationDTO.setEntertainmentIds(entertainmentIds);
         reservationService.createReservation(reservationDTO);
         RedirectScenes.redirect(event,"main");
     }
@@ -98,16 +116,22 @@ public class ReservationController implements Initializable {
         roomCategory.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
         roomPricePerNight.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
         roomRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        entertainmentName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        entertainmentPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         ObservableList<RoomViewModel> roomsList = FXCollections.observableArrayList(rooms);
         tbDataRooms.setItems(roomsList);
         ObservableList<HotelViewModel> hotelList = hotelsProperties();
         tbDataHotels.setItems(hotelList);
+        tbDataEntertainments.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         tbDataHotels.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                List<EntertainmentViewModel> entertainments = entertainmentService.getAllEntertainmentsByHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
                 List<RoomViewModel> availableRooms = roomService.getAvailableRoomsByHotelId(tbDataHotels.getSelectionModel().getSelectedItem().getId());
                 ObservableList<RoomViewModel> availableRoomsObservable = FXCollections.observableArrayList(availableRooms);
                 tbDataRooms.setItems(availableRoomsObservable);
+                ObservableList<EntertainmentViewModel> entertainmentsObservable = FXCollections.observableArrayList(entertainments);
+                tbDataEntertainments.setItems(entertainmentsObservable);
             }
         });
     }

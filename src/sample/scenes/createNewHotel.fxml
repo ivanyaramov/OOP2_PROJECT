@@ -75,6 +75,7 @@
 
 
         <Button layoutX="60.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Manager" onAction="#createNewManager" />
+        <Button layoutX="300.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Entertainment" onAction="#createNewEntertainment" />
         <Button layoutX="511.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Hotel" onAction="#createNewHotel" />
         <Button layoutX="511.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Room" onAction="#createNewRoom" />
         <Button layoutX="511.0" layoutY="570.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />

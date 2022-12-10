@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<VBox fx:controller="sample.sceneControllers.CreateEntertainmentController"
+      xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" spacing="13">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Label text="Choose Hotel"
+           GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
+    <TableView fx:id="tbDataHotels" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
+        <columns>
+            <TableColumn fx:id="hotelName" prefWidth="100.0" text="hotel name" />
+            <TableColumn fx:id="hotelCity" prefWidth="100.0" text="hotel city" />
+            <TableColumn fx:id="hotelStars" prefWidth="100.0" text="hotel stars" />
+        </columns>
+    </TableView>
+
+    <Label text="Name the entertainment"/>
+    <TextField fx:id="entertainmentNameFXML"/>
+    <Label text="Price of entertainment"/>
+    <TextField fx:id="priceOfEntertainmentFXML"/>
+
+    <Button layoutX="511.0" layoutY="700.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Add entertainment" onAction="#addEntertainment" />
+    <Button layoutX="511.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+
+</VBox>

@@ -136,6 +136,10 @@ public class CreateNewHotelController implements Initializable {
         hotelService.createHotel(hotelDTO, rooms);
     }
 
+    public void createNewEntertainment() {
+
+    }
+
     public void createNewRoom(){
         for(RoomDTO room : rooms)
         {
