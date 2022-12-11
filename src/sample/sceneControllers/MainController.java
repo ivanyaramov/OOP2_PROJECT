@@ -4,12 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.models.people.Person;
 import sample.models.people.Role;
-import sample.services.LoginService;
-import sample.services.impl.LoginServiceImpl;
 import sample.utilities.RedirectScenes;
 
 import java.io.IOException;
@@ -76,7 +73,8 @@ public class MainController implements Initializable {
         }
         else {
             actionFXML.setText("make reservation");
-            actionSpecificFXML.setVisible(false);
+            actionSpecificFXML.setVisible(true);
+            actionSpecificFXML.setText("see your reservations");
             createEntertainmentToHotelFXML.setVisible(false);
         }
     }

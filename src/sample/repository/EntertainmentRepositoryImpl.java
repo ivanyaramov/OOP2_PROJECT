@@ -22,6 +22,6 @@ public class EntertainmentRepositoryImpl extends RepositoryImpl implements Enter
     @Override
     public Entertainment getById(Long id) {
         String hql = "FROM Entertainment WHERE id = " + id;
-        return (Entertainment) databaseService.getListOfObjectsByQuery(hql);
+        return (Entertainment) databaseService.getObjectByQuery(hql);
     }
 }
