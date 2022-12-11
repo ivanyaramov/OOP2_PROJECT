@@ -62,39 +62,9 @@ public class RoomListController implements Initializable {
 
         tbDataRooms.setItems(roomViewModelObservableList);
 
-        tbDataRooms.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                rateFieldFXML.setVisible(true);
-                rateButtonFXML.setVisible(true);
-            }
-        });
-
-        rateFieldFXML.textProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                if(!tryParse(newValue) || Integer.parseInt(newValue) < 0 || Integer.parseInt(newValue) > 10)
-                {
-                    rateFieldFXML.setText("Write a valid number");
-                }
-            }
-        });
-
-    }
-
-    private boolean tryParse(String value){
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     public void redirectBack(ActionEvent event) throws IOException {
         RedirectScenes.redirect(event,"main");
-    }
-
-    public void rateClient(){
-        int rating = Integer.parseInt(rateFieldFXML.getText());
-
     }
 }

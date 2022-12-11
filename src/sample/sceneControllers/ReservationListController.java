@@ -24,6 +24,7 @@ import sample.utilities.RedirectScenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -99,12 +100,23 @@ public class ReservationListController implements Initializable {
         tbDataReservations.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.CLIENT)){
+                   if(!roomRatingService.getRatingByReservationId(tbDataReservations.getSelectionModel().getSelectedItem().getId()).equals("NOT FOUND")){
+                       labelForTextFXML.setText("Already rated the room for this reservation");
+                       labelForTextFXML.setVisible(true);
+                       return;
+                   }
                    labelForTextFXML.setText("rate your room for this reservation");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);
                }
                else{
+                   if(!clientRatingService.getRatingByReservationId(tbDataReservations.getSelectionModel().getSelectedItem().getId()).equals("NOT RATED")){
+                       labelForTextFXML.setText("Already rated the client for this reservation");
+                       labelForTextFXML.setVisible(true);
+                       return;
+                   }
+
                    labelForTextFXML.setText("rate client for this reservation");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);

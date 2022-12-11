@@ -5,8 +5,6 @@ import sample.models.ratings.ClientRating;
 import sample.models.reservations.Reservation;
 import sample.repository.ClientRatingRepository;
 import sample.repository.ClientRatingRepositoryImpl;
-import sample.repository.RatingRepository;
-import sample.repository.RatingRepositoryImpl;
 import sample.services.ClientRatingService;
 import sample.services.ReservationService;
 import sample.services.UserService;
@@ -25,7 +23,7 @@ public class ClientRatingServiceImpl implements ClientRatingService {
         Reservation reservation = reservationService.getById(reservationId);
         ClientRating clientRating = new ClientRating(person, rating, reservation);
         ratingRepository.save(clientRating);
-        List<ClientRating> ratings = ratingRepository.getRatingsByPersonUsername(person.getId());
+        List<ClientRating> ratings = ratingRepository.getRatingsByPersonId(person.getId());
         userService.updatePersonRating(person, ratings);
     }
 
