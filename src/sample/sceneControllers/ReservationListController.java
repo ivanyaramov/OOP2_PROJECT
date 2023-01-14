@@ -101,23 +101,23 @@ public class ReservationListController implements Initializable {
             if (newSelection != null) {
                if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.CLIENT)){
                    if(!roomRatingService.getRatingByReservationId(tbDataReservations.getSelectionModel().getSelectedItem().getId()).equals("NOT FOUND")){
-                       labelForTextFXML.setText("Already rated the room for this reservation");
+                       labelForTextFXML.setText("Вече си оценил стаята за тази резервация");
                        labelForTextFXML.setVisible(true);
                        return;
                    }
-                   labelForTextFXML.setText("rate your room for this reservation");
+                   labelForTextFXML.setText("Оцени стаята за тази резервация");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);
                }
                else{
                    if(!clientRatingService.getRatingByReservationId(tbDataReservations.getSelectionModel().getSelectedItem().getId()).equals("NOT RATED")){
-                       labelForTextFXML.setText("Already rated the client for this reservation");
+                       labelForTextFXML.setText("Вече си оценил клиента за тази резервация");
                        labelForTextFXML.setVisible(true);
                        return;
                    }
 
-                   labelForTextFXML.setText("rate client for this reservation");
+                   labelForTextFXML.setText("Оцени клиента за тази резервация");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);

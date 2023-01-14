@@ -11,7 +11,7 @@
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
-    <Label text="Choose your room type"
+    <Label text="Избери тип на стая"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <ComboBox value="ALL_INCLUSIVE" fx:id="reservationTypeFXML">
@@ -25,51 +25,51 @@
         </items>
     </ComboBox>
 
-    <Label text="Choose start date"
+    <Label text="Избери начална дата"
            GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
     <DatePicker fx:id="datePickerFXML" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
 
-    <Label text="Choose nights"
+    <Label text="Брой нощувки"
            GridPane.columnIndex="0" GridPane.rowIndex="7" alignment="center"/>
     <TextField
             GridPane.columnIndex="0" GridPane.rowIndex="8" alignment="center" maxWidth="300" fx:id="nightCountFXML"/>
 
 
-    <Label text="Choose Hotel"
+    <Label text="Избери хотел"
            GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
     <TableView fx:id="tbDataHotels" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
         <columns>
-            <TableColumn fx:id="hotelName" prefWidth="100.0" text="hotel name" />
-            <TableColumn fx:id="hotelCity" prefWidth="100.0" text="hotel city" />
-            <TableColumn fx:id="hotelStars" prefWidth="100.0" text="hotel stars" />
+            <TableColumn fx:id="hotelName" prefWidth="100.0" text="Име на хотел" />
+            <TableColumn fx:id="hotelCity" prefWidth="100.0" text="Град на хотела" />
+            <TableColumn fx:id="hotelStars" prefWidth="100.0" text="Брой звезди на хотела" />
         </columns>
     </TableView>
 
-    <Label text="Choose Room"
+    <Label text="Избери стая"
            GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
     <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
         <columns>
-            <TableColumn fx:id="roomNumber" prefWidth="100.0" text="room number" />
-            <TableColumn fx:id="roomCategory" prefWidth="100.0" text="room category" />
-            <TableColumn fx:id="roomPricePerNight" prefWidth="100.0" text="price per night" />
-            <TableColumn fx:id="roomRating" prefWidth="100.0" text="room rating" />
+            <TableColumn fx:id="roomNumber" prefWidth="100.0" text="Номер на стая" />
+            <TableColumn fx:id="roomCategory" prefWidth="100.0" text="Тип на стая" />
+            <TableColumn fx:id="roomPricePerNight" prefWidth="100.0" text="Цена за нощувка" />
+            <TableColumn fx:id="roomRating" prefWidth="100.0" text="Рейтинг на стаята" />
         </columns>
     </TableView>
 
     <TableView fx:id="tbDataEntertainments" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
         <columns>
-            <TableColumn fx:id="entertainmentName" prefWidth="100.0" text="entertainment name" />
-            <TableColumn fx:id="entertainmentPrice" prefWidth="100.0" text="entertainment price" />
+            <TableColumn fx:id="entertainmentName" prefWidth="100.0" text="Име на забавлението" />
+            <TableColumn fx:id="entertainmentPrice" prefWidth="100.0" text="Цена на забавлението" />
         </columns>
     </TableView>
 
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="10">
-        <Button text="Reserve"
+        <Button text="Резервирай"
                 onAction="#reserve"/>
     </HBox>
 
     <Text fx:id="actiontarget"
           GridPane.columnIndex="0" GridPane.rowIndex="11"/>
-    <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+    <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
 </VBox>

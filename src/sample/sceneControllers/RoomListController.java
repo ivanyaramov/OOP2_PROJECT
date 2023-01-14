@@ -67,4 +67,9 @@ public class RoomListController implements Initializable {
     public void redirectBack(ActionEvent event) throws IOException {
         RedirectScenes.redirect(event,"main");
     }
+
+    public void rateClient(){
+        int rating = Integer.parseInt(rateFieldFXML.getText());
+
+    }
 }

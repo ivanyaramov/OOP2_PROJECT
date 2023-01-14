@@ -13,19 +13,19 @@
 <?import javafx.scene.control.TextField?>
 <AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.sceneControllers.CreateNewHotelController">
     <children>
-        <Label text="Choose manager for your hotel" layoutX="25.0" layoutY="9.0" />
+        <Label text="Избери мениджър за своя хотел" layoutX="25.0" layoutY="9.0" />
         <TableView fx:id="tbDataManagers" layoutX="25.0" layoutY="30.0" prefHeight="200.0" prefWidth="270.0">
             <columns>
-                <TableColumn fx:id="managerUsername" prefWidth="100.0" text="Username" />
-                <TableColumn fx:id="managerFullname" prefWidth="100.0" text="Fullname" />
+                <TableColumn fx:id="managerUsername" prefWidth="100.0" text="Потребителско име" />
+                <TableColumn fx:id="managerFullname" prefWidth="100.0" text="Име и фамилия" />
             </columns>
         </TableView>
-        <Label text="name of hotel" layoutX="505.0" layoutY="9.0"/>
+        <Label text="Име на хотел" layoutX="505.0" layoutY="9.0"/>
         <TextField fx:id="nameOfHotel" layoutX="505.0" layoutY="40.0"/>
-        <Label text="address of hotel" layoutX="505.0" layoutY="120.0"/>
+        <Label text="Адрес на хотел" layoutX="505.0" layoutY="120.0"/>
         <TextField fx:id="addressOfHotel" layoutX="505.0" layoutY="150.0"/>
-        <Label text="number of stars of hotel" layoutX="505.0" layoutY="220"/>
-        <ComboBox value="Stars" fx:id="stars" layoutX="505.0" layoutY="250">
+        <Label text="Брой звезди" layoutX="505.0" layoutY="220"/>
+        <ComboBox value="Звезди" fx:id="stars" layoutX="505.0" layoutY="250">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="1"/>
@@ -36,28 +36,28 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Label text="Choose receptionists for your hotel" layoutX="25.0" layoutY="250.0" />
+        <Label text="Избери рецепционист за хотела" layoutX="25.0" layoutY="250.0" />
         <TableView fx:id="tbDataReceptionists" layoutX="25.0" layoutY="270.0" prefHeight="200.0" prefWidth="270.0">
             <columns>
-                <TableColumn fx:id="receptionistUsername" prefWidth="100.0" text="Username" />
-                <TableColumn fx:id="receptionistFullname" prefWidth="100.0" text="Fullname" />
+                <TableColumn fx:id="receptionistUsername" prefWidth="100.0" text="Име на рецепционист" />
+                <TableColumn fx:id="receptionistFullname" prefWidth="100.0" text="Име и фамилия" />
             </columns>
         </TableView>
         <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="520.0" prefHeight="200.0" prefWidth="380.0">
             <columns>
-                <TableColumn fx:id="roomNumber" prefWidth="100.0" text="Room number" />
-                <TableColumn fx:id="roomType" prefWidth="100.0" text="Room type" />
-                <TableColumn fx:id="roomPrice" prefWidth="100.0" text="Room price" />
+                <TableColumn fx:id="roomNumber" prefWidth="100.0" text="Номер на стая" />
+                <TableColumn fx:id="roomType" prefWidth="100.0" text="Тип на стая" />
+                <TableColumn fx:id="roomPrice" prefWidth="100.0" text="Цена на стая" />
             </columns>
         </TableView>
 
-        <Label text="Room number"  layoutX="500.0" layoutY="300.0"/>
+        <Label text="Номер на стая"  layoutX="500.0" layoutY="300.0"/>
 
         <TextField fx:id="roomNumberFXML" alignment="center" maxWidth="300" layoutX="500.0" layoutY="330.0"/>
 
-        <Label text="Type of room" alignment="center" layoutX="500.0" layoutY="360.0"/>
+        <Label text="Тип на стая" alignment="center" layoutX="500.0" layoutY="360.0"/>
 
-        <ComboBox value="Type of room" fx:id="typeOfRoomFXML" layoutX="500.0" layoutY="390.0">
+        <ComboBox value="Тип на стая" fx:id="typeOfRoomFXML" layoutX="500.0" layoutY="390.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="PRESIDENT"/>
@@ -69,15 +69,15 @@
             </items>
         </ComboBox>
 
-        <Label text="Price of room" alignment="center" layoutX="500.0" layoutY="450.0"/>
+        <Label text="Цена на стая" alignment="center" layoutX="500.0" layoutY="450.0"/>
 
         <TextField fx:id="priceOfRoomFXML" alignment="center" maxWidth="300" layoutX="500.0" layoutY="480.0"/>
 
 
-        <Button layoutX="60.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Manager" onAction="#createNewManager" />
-        <Button layoutX="300.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Entertainment" onAction="#createNewEntertainment" />
-        <Button layoutX="511.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Hotel" onAction="#createNewHotel" />
-        <Button layoutX="511.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Room" onAction="#createNewRoom" />
-        <Button layoutX="511.0" layoutY="570.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+        <Button layoutX="60.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Създай нов мениджър" onAction="#createNewManager" />
+        <Button layoutX="300.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Създай ново забавление" onAction="#createNewEntertainment" />
+        <Button layoutX="511.0" layoutY="750.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Създай нов хотел" onAction="#createNewHotel" />
+        <Button layoutX="511.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Създай нова стая" onAction="#createNewRoom" />
+        <Button layoutX="511.0" layoutY="570.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
     </children>
 </AnchorPane>

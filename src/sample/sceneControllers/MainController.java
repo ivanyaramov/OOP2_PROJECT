@@ -27,19 +27,19 @@ public class MainController implements Initializable {
     private Button createEntertainmentToHotelFXML;
 
     public void redirectPage(ActionEvent event) throws IOException {
-        if(actionFXML.getText().equals("admin panel")){
+        if(actionFXML.getText().equals("Админ панел")){
             RedirectScenes.redirect(event,"administrator");
             return;
         }
-        if(actionFXML.getText().equals("create hotel")){
+        if(actionFXML.getText().equals("Създай хотел")){
             RedirectScenes.redirect(event,"createNewHotel");
             return;
         }
-        if(actionFXML.getText().equals("create receptionists")){
+        if(actionFXML.getText().equals("Създай рецепционисти")){
             RedirectScenes.redirect(event,"createNewReceptionist");
             return;
         }
-        if(actionFXML.getText().equals("view room busyness")){
+        if(actionFXML.getText().equals("Виж заетост на стаите")){
             RedirectScenes.redirect(event,"roomList");
             return;
         }
@@ -53,28 +53,28 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Role role = loggedUser.getRole();
-        actionSpecificFXML.setText("view reservations");
+        actionSpecificFXML.setText("Виж резервации");
         if(role == Role.ADMIN) {
-            actionFXML.setText("admin panel");
+            actionFXML.setText("Админ панел");
             actionSpecificFXML.setVisible(false);
             createEntertainmentToHotelFXML.setVisible(false);
         }
         else if(role == Role.OWNER){
-            actionFXML.setText("create hotel");
+            actionFXML.setText("Създай хотел");
             createEntertainmentToHotelFXML.setVisible(true);
         }
         else if(role == Role.MANAGER){
-            actionFXML.setText("create receptionists");
+            actionFXML.setText("Създай рецепционисти");
             createEntertainmentToHotelFXML.setVisible(false);
         }
         else if(role == Role.RECEPTIONIST){
-            actionFXML.setText("view room busyness");
+            actionFXML.setText("Виж заетост на стаите");
             createEntertainmentToHotelFXML.setVisible(false);
         }
         else {
-            actionFXML.setText("make reservation");
+            actionFXML.setText("Направи резервация");
             actionSpecificFXML.setVisible(true);
-            actionSpecificFXML.setText("see your reservations");
+            actionSpecificFXML.setText("Виж своите резервации");
             createEntertainmentToHotelFXML.setVisible(false);
         }
     }

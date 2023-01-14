@@ -13,12 +13,14 @@
 
     <TableView fx:id="tbDataRooms" layoutX="25.0" layoutY="30.0" prefHeight="500.0" prefWidth="500.0">
         <columns>
-            <TableColumn fx:id="roomNumber" prefWidth="60.0" text="number" />
-            <TableColumn fx:id="roomRoomCategory" prefWidth="60.0" text="roomCategory" />
-            <TableColumn fx:id="roomPricePerNight" prefWidth="60.0" text="pricePerNight" />
-            <TableColumn fx:id="roomRating" prefWidth="60.0" text="rating" />
-            <TableColumn fx:id="roomHotelName" prefWidth="60.0" text="hotelName" />
+            <TableColumn fx:id="roomNumber" prefWidth="60.0" text="Номер на стаята" />
+            <TableColumn fx:id="roomRoomCategory" prefWidth="60.0" text="Категория на стаята" />
+            <TableColumn fx:id="roomPricePerNight" prefWidth="60.0" text="Цена за нощувка" />
+            <TableColumn fx:id="roomRating" prefWidth="60.0" text="Рейтинг" />
+            <TableColumn fx:id="roomHotelName" prefWidth="60.0" text="Име на хотела" />
         </columns>
     </TableView>
-    <Button layoutX="511.0" layoutY="600.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+    <Button layoutX="511.0" layoutY="600.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
+    <TextField fx:id="rateFieldFXML" layoutX="310.0" layoutY="600.0" prefHeight="38.0" prefWidth="170.0"/>
+    <Button fx:id="rateButtonFXML" layoutX="310.0" layoutY="670.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Оцени клиент" onAction="#rateClient" />
 </AnchorPane>

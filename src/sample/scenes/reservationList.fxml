@@ -13,20 +13,20 @@
 
     <TableView fx:id="tbDataReservations" layoutX="25.0" layoutY="30.0" prefHeight="500.0" prefWidth="700.0">
         <columns>
-            <TableColumn fx:id="reservationType" prefWidth="60.0" text="type" />
-            <TableColumn fx:id="reservationDateOfArrival" prefWidth="60.0" text="dateOfArrival" />
-            <TableColumn fx:id="reservationDays" prefWidth="60.0" text="days" />
-            <TableColumn fx:id="reservationRoomId" prefWidth="60.0" text="roomId" />
-            <TableColumn fx:id="reservationRoomCategory" prefWidth="60.0" text="roomCategory" />
-            <TableColumn fx:id="reservationHotelName" prefWidth="60.0" text="hotelName" />
-            <TableColumn fx:id="reservationEnded" prefWidth="60.0" text="ended" />
-            <TableColumn fx:id="reservationNearlyEnded" prefWidth="60.0" text="nearlyEnded" />
-            <TableColumn fx:id="reservationRisky" prefWidth="60.0" text="risky" />
-            <TableColumn fx:id="reservationPrice" prefWidth="60.0" text="price" />
+            <TableColumn fx:id="reservationType" prefWidth="60.0" text="Тип" />
+            <TableColumn fx:id="reservationDateOfArrival" prefWidth="60.0" text="Дата на пристигане" />
+            <TableColumn fx:id="reservationDays" prefWidth="60.0" text="брой дни" />
+            <TableColumn fx:id="reservationRoomId" prefWidth="60.0" text="Номер на стая" />
+            <TableColumn fx:id="reservationRoomCategory" prefWidth="60.0" text="Категория на стаята" />
+            <TableColumn fx:id="reservationHotelName" prefWidth="60.0" text="Име на хотела" />
+            <TableColumn fx:id="reservationEnded" prefWidth="60.0" text="Приключила" />
+            <TableColumn fx:id="reservationNearlyEnded" prefWidth="60.0" text="Почти приключила" />
+            <TableColumn fx:id="reservationRisky" prefWidth="60.0" text="Рискован" />
+            <TableColumn fx:id="reservationPrice" prefWidth="60.0" text="Цена" />
         </columns>
     </TableView>
     <Label fx:id="labelForTextFXML" layoutX="20" layoutY="620"/>
     <TextField fx:id="rateFXML" layoutX="20" layoutY="640"/>
     <Button fx:id="buttonForRatingFXML" layoutX="300" layoutY="640" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="rate" onAction="#rate"/>
-    <Button layoutX="511.0" layoutY="640.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+    <Button layoutX="511.0" layoutY="640.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
 </AnchorPane>

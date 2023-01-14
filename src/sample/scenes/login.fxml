@@ -13,13 +13,13 @@
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
-    <Label text="Username"
+    <Label text="Име на потребителя"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <TextField fx:id="usernameFXML"
             GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300"/>
 
-    <Label text="Password"
+    <Label text="Парола"
            GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
 
     <PasswordField fx:id="passwordFXML"
@@ -27,9 +27,9 @@
 
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
-        <Button text="Login"
+        <Button text="Влизане"
                alignment="CENTER_LEFT" onAction="#login"/>
-        <Button text="Register"
+        <Button text="Регистриране"
                 alignment="CENTER_RIGHT" onAction="#register"/>
     </HBox>
 

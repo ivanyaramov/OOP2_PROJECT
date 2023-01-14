@@ -136,8 +136,8 @@ public class CreateNewHotelController implements Initializable {
         hotelService.createHotel(hotelDTO, rooms);
     }
 
-    public void createNewEntertainment() {
-
+    public void createNewEntertainment(ActionEvent event) throws  IOException{
+        RedirectScenes.redirect(event,"createEntertainment");
     }
 
     public void createNewRoom(){
@@ -145,7 +145,7 @@ public class CreateNewHotelController implements Initializable {
         {
             if(room.getNumber() == Integer.parseInt(roomNumberFXML.getText()))
             {
-                roomNumberTakenLabelFXML.setText("Room number is already taken");
+                roomNumberTakenLabelFXML.setText("Вече има стая с този номер");
                 return;
             }
         }
