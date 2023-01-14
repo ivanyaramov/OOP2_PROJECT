@@ -47,4 +47,14 @@ public class HotelServiceImpl implements HotelService {
     public List<HotelViewModel> getAllHotels() {
         return hotelRepository.getAllHotels().stream().map(h -> modelMapper.map(h, HotelViewModel.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void addReceptionistToHotel(Long hotelId, List<String> receptionistUsernames) {
+        Hotel hotel = hotelRepository.getById(hotelId);
+        for(String username : receptionistUsernames) {
+            Person receptionist = userService.getPersonByUsername(username);
+            hotel.getReceptionists().add(receptionist);
+        }
+        hotelRepository.update(hotel);
+    }
 }

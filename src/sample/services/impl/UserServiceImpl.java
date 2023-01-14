@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.getPeopleByRole(role).stream().map(p->modelMapper.map(p, PersonInfoViewModel.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public void setRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public PersonPasswordDTO getPersonPasswordDTO(String username){
         return modelMapper.map(getPersonByUsername(username), PersonPasswordDTO.class);
     }

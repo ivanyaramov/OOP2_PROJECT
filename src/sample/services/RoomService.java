@@ -9,7 +9,7 @@ import sample.models.viemModels.RoomViewModel;
 import java.util.List;
 
 public interface RoomService {
-    boolean roomNumberExists(int number);
+    boolean roomNumberExists(int number, Long hotelId);
     boolean createRoom(RoomDTO roomDTO, Hotel hotel);
     void createRooms(List<RoomDTO> rooms, Hotel hotel);
     List<RoomViewModel> getAvailableRoomsByHotelId(Long hotelId);
