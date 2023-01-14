@@ -10,34 +10,34 @@
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
-    <Label text="Username"
+    <Label text="Име на собственика"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <TextField fx:id="usernameFXML"
                GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300" />
 
-    <Label text="Password"
+    <Label text="Парола"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <PasswordField fx:id="passwordFXML"
                    GridPane.columnIndex="0" GridPane.rowIndex="7" maxWidth="300"/>
 
-    <Label text="Repeat password"
+    <Label text="Повтори паролата"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <PasswordField fx:id="passwordRepeatFXML"
                    GridPane.columnIndex="0" GridPane.rowIndex="7" maxWidth="300"/>
 
-    <Label text="Fullname"
+    <Label text="Име и фамилия"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <TextField fx:id="fullNameFXML"
                GridPane.columnIndex="0" GridPane.rowIndex="3" alignment="center" maxWidth="300"/>
 
-    <Label text="Gender"
+    <Label text="Пол"
            GridPane.columnIndex="0" GridPane.rowIndex="5" alignment="center"/>
 
-    <ComboBox value="Gender" fx:id="genderFXML">
+    <ComboBox value="Пол" fx:id="genderFXML">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Male"/>
@@ -46,7 +46,7 @@
         </items>
     </ComboBox>
 
-    <Label text="Telephone"
+    <Label text="номер"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
 
     <TextField fx:id="telephoneFXML"
@@ -54,7 +54,7 @@
 
     <HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
-        <Button text="Register"
+        <Button text="Регистриране"
                 alignment="CENTER_RIGHT" onAction="#createNewOwner"/>
     </HBox>
 
@@ -62,5 +62,5 @@
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
     <Label text="" fx:id="errorFXML"
            GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="center"/>
-    <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+    <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
 </VBox>

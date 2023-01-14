@@ -11,8 +11,8 @@
 <?import java.lang.String?>
 <AnchorPane prefHeight="514.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.sceneControllers.AdministratorController">
    <children>
-      <Button layoutX="511.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="140.0" text="Change Role" onAction="#changeRole" />
-      <ComboBox layoutX="310.0" layoutY="94.0" prefWidth="150.0" promptText="Roles" fx:id="roleFXML">
+      <Button layoutX="511.0" layoutY="88.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="140.0" text="Смени роля" onAction="#changeRole" />
+      <ComboBox layoutX="310.0" layoutY="94.0" prefWidth="150.0" promptText="Роли" fx:id="roleFXML">
               <items>
                   <FXCollections fx:factory="observableArrayList">
                       <String fx:value="ADMIN"/>
@@ -25,11 +25,11 @@
       </ComboBox>
       <TableView fx:id="tbData" layoutX="25.0" layoutY="22.0" prefHeight="200.0" prefWidth="270.0">
         <columns>
-          <TableColumn fx:id="username" prefWidth="100.0" text="Username" />
-          <TableColumn fx:id="role" prefWidth="100.0" text="Current role" />
+          <TableColumn fx:id="username" prefWidth="100.0" text="Име" />
+          <TableColumn fx:id="role" prefWidth="100.0" text="Настояща роля" />
         </columns>
       </TableView>
-       <Button layoutX="511.0" layoutY="450.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Create new Owner" onAction="#createNewOwner" />
-       <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Back" onAction="#redirectBack" />
+       <Button layoutX="511.0" layoutY="450.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Създай нов собственик" onAction="#createNewOwner" />
+       <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
    </children>
 </AnchorPane>

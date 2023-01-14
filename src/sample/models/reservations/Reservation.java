@@ -7,6 +7,7 @@ import sample.models.hotels.RoomCategory;
 import sample.models.people.Person;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class Reservation {
     private Hotel hotel;
     @ManyToOne
     private Person client;
-    @ManyToMany(mappedBy = "reservations")
-    private List<Entertainment> entertainments;
+    @ManyToMany(mappedBy = "reservations",fetch = FetchType.EAGER)
+    private List<Entertainment> entertainments = new ArrayList<>();
 
 
     public Hotel getHotel() {
