@@ -26,13 +26,13 @@ public class RoomServiceImpl implements RoomService {
     private RoomRepository roomRepository = new RoomRepositoryImpl();
     private HotelRepository hotelRepository = new HotelRepositoryImpl();
     @Override
-    public boolean roomNumberExists(int number) {
-        return roomRepository.roomNumberExists(number);
+    public boolean roomNumberExists(int number, Long hotelId) {
+        return roomRepository.roomNumberExists(number, hotelId);
     }
 
     @Override
     public boolean createRoom(RoomDTO roomDTO, Hotel hotel) {
-        if(!roomNumberExists(roomDTO.getNumber())){
+        if(!roomNumberExists(roomDTO.getNumber(), hotel.getId())){
             Room room = modelMapper.map(roomDTO, Room.class);
             room.setHotel(hotel);
             roomRepository.save(room);

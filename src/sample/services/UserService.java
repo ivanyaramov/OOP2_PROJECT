@@ -8,6 +8,7 @@ import sample.models.people.Person;
 import sample.models.people.Role;
 import sample.models.viemModels.PersonInfoViewModel;
 import sample.models.viemModels.PersonWithRoleViewModel;
+import sample.repository.UserRepository;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface UserService {
     List<Person> getPeopleByListOfUsernames(List<String> usernames);
     void updatePersonRating(Person person, List<ClientRating> ratings);
     List<PersonInfoViewModel> getPeopleByRole(Role role);
+    void setRepository(UserRepository userRepository);
+
 }

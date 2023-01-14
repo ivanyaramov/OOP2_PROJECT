@@ -10,8 +10,8 @@ public class RoomRepositoryImpl extends RepositoryImpl implements RoomRepository
     private DatabaseService databaseService = new DatabaseService();
 
     @Override
-    public boolean roomNumberExists(int number) {
-        String hql = "FROM Room r WHERE r.number = " + number;
+    public boolean roomNumberExists(int number, Long hotelId) {
+        String hql = "FROM Room r WHERE r.number = " + number + " AND hotel_id = " + hotelId;
         return databaseService.objectExistsByQuery(hql);
     }
 

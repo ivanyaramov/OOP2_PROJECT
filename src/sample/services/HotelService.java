@@ -12,4 +12,5 @@ public interface HotelService {
     void createHotel(HotelDTO hotelDTO, List<RoomDTO> rooms);
     Hotel getHotelById(Long id);
     List<HotelViewModel> getAllHotels();
+    void addReceptionistToHotel(Long hotelId, List<String> receptionistUsernames);
 }
