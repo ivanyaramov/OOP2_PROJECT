@@ -24,6 +24,9 @@ public class MainController implements Initializable {
     private Button actionSpecificFXML;
 
     @FXML
+    private Button editHotelFXML;
+
+    @FXML
     private Button createEntertainmentToHotelFXML;
 
     public void redirectPage(ActionEvent event) throws IOException {
@@ -43,6 +46,10 @@ public class MainController implements Initializable {
             RedirectScenes.redirect(event,"roomList");
             return;
         }
+        if(actionFXML.getText().equals("Редактирай хотели")){
+            RedirectScenes.redirect(event,"editHotel");
+            return;
+        }
         RedirectScenes.redirect(event,"reservation");
     }
 
@@ -50,9 +57,14 @@ public class MainController implements Initializable {
         RedirectScenes.redirect(event,"reservationList");
     }
 
+    public void editHotel(ActionEvent event) throws IOException {
+        RedirectScenes.redirect(event,"editHotel");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Role role = loggedUser.getRole();
+        editHotelFXML.setVisible(false);
         actionSpecificFXML.setText("Виж резервации");
         if(role == Role.ADMIN) {
             actionFXML.setText("Админ панел");
@@ -62,6 +74,7 @@ public class MainController implements Initializable {
         else if(role == Role.OWNER){
             actionFXML.setText("Създай хотел");
             createEntertainmentToHotelFXML.setVisible(true);
+            editHotelFXML.setVisible(true);
         }
         else if(role == Role.MANAGER){
             actionFXML.setText("Създай рецепционисти");

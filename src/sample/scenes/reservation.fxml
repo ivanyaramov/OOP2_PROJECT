@@ -69,7 +69,10 @@
                 onAction="#reserve"/>
     </HBox>
 
+    <Label fx:id="validationFXML"
+           GridPane.columnIndex="0" GridPane.rowIndex="11" alignment="center"/>
+
     <Text fx:id="actiontarget"
-          GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+          GridPane.columnIndex="0" GridPane.rowIndex="12"/>
     <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
 </VBox>

@@ -76,6 +76,9 @@ public class ReservationListController implements Initializable {
     @FXML
     public Button buttonForRatingFXML;
 
+    @FXML
+    public Label labelForValidationFXML;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -107,7 +110,7 @@ public class ReservationListController implements Initializable {
                        labelForTextFXML.setVisible(true);
                        return;
                    }
-                   labelForTextFXML.setText("Оцени стаята за тази резервация");
+                   labelForTextFXML.setText("Оцени стаята за тази резервация от 1-10");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);
@@ -119,7 +122,7 @@ public class ReservationListController implements Initializable {
                        return;
                    }
 
-                   labelForTextFXML.setText("Оцени клиента за тази резервация");
+                   labelForTextFXML.setText("Оцени клиента за тази резервация 1-10");
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);
@@ -133,6 +136,14 @@ public class ReservationListController implements Initializable {
     }
 
     public void rate(){
+
+        labelForTextFXML.setVisible(false);
+        int result = tryParseInt(rateFXML.getText(),11);
+        if(result == 11)
+        {
+            labelForTextFXML.setVisible(true);
+            labelForTextFXML.setText("Невалиден рейтинг");
+        }
         Double rate = Double.valueOf(rateFXML.getText());
         if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.CLIENT)){
             roomRatingService.createRating(tbDataReservations.getSelectionModel().getSelectedItem().getRoomId(),rate,tbDataReservations.getSelectionModel().getSelectedItem().getId());
@@ -141,6 +152,14 @@ public class ReservationListController implements Initializable {
         else {
             clientRatingService.createRatingForPerson(CurrentLoggedUser.getLoggedUser().getUsername(),rate,tbDataReservations.getSelectionModel().getSelectedItem().getId());
             return;
+        }
+    }
+
+    private int tryParseInt(String value, int defaultVal) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return defaultVal;
         }
     }
 }

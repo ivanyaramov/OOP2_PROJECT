@@ -11,6 +11,7 @@
         <Button fx:id="actionSpecificFXML" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#redirectPageSpecific" />
         <Button fx:id="logoutFXML" text="Излизане" layoutX="300.0" layoutY="400.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#logOut" />
         <Button fx:id="createEntertainmentToHotelFXML" text="Създай забавление" layoutX="300.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#createEntertainment" />
+        <Button fx:id="editHotelFXML" text="редактиране на хотели" layoutX="300.0" layoutY="600.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="250.0" onAction="#editHotel" />
     </children>
 
 </AnchorPane>

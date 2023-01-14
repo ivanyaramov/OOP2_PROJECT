@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.sceneControllers.EditHotelController"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label text="Избери хотел"
+           GridPane.columnIndex="0" GridPane.rowIndex="9" alignment="center"/>
+    <TableView fx:id="tbDataHotels" layoutX="25.0" layoutY="30.0" prefHeight="240.0" prefWidth="230.0">
+        <columns>
+            <TableColumn fx:id="hotelName" prefWidth="100.0" text="Име на хотел" />
+            <TableColumn fx:id="hotelCity" prefWidth="100.0" text="Град на хотела" />
+            <TableColumn fx:id="hotelStars" prefWidth="100.0" text="Брой звезди на хотела" />
+        </columns>
+    </TableView>
+
+    <Label text="Избери рецепционист за хотела" layoutX="25.0" layoutY="300.0" />
+    <TableView fx:id="tbDataReceptionists" layoutX="25.0" layoutY="330.0" prefHeight="200.0" prefWidth="270.0">
+        <columns>
+            <TableColumn fx:id="receptionistUsername" prefWidth="100.0" text="Име на рецепционист" />
+            <TableColumn fx:id="receptionistFullname" prefWidth="100.0" text="Име и фамилия" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="60.0" layoutY="600.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Добави нов рецепционист" onAction="#addNewReceptionist" />
+
+</AnchorPane>

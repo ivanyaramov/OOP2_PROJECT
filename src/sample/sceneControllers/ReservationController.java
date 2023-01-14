@@ -26,6 +26,7 @@ import sample.utilities.RedirectScenes;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -88,9 +89,28 @@ public class ReservationController implements Initializable {
     @FXML
     public TextField nightCountFXML;
 
+    @FXML
+    public Label validationFXML;
+
     public List<RoomViewModel> rooms = new ArrayList<>();
 
     public void reserve(ActionEvent event) throws IOException {
+        validationFXML.setVisible(false);
+        if(nightCountFXML.getText().isEmpty() || Integer.parseInt(nightCountFXML.getText())<1)
+        {
+            validationFXML.setVisible(true);
+            validationFXML.setText("Невалиден брой дни");
+            return;
+        }
+        LocalDate now = LocalDate.now();
+        LocalDate date1 = datePickerFXML.getValue();
+        int compareResult = date1.compareTo(now);
+        if(compareResult<1)
+        {
+            validationFXML.setVisible(true);
+            validationFXML.setText("Невалидна дата");
+            return;
+        }
         ReservationDTO reservationDTO = new ReservationDTO();
         ObservableList<EntertainmentViewModel> chosenEntertainments = tbDataEntertainments.getSelectionModel().getSelectedItems();
         List<Long> entertainmentIds = chosenEntertainments.stream().map(EntertainmentViewModel::getId).collect(Collectors.toList());
