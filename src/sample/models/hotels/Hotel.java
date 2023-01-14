@@ -17,7 +17,7 @@ public class Hotel {
     private Person manager;
     @ManyToOne
     private Person owner;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Person> receptionists;
     @OneToMany(mappedBy = "hotel")
     private List<Reservation> reservations;

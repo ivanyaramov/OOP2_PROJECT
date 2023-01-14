@@ -41,5 +41,6 @@
     <orderEntry type="library" name="com.github.chhsiao90:modelmapper-module-java8-datatypes:1.2.1" level="project" />
     <orderEntry type="library" name="com.bluecatcode.mockito:mockito-1.10.19-extended:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="org.junit.jupiter:junit-jupiter-api:5.9.0" level="project" />
+    <orderEntry type="library" name="org.junit.jupiter:junit-jupiter-params:5.9.0-M1" level="project" />
   </component>
 </module>

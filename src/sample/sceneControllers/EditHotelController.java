@@ -3,6 +3,7 @@ package sample.sceneControllers;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
@@ -17,7 +18,9 @@ import sample.services.HotelService;
 import sample.services.UserService;
 import sample.services.impl.HotelServiceImpl;
 import sample.services.impl.UserServiceImpl;
+import sample.utilities.RedirectScenes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,15 +92,19 @@ public class EditHotelController implements Initializable {
         return FXCollections.observableArrayList(hotelService.getAllHotels());
     }
 
-    public void addNewReceptionist(){
+    public void addNewReceptionist(ActionEvent event) throws IOException {
         List<PersonForCreateHotelViewModel> chvmR = tbDataReceptionists.getSelectionModel().getSelectedItems();
-        List<String> usernames = null;
+        List<String> usernames = new ArrayList<>();
         for(PersonForCreateHotelViewModel rec : chvmR)
         {
             usernames.add(rec.getUsername());
         }
         Long hotelId = tbDataHotels.getSelectionModel().getSelectedItem().getId();
+        hotelService.addReceptionistToHotel(hotelId,usernames);
+        RedirectScenes.redirect(event,"editHotel");
+    }
 
-
+    public void back(ActionEvent event) throws IOException{
+        RedirectScenes.redirect(event,"main");
     }
 }
