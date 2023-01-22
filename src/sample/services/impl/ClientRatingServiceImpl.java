@@ -1,5 +1,6 @@
 package sample.services.impl;
 
+import sample.logger.Logger;
 import sample.models.people.Person;
 import sample.models.ratings.ClientRating;
 import sample.models.reservations.Reservation;
@@ -25,6 +26,7 @@ public class ClientRatingServiceImpl implements ClientRatingService {
         ratingRepository.save(clientRating);
         List<ClientRating> ratings = ratingRepository.getRatingsByPersonId(person.getId());
         userService.updatePersonRating(person, ratings);
+        Logger.log("Rating of user " + username  + " is updated");
     }
 
     @Override

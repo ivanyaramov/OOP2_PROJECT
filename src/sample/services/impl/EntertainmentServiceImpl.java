@@ -1,6 +1,7 @@
 package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
+import sample.logger.Logger;
 import sample.models.DTOs.EntertainmentDTO;
 import sample.models.entertainment.Entertainment;
 import sample.models.hotels.Hotel;
@@ -23,6 +24,7 @@ public class EntertainmentServiceImpl implements EntertainmentService {
         Hotel hotel = hotelService.getHotelById(entertainmentDTO.getHotelId());
         entertainment.setHotel(hotel);
         entertainmentRepository.save(entertainment);
+        Logger.log("Entertainment " + entertainment.getName() + " created");
     }
 
     public List<EntertainmentViewModel> getEntertainmentsByReservationId(Long reservationId){

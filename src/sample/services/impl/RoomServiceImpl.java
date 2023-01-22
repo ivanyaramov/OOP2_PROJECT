@@ -2,6 +2,7 @@ package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
+import sample.logger.Logger;
 import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.Hotel;
 import sample.models.hotels.Room;
@@ -36,6 +37,7 @@ public class RoomServiceImpl implements RoomService {
             Room room = modelMapper.map(roomDTO, Room.class);
             room.setHotel(hotel);
             roomRepository.save(room);
+            Logger.log("Room with number " + room.getNumber() + " created for hotel " + hotel.getName());
             return true;
         }
         return false;

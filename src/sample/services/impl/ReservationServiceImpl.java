@@ -2,6 +2,7 @@ package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
+import sample.logger.Logger;
 import sample.models.DTOs.ReservationDTO;
 import sample.models.entertainment.Entertainment;
 import sample.models.hotels.Hotel;
@@ -43,6 +44,7 @@ public class ReservationServiceImpl implements ReservationService {
             reservation.getEntertainments().add(entertainment);
         }
         reservationRepository.save(reservation);
+        Logger.log("Reservation created");
         roomService.updateRoomIsTaken(room, true);
     }
 

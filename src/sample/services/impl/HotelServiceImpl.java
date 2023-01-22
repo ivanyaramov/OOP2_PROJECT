@@ -2,6 +2,7 @@ package sample.services.impl;
 
 import org.modelmapper.ModelMapper;
 import sample.currentLogin.CurrentLoggedUser;
+import sample.logger.Logger;
 import sample.models.DTOs.HotelDTO;
 import sample.models.DTOs.RoomDTO;
 import sample.models.hotels.Hotel;
@@ -34,6 +35,7 @@ public class HotelServiceImpl implements HotelService {
         hotel.setOwner(owner);
         hotel.setReceptionists(receptionists);
         hotelRepository.save(hotel);
+        Logger.log("Hotel " + hotel.getName() + " created");
         Hotel savedHotel = hotelRepository.getHotelByName(hotel.getName());
         roomService.createRooms(rooms, savedHotel);
     }
@@ -54,7 +56,9 @@ public class HotelServiceImpl implements HotelService {
         for(String username : receptionistUsernames) {
             Person receptionist = userService.getPersonByUsername(username);
             hotel.getReceptionists().add(receptionist);
+            Logger.log("Receptionist " + username + " added to hotel " + hotel.getName());
         }
         hotelRepository.update(hotel);
+
     }
 }
