@@ -34,13 +34,14 @@ public class RoomRepositoryImpl extends RepositoryImpl implements RoomRepository
     }
 
     private String createHQLForGetByHotelIds(List<Long> ids){
-        StringBuilder sb = new StringBuilder("FROM Room WHERE");
+        StringBuilder sb = new StringBuilder("FROM Room WHERE istaken = false AND (");
         for(int i = 0 ; i < ids.size(); i++){
             sb.append(" hotel_id = " + ids.get(i));
             if(i != ids.size() - 1){
                 sb.append(" OR");
             }
         }
+        sb.append(")");
         return sb.toString();
     }
 }
