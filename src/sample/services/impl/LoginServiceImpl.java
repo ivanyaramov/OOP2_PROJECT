@@ -1,6 +1,5 @@
 package sample.services.impl;
 
-import org.apache.log4j.Priority;
 import sample.currentLogin.CurrentLoggedUser;
 import sample.logger.Logger;
 import sample.models.DTOs.LoginDTO;

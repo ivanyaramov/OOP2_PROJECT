@@ -42,7 +42,7 @@ public class MainController implements Initializable {
             RedirectScenes.redirect(event,"createNewReceptionist");
             return;
         }
-        if(actionFXML.getText().equals("Виж заетост на стаите")){
+        if(actionFXML.getText().equals("Виж свободни стаи")){
             RedirectScenes.redirect(event,"roomList");
             return;
         }
@@ -81,7 +81,7 @@ public class MainController implements Initializable {
             createEntertainmentToHotelFXML.setVisible(false);
         }
         else if(role == Role.RECEPTIONIST){
-            actionFXML.setText("Виж заетост на стаите");
+            actionFXML.setText("Виж свободни стаи");
             createEntertainmentToHotelFXML.setVisible(false);
         }
         else {

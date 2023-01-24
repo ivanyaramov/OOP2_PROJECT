@@ -29,5 +29,6 @@
     <TextField fx:id="rateFXML" layoutX="20" layoutY="640"/>
     <Button fx:id="buttonForRatingFXML" layoutX="300" layoutY="640" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="rate" onAction="#rate"/>
     <Label fx:id="labelForValidationFXML" layoutX="300" layoutY="670"/>
-    <Button layoutX="511.0" layoutY="640.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
+    <Button layoutX="701.0" layoutY="640.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Назад" onAction="#redirectBack" />
+    <Button fx:id="prematureEndReservationFXML" layoutX="511.0" layoutY="720.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Прекрати резервация" onAction="#endReservation" />
 </AnchorPane>
