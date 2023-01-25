@@ -18,10 +18,7 @@ import sample.services.EntertainmentService;
 import sample.services.ReservationService;
 import sample.services.RoomService;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ReservationServiceImpl implements ReservationService {
@@ -52,21 +49,26 @@ public class ReservationServiceImpl implements ReservationService {
     public List<ReservationViewModel> getReservationsForUser() {
         Person currentUser = CurrentLoggedUser.getLoggedUser();
         List<Reservation> reservations;
-        switch (currentUser.getRole()){
-            case CLIENT:
-                reservations = reservationRepository.getReservationsByClientId(currentUser.getId());
-                break;
-            case MANAGER:
-                reservations = reservationRepository.getReservationsByHotelIds(Arrays.asList(hotelRepository.getIdOfHotelsForManager(currentUser.getId())));
-                break;
-            case RECEPTIONIST:
-                reservations = reservationRepository.getReservationsByHotelIds(Arrays.asList(hotelRepository.getIdOfHotelsForReceptionist(currentUser.getId())));
-                break;
-            case OWNER:
-                reservations = reservationRepository.getReservationsByHotelIds(hotelRepository.getIdsOfHotelsForOwner(currentUser.getId()));
-                break;
-            default:
-                return null;
+        try {
+            switch (currentUser.getRole()) {
+                case CLIENT:
+                    reservations = reservationRepository.getReservationsByClientId(currentUser.getId());
+                    break;
+                case MANAGER:
+                    reservations = reservationRepository.getReservationsByHotelIds(Arrays.asList(hotelRepository.getIdOfHotelsForManager(currentUser.getId())));
+                    break;
+                case RECEPTIONIST:
+                    reservations = reservationRepository.getReservationsByHotelIds(Arrays.asList(hotelRepository.getIdOfHotelsForReceptionist(currentUser.getId())));
+                    break;
+                case OWNER:
+                    reservations = reservationRepository.getReservationsByHotelIds(hotelRepository.getIdsOfHotelsForOwner(currentUser.getId()));
+                    break;
+                default:
+                    return null;
+            }
+        }
+        catch (Exception e){
+            return new ArrayList<>();
         }
         return reservations
                 .stream().map(this::setReservationViewModel).collect(Collectors.toList());
