@@ -52,6 +52,8 @@ public class RoomListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         ObservableList<RoomViewModel> roomViewModelObservableList = FXCollections.observableArrayList(roomService.getRoomsForUserHotels());
+        rateButtonFXML.setVisible(false);
+        rateFieldFXML.setVisible(false);
         roomNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         roomRoomCategory.setCellValueFactory(new PropertyValueFactory<>("roomCategory"));
         roomPricePerNight.setCellValueFactory(new PropertyValueFactory<>("pricePerNight"));
@@ -64,5 +66,10 @@ public class RoomListController implements Initializable {
 
     public void redirectBack(ActionEvent event) throws IOException {
         RedirectScenes.redirect(event,"main");
+    }
+
+    public void rateClient(){
+        int rating = Integer.parseInt(rateFieldFXML.getText());
+
     }
 }

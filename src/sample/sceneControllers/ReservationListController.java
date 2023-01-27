@@ -108,6 +108,13 @@ public class ReservationListController implements Initializable {
                rateFXML.setVisible(false);
                buttonForRatingFXML.setVisible(false);
 
+                if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.MANAGER)){
+                    if(!tbDataReservations.getSelectionModel().getSelectedItem().isEnded())
+                    {
+                        prematureEndReservationFXML.setVisible(true);
+                    }
+                }
+
                if(!tbDataReservations.getSelectionModel().getSelectedItem().isEnded())
                 return;
                if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.CLIENT)){
@@ -120,12 +127,6 @@ public class ReservationListController implements Initializable {
                    labelForTextFXML.setVisible(true);
                    rateFXML.setVisible(true);
                    buttonForRatingFXML.setVisible(true);
-               }
-               else if(CurrentLoggedUser.getLoggedUser().getRole().equals(Role.MANAGER)){
-                   if(!tbDataReservations.getSelectionModel().getSelectedItem().isEnded())
-                   {
-                       prematureEndReservationFXML.setVisible(true);
-                   }
                }
                else{
                    if(!clientRatingService.getRatingByReservationId(tbDataReservations.getSelectionModel().getSelectedItem().getId()).equals("NOT RATED")){
